@@ -1,5 +1,4 @@
 <?php
-include 'mysqli-connection.php';
 include 'header/admin.php';
 
 
@@ -18,7 +17,7 @@ include 'header/admin.php';
                   <li class="breadcrumb-item active">Category</li>
                </ol>
             </div>
-            <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" data-target="#category_modal" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-plus-square"></i>
+            <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" data-target="#category_modal" id="add" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-plus-square"></i>
                Add New</a>
          </div>
       </div>
@@ -161,7 +160,7 @@ include 'header/admin.php';
                <div class="card-footer">
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
                   <input type="hidden" name="category_id" id="category_id" />
-                  <input type="hidden" name="btn_action" id="btn_action" value="add_category" />
+                  <input type="hidden" name="btn_action" id="btn_action"/>
                   <button type="submit" id="submit" class="btn btn-save">Save</button>
                </div>
             </form>
@@ -181,6 +180,11 @@ include 'header/admin.php';
 <script>
    $(document).ready(function() {
       // var table = $("#category_table").DataTable();
+      $('#add').on('click', function() {
+         $('#category_form')[0].reset();
+         $('#submit').text("Save");
+         $('#btn_action').val("add_category");
+      });
 
       var categorydataTable = $('#category_table').DataTable({
          "processing": true,
