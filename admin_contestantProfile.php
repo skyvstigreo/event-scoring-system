@@ -1,4 +1,5 @@
-<!-- <?php include 'header/admin.php';?>
+<?php include 'header/admin.php';?>
+
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
@@ -27,15 +28,16 @@
                         <thead class="btn-cancel">
                             <tr>
                                 <th>Full Name</th>
-                                <th>Age</th>
                                 <th>Gender</th>
+                                <th>Birthday</th>
+                                <th>Age</th>
                                 <th>Course</th>
-                                <th>Personal Background</th>
+                                <th>Event Joined</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <!-- <tr>
                                 <td>Jane Smith</td>
                                 <td>23</td>
                                 <td>Female</td>
@@ -73,7 +75,7 @@
                                     <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
                                        class="fa fa-trash-alt"></i> delete</a>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
