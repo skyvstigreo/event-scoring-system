@@ -13,10 +13,10 @@
                         <li class="breadcrumb-item active">Criteria</li>
                      </ol>
                   </div>
-                  <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" data-target="#add"
+                  <!-- <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" data-target="#add"
                      style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i
                         class="fa fa-plus-square"></i>
-                     Add New</a>
+                     Add New</a> -->
                </div>
             </div>
          </div>
@@ -28,12 +28,14 @@
                      <table id="example1" class="table">
                         <thead class="btn-cancel">
                            <tr>
-                              <th>Criteria Name</th>
-                              <th>Description</th>
-                              <th class="text-center">Action</th>
+                              <th>Judge Name</th>
+                              <th>Contestant Name</th>
+                              <th>Score</th>
+                              <th>Event Name</th>
+                              
                            </tr>
                         </thead>
-                        <tbody>
+                        <!-- <tbody>
                            <tr>
                               <td>Cultural</td>
                               <td>Cultural Descriptions</td>
@@ -64,7 +66,7 @@
                                        class="fa fa-trash-alt"></i> delete</a>
                               </td>
                            </tr>
-                        </tbody>
+                        </tbody> -->
                      </table>
                   </div>
                </div>

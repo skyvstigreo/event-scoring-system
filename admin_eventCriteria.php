@@ -6,7 +6,7 @@
             <div class="container-fluid">
                <div class="row mb-2">
                   <div class="col-sm-6">
-                     <h1 class="m-0"><img src="asset/img/criteria.png" width="40"> Event Criteria</h1>
+                     <h1 class="m-0"><img src="asset/img/criteria.png" width="40"> Event Criteria (Gagawing Card)</h1>
                   </div>
                   <div class="col-sm-6">
                      <ol class="breadcrumb float-sm-right">
@@ -21,7 +21,8 @@
                </div>
             </div>
          </div>
-         <section class="content">
+
+         <!-- <section class="content">
             <div class="container-fluid">
                <div class="card card-info elevation-2">
                   <br>
@@ -74,7 +75,80 @@
                   </div>
                </div>
             </div>
-         </section>
+         </section> -->
+
+         <section class="content">
+               <div class="container-fluid">
+                  <div class="card card-info elevation-2">
+                     <br>
+                     <div class="col-md-12">
+                        <div class="row">
+                           <div class="col-lg-12">
+                              <div class="info-box">
+                                 <div class="info-box-content">
+                                    <span class="info-box-text">
+                                       <h5>Event Name: <span> Beauty Contest</span></h5>
+                                       <h5>Date of Contest: <span> Date</span></h5>
+                                       <h5>Time: <span> Time</span></h5>
+                                       <h5>Venue: <span> Gymn</span></h5>
+                                    </span>
+                                 </div>
+                              </div>
+                           </div>
+                          
+                           <div class="col-lg-12">
+                                
+                              <div class="info-box">
+                                 <div class="content-header bg-warning">
+                                 </div>
+                                  <table class="table">
+                                    <thead class="btn-cancel">
+                           <tr>
+                              <th>Criteria</th>
+                              <th>Action</th>
+                           </tr>
+                        </thead>
+                                       <tr style="border-collapse: collapse;">
+                                          <td style><p>Q and A (50%)</p></td>
+                                          <td><div class="col-md-12">
+                              <div class="form-group">
+                              
+                             <button type="button" name="delete" id="" class="btn btn-danger btn-xs delete align-center" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button>
+                              </div>
+                           </div></td>
+                                       </tr>
+                                       <tr style="border-collapse: collapse;">
+                                          <td><p>Swimsuit (50%)</p></td>
+                                          <td><div class="col-md-12">
+                              <div class="form-group">
+                                <!-- <button type="button" class="form-control" placeholder="Percentage">Delete</button> -->
+                              </div>
+                           </div></td>
+                                       </tr>
+                                       <tr style="border-collapse: collapse;">
+                                          <td><p>Total Percentage</p></td>
+                                          <td><div class="col-md-12">
+                              <div class="form-group">
+                                 <!-- <input type="text" class="form-control" placeholder="100 %" readonly=""> -->
+                              </div>
+                           </div></td>
+                                       </tr>
+                                    </table>
+                              </div>
+                              <div class="col-md-12">
+                              <div class="form-group text-center">
+                                 
+                     <!-- <button type="submit" class="btn btn-info">Save</button> -->
+                     <button type="submit" class="btn btn-primary">Edit</button>
+                   
+                              </div>
+                           </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
       </div>
    </div>
    <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
@@ -166,14 +240,12 @@
                               </div>
                               </div>
                               <div class="col-md-12">
-                                 <div class="form-group">
-                                 <label class="float-left">Criteria Name</label>
-                                 <select class="form-control">
-                                    <option>Criteria 1</option>
-                                    <option>Criteria 2</option>
-                                    <option>Criteria 3</option>
-                                 </select>
-                              </div>
+                              <div class="form-group">
+                                    <label class="float-left">Criteria Name</label>
+                                    <input type="text" class="form-control" placeholder="Criteria Name">
+                                 </div>
+                                
+                              
                               </div>
                               <div class="col-md-12">
                                  <div class="form-group">
