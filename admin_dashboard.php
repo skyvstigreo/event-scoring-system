@@ -1,4 +1,6 @@
-<?php include 'header/admin.php';?>
+<?php 
+$title = "DESS - Admin Dashboard";
+include 'header/admin.php';?>
 
 <div class="content-wrapper">
          <div class="content-header">

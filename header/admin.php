@@ -4,12 +4,16 @@
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Tabulation-System</title>
+   <title><?php echo $title; ?></title>
+   
    <!-- Font Awesome -->
    <link rel="stylesheet" href="asset/fontawesome/css/all.min.css">
    <link rel="stylesheet" href="asset/css/adminlte.min.css">
    <link rel="stylesheet" href="asset/css/style.css">
    <link rel="stylesheet" href="asset/tables/datatables-bs4/css/dataTables.bootstrap4.min.css">
+   <link rel="icon" href="asset/img/Logo.ico" type="image/x-icon" />
+
+
 
    <style type="text/css">
       table tr td {
@@ -31,11 +35,11 @@
             </li>
          </ul>
          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                <a class="nav-link" href="#" role="button">
                   <img src="asset/img/avatar.png" class="img-circle" alt="User Image" width="40" style="margin-top: -8px;">
                </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                   <i class="fas fa-expand-arrows-alt"></i>
@@ -48,10 +52,10 @@
             </li>
          </ul>
       </nav>
-      <aside class="main-sidebar sidebar-light-primary" style="background-color: rgb(46,18,35);">
+      <aside class="main-sidebar sidebar-light-primary" style="background-color: #bf1d32">   <!-- Change Color-->
             <!-- Brand Logo -->
             <a href="admin_dashboard.php" class="brand-link">
-         <img src="asset/img/logo.png" alt="DSMS Logo" width="200">
+         <img src="asset/img/Logo.png" alt="DSMS Logo" width="200">
          </a>
          <div class="sidebar">
             <nav class="mt-2">

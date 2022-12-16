@@ -1,4 +1,7 @@
-<?php include 'header/admin.php';?>
+<?php
+
+$title = "DESS - Event Criteria";
+include 'header/admin.php';?>
 
      
      <div class="content-wrapper">
