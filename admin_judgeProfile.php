@@ -191,8 +191,8 @@ include 'header/admin.php';
                <!-- /.card-body -->
                <div class="card-footer">
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-                  <input type="text" name="user_id" id="user_id" />
-                  <input type="text" name="btn_action" id="btn_action" />
+                  <input type="hidden" name="user_id" id="user_id" />
+                  <input type="hidden" name="btn_action" id="btn_action" />
                   <button type="submit" class="btn btn-save">Save</button>
                </div>
             </form>
