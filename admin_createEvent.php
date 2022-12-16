@@ -1,4 +1,5 @@
 <?php
+$title = "DESS - Create Event";
 include 'pdo-connection.php';
 include 'header/admin.php'; ?>
 

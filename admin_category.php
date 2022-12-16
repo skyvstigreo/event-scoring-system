@@ -1,4 +1,5 @@
 <?php
+$title = "DESS - Category";
 include 'header/admin.php';
 
 

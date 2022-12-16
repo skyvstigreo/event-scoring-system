@@ -1,6 +1,6 @@
 <?php 
+$title = "DESS - Judge Profile";
 include_once('mysqli-connection.php');
-
 include 'header/admin.php';
 ?>
 

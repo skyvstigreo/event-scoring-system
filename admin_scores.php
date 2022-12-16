@@ -1,4 +1,5 @@
 <?php
+$title = "DESS - Scores";
 include 'pdo-connection.php';
 include 'header/admin.php'; ?>
 

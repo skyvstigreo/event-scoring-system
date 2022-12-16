@@ -1,4 +1,5 @@
 <?php
+$title = "DESS - Print Schedule";
 include 'pdo-connection.php';
 include 'header/admin.php'; ?>
 

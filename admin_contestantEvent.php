@@ -1,4 +1,7 @@
-<?php include 'header/admin.php'; ?>
+<?php
+
+$title = "DESS - Contestant Event";
+include 'header/admin.php'; ?>
 
 <div class="content-wrapper">
    <div class="content-header">

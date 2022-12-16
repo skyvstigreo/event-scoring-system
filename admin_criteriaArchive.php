@@ -1,4 +1,6 @@
-<?php include 'header/admin.php';?>
+<?php
+$title = "DESS - Criteria Archive";
+include 'header/admin.php';?>
 
       <div class="content-wrapper">
          <div class="content-header">

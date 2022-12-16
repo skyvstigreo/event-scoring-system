@@ -1,4 +1,5 @@
 <?php
+$title = "DESS - Contestant Profile ";
 include 'pdo-connection.php';
 include 'header/admin.php'; ?>
 
