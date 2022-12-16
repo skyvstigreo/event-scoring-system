@@ -163,7 +163,7 @@ include 'header/admin.php'; ?>
                            <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">End Time</label>
-                                 <input type="time" id="time" name="time" class="form-control" placeholder="End Time" required>
+                                 <input type="time" id="end_time" name="end_time" class="form-control" placeholder="End Time" required>
                               </div>
                            </div>
                         </div>
@@ -278,6 +278,7 @@ include 'header/admin.php'; ?>
                $('#organizer').val(data.event_organizer);
                $('#date').val(data.event_date);
                $('#time').val(data.event_time);
+               $('#end_time').val(data.end_time);
                $('#event_id').val(event_id);
 
             }

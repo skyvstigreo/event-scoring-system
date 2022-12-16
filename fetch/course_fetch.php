@@ -4,7 +4,7 @@
 //measurement_fetch.php
 
 include('../pdo-connection.php');
-date_default_timezone_set('Asia/Manila');
+
 
 $query = '';
 

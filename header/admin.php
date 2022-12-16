@@ -135,7 +135,7 @@
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="admin_contestantEven.php" class="nav-link">
+                           <a href="admin_contestantEvent.php" class="nav-link">
                               <i class="nav-icon far fa-circle"></i>
                               <p>Setup Event</p>
                            </a>
