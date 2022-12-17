@@ -1,6 +1,7 @@
 <?php
 
 $title = "DESS - Contestant Event";
+include 'pdo-connection.php';
 include 'header/admin.php'; ?>
 
 <div class="content-wrapper">
@@ -17,16 +18,17 @@ include 'header/admin.php'; ?>
                </ol>
             </div>
             <a class="btn btn-sm elevation-4" href="#" id="add" data-toggle="modal" data-target="#contestant_modal" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-plus-square"></i>
-               Add New</a>
+               Add Event</a>
          </div>
       </div>
    </div>
    <section class="content">
+      <span id="alert_action"></span>
       <div class="container-fluid">
          <div class="card card-info elevation-2">
             <br>
             <div class="col-md-12">
-               <table id="" class="table">
+               <table id="contestant_table" class="table">
                   <thead class="btn-cancel">
                      <tr>
                         <th>Event Name</th>
@@ -36,7 +38,7 @@ include 'header/admin.php'; ?>
                      </tr>
                   </thead>
                   <tbody>
-                     <tr>
+                     <!-- <tr>
                         <td>Cultural Event</td>
                         <td>Jane Doe</td>
                         <td><span class="badge bg-success">open</span></td>
@@ -44,7 +46,7 @@ include 'header/admin.php'; ?>
                            <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i class="fa fa-user-edit"></i> update</a>
                            <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i class="fa fa-trash-alt"></i> delete</a>
                         </td>
-                     </tr>
+                     </tr> -->
                   </tbody>
                </table>
             </div>
@@ -82,21 +84,44 @@ include 'header/admin.php'; ?>
                            <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Event Name</label>
-                                 <input type="text" class="form-control" placeholder="Event Name">
+                                 <select class="form-control" id="event" name="event" style="cursor: pointer;" required>
+                                    <option value="">--- Select Event---</option>
+                                    <?php
+                                    $query = "SELECT * FROM table_event";
+                                    $statement = $connect->prepare($query);
+                                    $statement->execute();
+                                    $result = $statement->fetchAll();
+                                    foreach ($result as $row) {
+                                       echo '<option value="' . $row["event_id"] . '">' . $row["event_name"] . '</option>';
+                                    }
+                                    ?>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Contestant Name</label>
-                                 <input type="text" class="form-control" placeholder="Contestant Name">
+                                 <select class="form-control" id="contestant" name="contestant" style="cursor: pointer;" required>
+                                    <option value="">--- Select Contestant---</option>
+                                    <?php
+                                    $query = "SELECT * FROM table_contestant";
+                                    $statement = $connect->prepare($query);
+                                    $statement->execute();
+                                    $result = $statement->fetchAll();
+                                    foreach ($result as $row) {
+                                       echo '<option value="' . $row["contestant_id"] . '">' . $row["first_name"] . ' ' . $row["middle_name"] . ' ' . $row["last_name"] . '</option>';
+                                    }
+                                    ?>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Status</label>
-                                 <select class="form-control">
-                                    <option>Open</option>
-                                    <option>Close</option>
+                                 <select class="form-control" id="status" name="status" required>
+                                    <option value="">---select ---</option>
+                                    <option value="1">Open</option>
+                                    <option value="0">Close</option>
                                  </select>
                               </div>
                            </div>
@@ -107,6 +132,8 @@ include 'header/admin.php'; ?>
                <!-- /.card-body -->
                <div class="card-footer">
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                  <input type="hidden" name="contestant_id" id="contestant_id" />
+                  <input type="hidden" name="btn_action" id="btn_action" />
                   <button type="submit" class="btn btn-save">Save</button>
                </div>
             </form>
@@ -127,9 +154,85 @@ include 'header/admin.php'; ?>
    $(document).ready(function() {
       $('#add').on('click', function() {
          $('#contestant_form')[0].reset();
-         $('#btn_action').val("add_contestant");
+         $('#btn_action').val("add");
       });
-     
+
+      $(document).on('submit', '#contestant_form', function(event) {
+         event.preventDefault();
+         var form_data = $(this).serialize();
+         $.ajax({
+            url: "action/contestant_action.php",
+            method: "POST",
+            data: form_data,
+            success: function(data) {
+               $('#contestant_form')[0].reset();
+               $('#contestant_modal').modal('hide');
+               $('#alert_action').fadeIn().html('<div class="alert alert-success">' + data + '</div>');
+               contestantdataTable.ajax.reload();
+            }
+         })
+      });
+
+      $(document).on('click', '.delete', function() {
+         var contestant_id = $(this).attr("id");
+         var btn_action = 'delete_status';
+         $.ajax({
+            url: "action/contestant_action.php",
+            method: "POST",
+            data: {
+               contestant_id: contestant_id,
+               btn_action: btn_action
+            },
+            success: function(data) {
+               $('#alert_action').fadeIn().html('<div class="alert alert-danger">' + data + '</div>');
+               contestantdataTable.ajax.reload();
+            }
+         })
+      });
+
+
+      var contestantdataTable = $('#contestant_table').DataTable({
+         "processing": true,
+         "serverSide": true,
+         "order": [],
+         "ajax": {
+            url: "fetch/setup_contestant_fetch.php",
+            type: "POST"
+         },
+         "columnDefs": [{
+            "targets": [0, 1, 2],
+            "orderable": false,
+         }, ],
+         "pageLength": 9999999
+      });
+
+      $(document).on('click', '.update', function() {
+         var contestant_id = $(this).attr("id");
+         var btn_action = "fetch_event";
+         // alert("hi")
+         $.ajax({
+            url: "action/contestant_action.php",
+            method: "POST",
+            data: {
+               contestant_id: contestant_id,
+               btn_action: btn_action
+            },
+            dataType: "json",
+            success: function(data) {
+               $('#btn_action').val("add_event");
+               $('#contestant_modal').modal('show');
+               $('#contestant').val(data.contestant);
+               $('#event').val(data.event);
+               $('#status').val(data.status);
+               $('#contestant_id').val(contestant_id);
+
+            }
+         })
+      });
+
+
+
+
 
    });
 </script>

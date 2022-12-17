@@ -9,7 +9,7 @@ if (isset($_POST['btn_action'])) {
         $statement = $connect->prepare($query);
         $statement->execute(
             array(
-                ':user_type'    =>    '0',
+                ':user_type'    =>    '1',
                 ':first_name'    =>    $_POST["fname"],
                 ':middle_name'    =>    $_POST["mname"],
                 ':last_name'    =>    $_POST["lname"],
