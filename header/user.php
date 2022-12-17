@@ -14,7 +14,7 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
    <div class="wrapper">
-      <nav class="main-header navbar navbar-expand navbar-light" style="background-color: rgb(240,158,65)">
+      <nav class="main-header navbar navbar-expand navbar-light" style="background-color: #981D2D">
          <!-- Left navbar links -->
          <ul class="navbar-nav">
             <li class="nav-item">
@@ -22,28 +22,28 @@
             </li>
          </ul>
          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                <a class="nav-link" href="#" role="button">
                   <img src="asset/img/avatar.png" class="img-circle" alt="User Image" width="40" style="margin-top: -8px;">
                </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                   <i class="fas fa-expand-arrows-alt"></i>
                </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-               <a class="nav-link" data-widget="fullscreen" href="../index.html">
+               <a class="nav-link" data-widget="fullscreen" href="index.php">
                   <i class="fas fa-sign-out-alt"></i>
                </a>
             </li>
          </ul>
       </nav>
       <!-- Main Section  -->
-      <aside class="main-sidebar sidebar-light-primary" style="background-color: rgb(46,18,35);">
+      <aside class="main-sidebar sidebar-light-primary" style="background-color: #981D2D;">
             <!-- Brand Logo -->
             <a href="user_dashboard.php" class="brand-link">
-         <img src="asset/img/logo.png" alt="DSMS Logo" width="200">
+            <img src="asset/img/Brand.png" alt="DSMS Logo" width="200"> 
          </a>
          <div class="sidebar">
             <nav class="mt-2">

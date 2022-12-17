@@ -21,19 +21,19 @@ li{
 
 }
 nav.mt-2 ul.nav-sidebar li i{
-	color:rgb(240,158,65) !important;
+	color: #FFFFFD !important;
 }
 nav.mt-2 ul.nav-sidebar li p{
-	color:rgb(240,158,65) !important;
+	color:rgb(255, 255, 255) !important;
 }
 nav.mt-2 ul.nav-sidebar li a:hover{
-	color:rgb(240,158,65) !important;
+	color:rgb(255, 255, 255) !important;
 }
 nav.mt-2 ul.nav-sidebar li.nav-item ul.nav-treeview li p{
-	color:rgb(252, 224, 162) !important;
+	color:rgb(255, 255, 255) !important;
 }
 nav.mt-2 ul.nav-sidebar li.nav-item ul.nav-treeview li i{
-	color:rgb(252, 224, 162) !important;
+	color:rgb(255, 255, 255) !important;
 }
 
 .text-color {
@@ -50,7 +50,7 @@ nav.mt-2 ul.nav-sidebar li.nav-item ul.nav-treeview li i{
 }
 
 table td{
-		font-size: 13px !important;
+	font-size: 13px !important;
 	letter-spacing: 0.0625em;
 	margin:-10px;
 	border-spacing: 1em;
