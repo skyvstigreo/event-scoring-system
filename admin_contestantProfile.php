@@ -30,55 +30,15 @@ include 'header/admin.php'; ?>
                     <table id="contestant_table" class="table">
                         <thead class="btn-cancel">
                             <tr>
-                                <th>Full Name</th>
-                                <th>Gender</th>
-                                <th>Birthday</th>
-                                <th>Age</th>
-                                <th>Course</th>
-                                <th>Event Joined</th>
+                                <th class="text-center">Full Name</th>
+                                <th class="text-center">Gender</th>
+                                <th class="text-center">Course</th>
+                                <!-- <th class="text-center">Event Joined</th> -->
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- <tr>
-                                <td>Jane Smith</td>
-                                <td>23</td>
-                                <td>Female</td>
-                                <td>Course 1</td>
-                                <td>Personal Background</td>
-                                <td class="text-center">
-                                    <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                       class="fa fa-user-edit"></i> update</a>
-                                    <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
-                                       class="fa fa-trash-alt"></i> delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jane Doe</td>
-                                <td>24</td>
-                                <td>Female</td>
-                                <td>Course 2</td>
-                                <td>Personal Background</td>
-                                <td class="text-center">
-                                    <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                       class="fa fa-user-edit"></i> update</a>
-                                    <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
-                                       class="fa fa-trash-alt"></i> delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Anne Cortez</td>
-                                <td>22</td>
-                                <td>Female</td>
-                                <td>Course 3</td>
-                                <td>Personal Background</td>
-                                <td class="text-center">
-                                    <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                       class="fa fa-user-edit"></i> update</a>
-                                    <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
-                                       class="fa fa-trash-alt"></i> delete</a>
-                                </td>
-                            </tr> -->
+
                         </tbody>
                     </table>
                 </div>
@@ -87,7 +47,7 @@ include 'header/admin.php'; ?>
     </section>
 </div>
 </div>
-<div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
+<!-- <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body text-center">
@@ -100,8 +60,8 @@ include 'header/admin.php'; ?>
             </div>
         </div>
     </div>
-</div>
-<div id="edit" class="modal animated rubberBand delete-modal" role="dialog">
+</div> -->
+<!-- <div id="edit" class="modal animated rubberBand delete-modal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-body text-center">
@@ -156,34 +116,21 @@ include 'header/admin.php'; ?>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="float-left">Personal Background</label>
-                                            <textarea class="form-control" placeholder="Personal Background"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="float-left">Personal Background</label>
-                                            <textarea class="form-control" placeholder="Personal Background"></textarea>
-                                        </div>
-                                    </div>
-
+                                  
 
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-                        <button type="submit" class="btn btn-save">Save Changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                    </div> -->
+<!-- /.card-body -->
+<div class="card-footer">
+    <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+    <button type="submit" class="btn btn-save">Save Changes</button>
+</div>
+</form>
+</div>
+</div>
+</div>
 </div>
 <div id="contestant_modal" class="modal animated rubberBand delete-modal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -199,31 +146,29 @@ include 'header/admin.php'; ?>
 
                                 <div class="row">
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="float-left">First Name</label>
                                             <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name">
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="float-left">Middle Name</label>
                                             <input type="text" name="mname" id="mname" class="form-control" placeholder="Middle Name">
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="float-left">Last Name</label>
                                             <input type="text" name="lname" id="lname" class="form-control" placeholder="Last Name">
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="float-left">Gender</label>
                                             <select class="form-control" id="gender" name="gender">
@@ -234,24 +179,13 @@ include 'header/admin.php'; ?>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="float-left">Birthdate</label>
-                                            <input type="date" name="birthdate" id="birthdate" class="form-control" placeholder="Middle Name">
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="float-left">Age</label>
-                                            <input type="number" name="age" id="age" class="form-control" placeholder="Age">
-                                        </div>
-                                    </div>
+
                                 </div>
 
                                 <div class="row">
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="float-left">Course</label>
                                             <select class="form-control" id="course" name="course" style="cursor: pointer;" required>
@@ -269,23 +203,15 @@ include 'header/admin.php'; ?>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="float-left">Event Joined</label>
                                             <select class="form-control" id="event" name="event" style="cursor: pointer;" required>
                                                 <option value="">--- Select Event---</option>
-                                                <?php
-                                                $query = "SELECT * FROM table_event";
-                                                $statement = $connect->prepare($query);
-                                                $statement->execute();
-                                                $result = $statement->fetchAll();
-                                                foreach ($result as $row) {
-                                                    echo '<option value="' . $row["event_id"] . '">' . $row["event_name"] . '</option>';
-                                                }
-                                                ?>
+                                              
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
 
 
                                 </div>

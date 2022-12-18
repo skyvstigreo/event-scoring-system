@@ -14,13 +14,14 @@ include 'header/admin.php'; ?>
             <div class="col-sm-6">
                <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">Course</li>
+                  <li class="breadcrumb-item active">Scores</li>
                </ol>
             </div>
          </div>
       </div>
    </div>
    <section class="content">
+      
       <?php
       $query = "SELECT * FROM table_event Order by event_date ASC";
       $statement = $connect->prepare($query);
@@ -29,8 +30,12 @@ include 'header/admin.php'; ?>
       foreach ($result as $row) {
          $event = $row['event_id'];
          echo '<div class="container-fluid">
+         
          <div class="card card-info elevation-2">
-            <br>
+            <div>
+            <a class="btn btn-sm elevation-4"  onClick="window.print();" style="margin-left: 8px;background-color: rgb(240,158,65)"><img src="asset/img/print.png" width="30">
+               Print</a>
+            </div>
             <div class="col-md-12">
                <div class="row">
                   <div class="col-lg-12">
@@ -49,10 +54,14 @@ include 'header/admin.php'; ?>
                <thead class="btn-cancel"style="background-color: rgb(240,158,65)">
                   <tr>
                      <th>Contestant Name</th>
-                     <th>
-                        <table class="table" style="margin: 0;">
+                     <th class="text-center"> Event Name </th>
+                     <th class="text-center"> Total Score </th>
+                     <th class="text-center"> Rank </th>
+                    
+                        <table class="table">
                            <tr>
-                              <th class="text-center" colspan="2"> Category </th>
+                           
+                              
                            </tr>';
 
          $query = "SELECT category_name FROM table_event
@@ -102,6 +111,8 @@ include 'header/admin.php'; ?>
             </table>
          </div>
       </div>
+
+      
               
    
       </div>';

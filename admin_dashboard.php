@@ -28,7 +28,7 @@ include 'header/admin.php'; ?>
 
                   <div class="info-box-content">
                      <span class="info-box-text">
-                        <h5>Events</h5>
+                        <h5>Active Events</h5>
                      </span>
                      <span class="info-box-number">
                         <?php
@@ -103,6 +103,8 @@ include 'header/admin.php'; ?>
 
          </div>
       </div>
+
+
    </section>
 </div>
 </div>

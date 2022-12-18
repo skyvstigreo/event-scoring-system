@@ -83,7 +83,7 @@ include 'header/admin.php'; ?>
                         <div class="row">
                            <div class="col-md-12">
                               <div class="form-group">
-                                 <label class="float-left">Event Name</label>
+                                 <label class="float-left">Event Joined</label>
                                  <select class="form-control" id="event" name="event" style="cursor: pointer;" required>
                                     <option value="">--- Select Event---</option>
                                     <?php

@@ -9,12 +9,12 @@ include 'header/admin.php'; ?>
       <div class="container-fluid">
          <div class="row mb-2">
             <div class="col-sm-6">
-               <h1 class="m-0"><img src="asset/img/event.png" width="40"> Manage Events</h1>
+               <h1 class="m-0"><img src="asset/img/event.png" width="40">Events Name</h1>
             </div>
             <div class="col-sm-6">
                <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">Events</li>
+                  <li class="breadcrumb-item active">Events Name</li>
                </ol>
             </div>
             <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" id="add" data-target="#event_modal" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-plus-square"></i>
@@ -31,9 +31,12 @@ include 'header/admin.php'; ?>
                <table id="event_table" class="table">
                   <thead class="btn-cancel">
                      <tr>
+                        <th>Event Category</th>
                         <th>Event Name</th>
+                        <th>Venue</th>
                         <th>Date</th>
                         <th>Start Time</th>
+                        <th>End Time</th>
                         <th>Status</th>
                         <th class="text-center">Action</th>
                      </tr>
@@ -87,15 +90,10 @@ include 'header/admin.php'; ?>
                            <h5><img src="asset/img/event.png" width="40"> Events Information</h5>
                         </div>
                         <div class="row">
+
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label class="float-left">Event Name</label>
-                                 <input type="text" id="event_name" name="event_name" class="form-control" placeholder="Event Name" required>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label class="float-left">Category Type</label>
+                                 <label class="float-left">Event Category</label>
                                  <select class="form-control" id="type" name="type" style="cursor: pointer;" required>
                                     <option value="">--- Select Category ---</option>
                                     <?php
@@ -116,52 +114,42 @@ include 'header/admin.php'; ?>
                                  </select> -->
                               </div>
                            </div>
-                           <div class="col-md-4">
-                              <!-- <div class="form-group">
-                                 <label for="exampleInputFile">Choose Banner</label>
-                                 <div class="input-group">
-                                    <div class="custom-file">
-                                       <input type="file" class="custom-file-input" name="img" id="img" accept="image/*" required>
-                                       <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                 </div>
-                              </div> -->
-                           </div>
-                           <div class="col-md-12">
+
+                           <div class="col-md-6">
                               <div class="form-group">
-                                 <label class="float-left">Description</label>
-                                 <textarea class="form-control" id="description" name="description" placeholder="Descriptions"></textarea required>
+                                 <label class="float-left">Event Name</label>
+                                 <select class="form-control" id="type" name="type" style="cursor: pointer;" required>
+                                    <option value="">--- Select Event Name---</option>
+
+                                 </select>
                               </div>
                            </div>
-                           <div class="col-md-3">
+
+
+                           <div class="col-md-6">
                               <div class="form-group">
                                  <label class="float-left">Venue</label>
                                  <input type="text" id="venue" name="venue" class="form-control" placeholder="Venue" required>
                               </div>
                            </div>
 
-                           <div class="col-md-3">
-                              <div class="form-group">
-                                 <label class="float-left">Organizer</label>
-                                 <input type="text" id="organizer" name="organizer" class="form-control" placeholder="Organizer" required>
-                              </div>
-                           </div>
 
-                           <div class="col-md-3">
+
+                           <div class="col-md-6">
                               <div class="form-group">
                                  <label class="float-left">Date</label>
                                  <input type="date" id="date" name="date" class="form-control" placeholder="Event Name" required>
                               </div>
-                           </div>      
+                           </div>
 
-                           <div class="col-md-3">
+                           <div class="col-md-6">
                               <div class="form-group">
                                  <label class="float-left">Start Time</label>
                                  <input type="time" id="time" name="time" class="form-control" placeholder="Start Time" required>
                               </div>
                            </div>
 
-                           <div class="col-md-12">
+                           <div class="col-md-6">
                               <div class="form-group">
                                  <label class="float-left">End Time</label>
                                  <input type="time" id="end_time" name="end_time" class="form-control" placeholder="End Time" required>

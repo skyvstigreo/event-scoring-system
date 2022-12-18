@@ -9,12 +9,12 @@ include 'header/admin.php';?>
             <div class="container-fluid">
                <div class="row mb-2">
                   <div class="col-sm-6">
-                     <h1 class="m-0"><img src="asset/img/criteria.png" width="40"> Event Criteria (Gagawing Card)</h1>
+                     <h1 class="m-0"><img src="asset/img/criteria.png" width="40"> Event Criteria</h1>
                   </div>
                   <div class="col-sm-6">
                      <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Criteria</li>
+                        <li class="breadcrumb-item active">Event Criteria</li>
                      </ol>
                   </div>
                   <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" data-target="#add"
@@ -89,10 +89,12 @@ include 'header/admin.php';?>
                     <div class="col-lg-12">
                         <div class="info-box">
                             <div class="info-box-content">
+                                
                                 <span class="info-box-text">
-                                       <h5>Event Name: <span> Beauty Contest</span></h5>
+                                <h5>Event Name: <span> Beauty Contest</span></h5>
                                 <h5>Date of Contest: <span> Date</span></h5>
-                                <h5>Time: <span> Time</span></h5>
+                                <h5>Start Time: <span> Time</span></h5>
+                                <h5>Event Time: <span> Time</span></h5>
                                 <h5>Venue: <span> Gymn</span></h5>
                                 </span>
                             </div>
@@ -155,8 +157,8 @@ include 'header/admin.php';?>
 
                                 <!-- <button type="submit" class="btn btn-info">Save</button> -->
                                 <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#edit"> 
-                        <i class="fa fa-plus-square"></i> Edit
-                     </a>
+                                <i class="fa fa-plus-square"></i> Edit
+                                </a>
 
                             </div>
                         </div>
