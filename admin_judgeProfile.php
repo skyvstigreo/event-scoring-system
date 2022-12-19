@@ -34,12 +34,10 @@ include 'header/admin.php';
 
                      <tr>
 
-                        <th>First Name</th>
-                        <th>Middle Name</th>
-                        <th>Last Name</th>
-                        <th>Achievement</th>
+                        <th>Name</th>
                         <th>Username</th>
                         <th>Action</th>
+                        
 
 
                      </tr>
@@ -147,30 +145,8 @@ include 'header/admin.php';
                            <h5><img src="asset/img/judges.png" width="40"> Judges Information</h5>
                         </div>
                         <div class="row">
-                           <div class="col-md-4">
-                              <div class="form-group">
-                                 <label class="float-left">First Name</label>
-                                 <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name">
-                              </div>
-                           </div>
-                           <div class="col-md-4">
-                              <div class="form-group">
-                                 <label class="float-left">Middle Name</label>
-                                 <input type="text" name="mname" id="mname" class="form-control" placeholder="Middle Name">
-                              </div>
-                           </div>
-                           <div class="col-md-4">
-                              <div class="form-group">
-                                 <label class="float-left">Last Name</label>
-                                 <input type="text" name="lname" id="lname" class="form-control" placeholder="Last Name">
-                              </div>
-                           </div>
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Achievement</label>
-                                 <textarea class="form-control" name="achievement" id="achievement" placeholder="Achievement"></textarea>
-                              </div>
-                           </div>
+                          
+                          
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label class="float-left">Username</label>
@@ -270,20 +246,20 @@ include 'header/admin.php';
       });
 
 
-      var userdataTable = $('#user_table').DataTable({
-         "processing": true,
-         "serverSide": true,
-         "order": [],
-         "ajax": {
-            url: "fetch/judge_fetch.php",
-            type: "POST"
-         },
-         "columnDefs": [{
-            "targets": [0, 1, 2],
-            "orderable": false,
-         }, ],
-         "pageLength": 9999999
-      });
+      // var userdataTable = $('#user_table').DataTable({
+      //    "processing": true,
+      //    "serverSide": true,
+      //    "order": [],
+      //    "ajax": {
+      //       url: "fetch/judge_fetch.php",
+      //       type: "POST"
+      //    },
+      //    "columnDefs": [{
+      //       "targets": [0, 1, 2],
+      //       "orderable": false,
+      //    }, ],
+      //    "pageLength": 9999999
+      // });
 
 
 

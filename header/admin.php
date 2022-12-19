@@ -68,6 +68,17 @@
                         </p>
                      </a>
                   </li>
+
+                  
+
+                  <li class="nav-item">
+                     <a href="admin_criteriaArchive.php" class="nav-link">
+                        <img src="asset/img/dashboard.png" width="30">
+                        <p>
+                           Archive
+                        </p>
+                     </a>
+                  </li>
                   <li class="nav-item">
                      <a href="#" class="nav-link">
                         <img src="asset/img/event.png" width="30">
@@ -80,48 +91,27 @@
                         <li class="nav-item">
                            <a href="admin_category.php" class="nav-link">
                               <i class="nav-icon far fa-circle"></i>
-                              <p>Category</p>
+                              <p>Event Category</p>
                            </a>
                         </li>
                         <li class="nav-item">
                            <a href="admin_createEvent.php" class="nav-link">
                               <i class="nav-icon far fa-circle"></i>
-                              <p>Create Event</p>
+                              <p>Event Name</p>
                            </a>
                         </li>
-                     </ul>
-                  </li>
-                  <li class="nav-item">
-                     <a href="#" class="nav-link">
-                        <img src="asset/img/criteria.png" width="30">
-                        <p>
-                           Criteria
-                        </p>
-                        <i class="right fas fa-angle-left"></i>
-                     </a>
-                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                           <a href="admin_criteriaArchive.php" class="nav-link">
-                              <i class="nav-icon far fa-circle"></i>
-                              <p>Criteria Archive</p>
-                           </a>
-                        </li>
+
                         <li class="nav-item">
                            <a href="admin_eventCriteria.php" class="nav-link">
                               <i class="nav-icon far fa-circle"></i>
                               <p>Event Criteria</p>
                            </a>
                         </li>
+                     
                      </ul>
                   </li>
-                  <li class="nav-item">
-                     <a href="admin_course.php" class="nav-link">
-                        <img src="asset/img/course.png" width="30">
-                        <p>
-                           Course
-                        </p>
-                     </a>
-                  </li>
+                  
+                
                   <li class="nav-item">
                      <a href="#" class="nav-link">
                         <img src="asset/img/contestant.png" width="30">
@@ -134,13 +124,13 @@
                         <li class="nav-item">
                            <a href="admin_contestantProfile.php" class="nav-link">
                               <i class="nav-icon far fa-circle"></i>
-                              <p>Profile</p>
+                              <p>Add Contestant Profile</p>
                            </a>
                         </li>
                         <li class="nav-item">
                            <a href="admin_contestantEvent.php" class="nav-link">
                               <i class="nav-icon far fa-circle"></i>
-                              <p>Setup Event</p>
+                              <p>Setup Contestant</p>
                            </a>
                         </li>
                      </ul>
@@ -176,14 +166,14 @@
                         </p>
                      </a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                      <a href="admin-print-schedule.php" class="nav-link">
                         <img src="asset/img/print.png" width="30">
                         <p>
                            Print Schedules
                         </p>
                      </a>
-                  </li>
+                  </li> -->
                </ul>
             </nav>
          </div>
