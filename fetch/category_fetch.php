@@ -1,7 +1,4 @@
-
 <?php
-
-//measurement_fetch.php
 
 include('../pdo-connection.php');
 
@@ -43,7 +40,7 @@ foreach ($result as $row) {
     $sub_array = array();
     $sub_array[] = $row['category_name'];
     $sub_array[] = $row['category_description'];
-    $sub_array[] = '<center><button type="button" name="update" id="'.$row["category_id"].'" class="btn btn-primary btn-xs update" data-toggle="tooltip" data-placement="bottom" title="Edit Category"><i class="fa fa-edit"></i></button> <button type="button" name="delete" id="' . $row["category_id"] . '" class="btn btn-danger btn-xs delete" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button>';
+    $sub_array[] = '<center><button type="button" name="update" id="'.$row["category_id"].'" class="btn btn-primary btn-xs update" data-target="#editCategory" data-toggle="tooltip" data-placement="bottom" title="Edit Category"><i class="fa fa-edit"></i></button> <button type="button" name="delete" id="' . $row["category_id"] . '" class="btn btn-danger btn-xs delete" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button>';
     $data[] = $sub_array;
 }
 
@@ -62,5 +59,3 @@ function get_total_all_records($connect)
 }
 
 echo json_encode($output);
-
-?>

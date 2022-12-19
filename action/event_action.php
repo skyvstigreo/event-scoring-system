@@ -23,18 +23,16 @@ if (isset($_POST['btn_action'])) {
     if ($_POST['btn_action'] == 'add_event') {
 
         $query = "
-		INSERT INTO table_event(event_name, event_type, event_description, event_venue, event_organizer, event_date, event_time, end_time) 
-		VALUES (:event_name, :event_type, :event_description, :event_venue, :event_organizer, :event_date, :event_time, :end_time)
+		INSERT INTO table_schedule(event_id, category_id, event_venue, event_date, event_time, end_time) 
+		VALUES (:event_id, :category_id, :event_venue,  :event_date, :event_time, :end_time)
 		";
 
         $statement = $connect->prepare($query);
         $statement->execute(
             array(
-                ':event_name'    =>    $_POST["event_name"],
-                ':event_type'    =>    $_POST["type"],
-                ':event_description'    =>    $_POST["description"],
+                ':event_id'    =>    $_POST["event"],
+                ':category_id'    =>    $_POST["type"],
                 ':event_venue'    =>    $_POST["venue"],
-                ':event_organizer'    =>    $_POST["organizer"],
                 ':event_date'    =>    $_POST["date"],
                 ':event_time'    =>    $_POST["time"],
                 ':end_time'     => $_POST["end_time"]
@@ -48,20 +46,20 @@ if (isset($_POST['btn_action'])) {
     }
 
     if ($_POST['btn_action'] == 'fetch_single') {
-        $query = "SELECT * FROM table_event WHERE event_id = :event_id";
+        $query = "SELECT * FROM table_schedule
+        INNER JOIN table_event on table_schedule.event_id = table_event.event_id
+        INNER JOIN table_category on table_schedule.category_id = table_category.category_id";
         $statement = $connect->prepare($query);
         $statement->execute(
             array(
-                ':event_id'    =>    $_POST["event_id"]
+                ':sched_id'    =>    $_POST["sched_id"]
             )
         );
         $result = $statement->fetchAll();
         foreach ($result as $row) {
-            $output['event_name'] = $row['event_name'];
-            $output['event_type'] = $row['event_type'];
-            $output['event_description'] = $row['event_description'];
+            $output['event_type'] = $row['category_id'];
+            $output['event_name'] = $row['event_id'];
             $output['event_venue'] = $row['event_venue'];
-            $output['event_organizer'] = $row['event_organizer'];
             $output['event_date'] = $row['event_date'];
             $output['event_time'] = $row['event_time'];
             $output['end_time'] = $row['end_time'];
@@ -72,22 +70,22 @@ if (isset($_POST['btn_action'])) {
     if ($_POST['btn_action'] == 'edit') {
 
         $query = "
-		UPDATE table_event set event_name = :event_name, event_type = :event_type,
-        event_description = :event_description, event_venue = :event_venue, event_organizer = :event_organizer,
-        event_date = :event_date, event_time = :event_time, end_time = :end_time WHERE event_id = :event_id
+		UPDATE table_schedule set event_id = :event_id, category_id = :category_id,
+        event_venue = :event_venue, event_date = :event_date,
+        event_time = :event_time, end_time = :end_time 
+        WHERE sched_id = :sched_id
 		";
         $statement = $connect->prepare($query);
         $statement->execute(
             array(
-                ':event_name'    =>    $_POST["event_name"],
-                ':event_type'    =>    $_POST["type"],
-                ':event_description'    =>    $_POST["description"],
+               
+                ':category_id'    =>    $_POST["type"],
+                ':event_id'    =>    $_POST["event"],
                 ':event_venue'    =>    $_POST["venue"],
-                ':event_organizer'    =>    $_POST["organizer"],
                 ':event_date'    =>    $_POST["date"],
                 ':event_time'    =>    $_POST["time"],
-                ':event_id'    =>    $_POST["event_id"],
-                ':end_time'     => $_POST["end_time"]
+                ':end_time'     => $_POST["end_time"],
+                ':sched_id' =>  $_POST["sched_id"]
             )
         );
 

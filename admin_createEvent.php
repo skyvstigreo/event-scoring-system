@@ -118,9 +118,17 @@ include 'header/admin.php'; ?>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label class="float-left">Event Name</label>
-                                 <select class="form-control" id="type" name="type" style="cursor: pointer;" required>
-                                    <option value="">--- Select Event Name---</option>
-
+                                 <select class="form-control" id="event" name="event" style="cursor: pointer;" required>
+                                    <option value="">--- Select Event ---</option>
+                                    <?php
+                                    $query = "SELECT * FROM table_event";
+                                    $statement = $connect->prepare($query);
+                                    $statement->execute();
+                                    $result = $statement->fetchAll();
+                                    foreach ($result as $row) {
+                                       echo '<option value="' . $row["event_id"] . '">' . $row["event_name"] . '</option>';
+                                    }
+                                    ?>
                                  </select>
                               </div>
                            </div>
@@ -161,7 +169,7 @@ include 'header/admin.php'; ?>
                </div>
                <!-- /.card-body -->
                <div class="card-footer">
-                  <input type="hidden" name="event_id" id="event_id" />
+                  <input type="hidden" name="sched_id" id="sched_id" />
                   <input type="hidden" name="btn_action" id="btn_action" />
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
                   <button type="submit" class="btn btn-save">Save</button>
@@ -209,6 +217,22 @@ include 'header/admin.php'; ?>
          })
       });
 
+      $("#type").on('change', function() {
+         var category_id = $(this).val();
+         $.ajax({
+            method: "POST",
+            url: "fetch/fetch_event_name.php",
+            data: {
+               category_id: category_id
+            },
+            dataType: "html",
+            success: function(data) {
+               $("#event").html(data);
+            }
+
+         });
+      })
+
 
       var eventdataTable = $('#event_table').DataTable({
          "processing": true,
@@ -244,14 +268,14 @@ include 'header/admin.php'; ?>
       });
 
       $(document).on('click', '.update', function() {
-         var event_id = $(this).attr("id");
+         var sched_id = $(this).attr("id");
          var btn_action = "fetch_single";
          // alert("hi")
          $.ajax({
             url: "action/event_action.php",
             method: "POST",
             data: {
-               event_id: event_id,
+               sched_id: sched_id,
                btn_action: btn_action
             },
             dataType: "json",
@@ -260,15 +284,13 @@ include 'header/admin.php'; ?>
                // $('#submit').text("Save Changes");
                $('#btn_action').val("edit");
                $('#event_modal').modal('show');
-               $('#event_name').val(data.event_name);
+               $('#event').val(data.event_name);
                $('#type').val(data.event_type);
-               $('#description').val(data.event_description);
                $('#venue').val(data.event_venue);
-               $('#organizer').val(data.event_organizer);
                $('#date').val(data.event_date);
                $('#time').val(data.event_time);
                $('#end_time').val(data.end_time);
-               $('#event_id').val(event_id);
+               $('#sched_id').val(sched_id);
 
             }
          })

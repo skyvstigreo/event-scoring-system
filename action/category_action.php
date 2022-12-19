@@ -1,18 +1,39 @@
 <?php
 include '../pdo-connection.php';
+include '../function.php';
 if (isset($_POST['btn_action'])) {
     if ($_POST['btn_action'] == 'add_category') {
         $query = "
-		INSERT INTO table_category (category_name, category_description) 
-		VALUES (:category_name, :category_description)
+		INSERT INTO table_category (category_id, category_name, category_description) 
+		VALUES (:category_id, :category_name, :category_description)
 		";
+        $cid = gen_cid();
         $statement = $connect->prepare($query);
         $statement->execute(
             array(
+                ':category_id'    =>    $cid,
                 ':category_name'    =>    $_POST["category_name"],
                 ':category_description'    =>    $_POST["category_description"],
             )
         );
+
+        foreach ($_POST['event'] as $key => $value) {
+            $query = "INSERT INTO table_event(category_id, event_name)VALUES(:category_id, :event_name)";
+            $stmt = $connect->prepare($query);
+            $stmt->execute([
+                ':category_id' => $cid,
+                ':event_name' => $value,
+            ]);
+        }
+
+
+
+
+
+
+
+
+
         $result = $statement->fetchAll();
         if (isset($result)) {
             echo 'Category Added <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';

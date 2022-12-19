@@ -1,5 +1,6 @@
 <?php
-$title = "DESS - Category";
+$title = "DESS - Contestant Event";
+include 'function.php';
 include 'header/admin.php';
 
 
@@ -15,10 +16,10 @@ include 'header/admin.php';
             <div class="col-sm-6">
                <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">Events Category</li>
+                  <li class="breadcrumb-item active">Category</li>
                </ol>
             </div>
-            <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" data-target="#category_modal" id="add" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-plus-square"></i>
+            <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" id="add" data-target="#category_modal" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-plus-square"></i>
                Add New</a>
          </div>
       </div>
@@ -33,7 +34,7 @@ include 'header/admin.php';
                   <thead class="btn-cancel">
                      <tr>
                         <th>Category Name</th>
-                        <th>Event Name</th>
+                        <th>Description</th>
                         <th class="text-center">Action</th>
                      </tr>
                   </thead>
@@ -111,7 +112,7 @@ include 'header/admin.php';
                            </div>
                            <div class="col-md-12">
                               <div class="form-group">
-                                 <label class="float-left">Event Name</label>
+                                 <label class="float-left">Description</label>
                                  <textarea class="form-control" placeholder="Descriptions"></textarea>
                               </div>
                            </div>
@@ -149,9 +150,15 @@ include 'header/admin.php';
                            </div>
                            <div class="col-md-12">
                               <div class="form-group">
-                                 <label class="float-left">Event Name</label>
-                                 <textarea name="category_description" id="category_description" class="form-control" placeholder="Event Name" required></textarea>
+                                 <label class="float-left">Description</label>
+                                 <textarea name="category_description" id="category_description" class="form-control" placeholder="Descriptions" required></textarea>
                               </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="float-left mt-2"><b>Enter Events </b> (Click the "+" button to add Event)</label>
+                              <hr>
+                              <span id="span_product_details"></span>
+                              <hr>
                            </div>
                         </div>
                      </div>
@@ -178,14 +185,59 @@ include 'header/admin.php';
 <script src="asset/tables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="asset/tables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="asset/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+
 <script>
    $(document).ready(function() {
-      // var table = $("#category_table").DataTable();
+      var rowCount = 1;
       $('#add').on('click', function() {
          $('#category_form')[0].reset();
-         $('#submit').text("Save");
          $('#btn_action').val("add_category");
+         $('#span_product_details').html('');
+         add_product_row();
       });
+
+      function add_product_row(count = '', ) {
+         var html = '';
+         rowCount++;
+         html += '<span id="row' + count + '"><div class="row">';
+         html += '<div class="col-sm-11">';
+         html += '<input type="text" name="event[]"  class="form-control mb-2" placeholder="Event" required />';
+         html += '</div>';
+         html += '<div class="col-sm-1">';
+         if (count == '') {
+            html += '<button type="button" name="add_more" id="add_more" class="btn btn-success btn-sm mb-2">+</button>';
+         } else {
+            html += '<button type="button" name="remove" id="' + count + '" class="btn btn-danger btn-sm mb-2 remove">-</button>';
+         }
+         html += '</div>';
+         html += '</div></div></span>';
+         $('#span_product_details').append(html);
+         $('.selectpicker').selectpicker();
+      }
+      var count = 0;
+      $(document).on('click', '#add_more', function() {
+         count = count + 1;
+         add_product_row(count);
+
+      });
+      $(document).on('click', '.remove', function() {
+         var row_no = $(this).attr("id");
+         $('#row' + row_no).remove();
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       var categorydataTable = $('#category_table').DataTable({
          "processing": true,
