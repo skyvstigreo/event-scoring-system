@@ -168,6 +168,15 @@ include 'header/admin.php'; ?>
                                  <input type="time" id="end_time" name="end_time" class="form-control" placeholder="End Time" required>
                               </div>
                            </div>
+
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <label class="float-left">Judge</label>
+                                 <select class="form-control" id="event" name="event" style="cursor: pointer;" required>
+                                    <option value="">--- Select Judge ---</option>
+                                 </select>
+                              </div>
+                           </div>
                         </div>
                      </div>
                   </div>
