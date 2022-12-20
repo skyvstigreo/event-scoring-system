@@ -92,7 +92,7 @@ include 'header/admin.php';
       </div>
    </div>
 </div>
-<div id="editCategory" class="modal animated rubberBand delete-modal" role="dialog">
+<!-- <div id="editCategory" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
          <div class="modal-body text-center">
@@ -120,7 +120,7 @@ include 'header/admin.php';
                      </div>
                   </div>
                </div>
-               <!-- /.card-body -->
+               
                <div class="card-footer">
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
                   <button type="submit" class="btn btn-save">Save Changes</button>
@@ -129,8 +129,9 @@ include 'header/admin.php';
          </div>
       </div>
    </div>
-</div>
-<!-- edit para malupit -->
+</div> -->
+
+<!-- Edit Category -->
 <div id="participant_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
@@ -167,12 +168,12 @@ include 'header/admin.php';
                                  <input type="text" name="category_name" id="category_name" class="form-control" placeholder="Category Name" required>
                               </div>
                            </div>
-                           <div class="col-md-12">
+                           <!-- <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Description</label>
                                  <textarea name="category_description" id="category_description" class="form-control" placeholder="Descriptions" required></textarea>
                               </div>
-                           </div>
+                           </div> -->
                            <div class="form-group">
                               <label class="col-md-12"><b>Add New Event Name </b> (Click the "+" button to add Event)</label>
                               <hr>

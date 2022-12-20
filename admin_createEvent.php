@@ -248,13 +248,13 @@ include 'header/admin.php'; ?>
                               </div>
                            </div>
 
-                           <div class="col-md-12">
+                           <!-- <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Judge</label>
-                                 <select class="form-control" id="event" name="event" style="cursor: pointer;" required>
+                                 <select class="form-control" id="event" name="event" style="cursor: pointer;">
                                     <option value="">--- Select Judge ---</option>
                                  </select>
-                              </div>
+                              </div> -->
                            </div>
                         </div>
                      </div>
