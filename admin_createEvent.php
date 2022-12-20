@@ -3,6 +3,39 @@ $title = "DESS - Create Event";
 include 'pdo-connection.php';
 include 'header/admin.php'; ?>
 
+<style>
+   #myUL {
+      /* Remove default list styling */
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+   }
+
+   #myUL li a {
+      border: 1px solid #ddd;
+      /* Add a border to all links */
+      margin-top: -1px;
+      /* Prevent double borders */
+      background-color: #f6f6f6;
+      /* Grey background color */
+      padding: 12px;
+      /* Add some padding */
+      text-decoration: none;
+      /* Remove default text underline */
+      font-size: 18px;
+      /* Increase the font-size */
+      color: black;
+      /* Add a black text color */
+      display: block;
+      /* Make it into a block element to fill the whole list */
+   }
+
+   #myUL li a:hover:not(.header) {
+      background-color: #eee;
+      /* Add a hover effect to all links, except for headers */
+   }
+</style>
+
 
 <div class="content-wrapper">
    <div class="content-header">
@@ -68,18 +101,64 @@ include 'header/admin.php'; ?>
 <div id="participant_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
-         <div class="modal-body text-center">
-            <form method="POST">
-               <div class="card-body">
 
+         <div class="modal-body text-center">
+
+            <form method="POST">
+
+               <div class="card">
+                  <div class="card-header">Add Contestant
+
+                  </div>
+                  <div class="card-body">
+                     <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search this blog">
+                        <div class="input-group-append">
+                           <button class="btn btn-secondary" type="button">
+                              <i class="fa fa-search"></i>
+                           </button>
+                        </div>
+                     </div>
+                     <br>
+                     <ul id="myUL">
+                        <!-- <li><a href="#">Adele <input type="checkbox" aria-label="Checkbox for following text input"></a> </li> -->
+
+                        <div class="input-group">
+                           <input type="text" class="form-control">
+                           <div class="input-group-append">
+                              <span class="input-group-text"> <input type="checkbox" ></span>
+                           </div>
+                        </div>
+                        <div class="input-group">
+                           <input type="text" class="form-control">
+                           <div class="input-group-append">
+                              <span class="input-group-text"> <input type="checkbox" ></span>
+                           </div>
+                        </div>
+                        <div class="input-group">
+                           <input type="text" class="form-control">
+                           <div class="input-group-append">
+                              <span class="input-group-text"> <input type="checkbox"></span>
+                           </div>
+                        </div>
+                        <div class="input-group">
+                           <input type="text" class="form-control">
+                           <div class="input-group-append">
+                              <span class="input-group-text"> <input type="checkbox" ></span>
+                           </div>
+                        </div>
+
+                     </ul>
+                  </div>
+                  <div class="card-footer">
+                     <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                     <button type="submit" id="submit" class="btn btn-save">Add Contestant</button>
+                  </div>
                </div>
-               <!-- /.card-body -->
-               <div class="card-footer">
-                  <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-                  <button type="submit" id="submit" class="btn btn-save">Save</button>
-               </div>
+
             </form>
          </div>
+
       </div>
    </div>
 </div>
@@ -342,6 +421,26 @@ include 'header/admin.php'; ?>
 
 
    });
+
+   function myFunction() {
+      // Declare variables
+      var input, filter, ul, li, a, i, txtValue;
+      input = document.getElementById('myInput');
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("myUL");
+      li = ul.getElementsByTagName('li');
+
+      // Loop through all list items, and hide those who don't match the search query
+      for (i = 0; i < li.length; i++) {
+         a = li[i].getElementsByTagName("a")[0];
+         txtValue = a.textContent || a.innerText;
+         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+         } else {
+            li[i].style.display = "none";
+         }
+      }
+   }
 </script>
 </body>
 
