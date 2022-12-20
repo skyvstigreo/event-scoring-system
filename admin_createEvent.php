@@ -64,20 +64,25 @@ include 'header/admin.php'; ?>
    </section>
 </div>
 </div>
-<!-- <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
-   <div class="modal-dialog modal-dialog-centered">
+<!-- edit para malupit -->
+<div id="participant_modal" class="modal animated rubberBand delete-modal" role="dialog">
+   <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
          <div class="modal-body text-center">
-            <img src="asset/img/sent.png" alt="" width="50" height="46">
-            <h3>Are you sure want to delete this Event?</h3>
-            <div class="m-t-20">
-               <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-               <button type="submit" class="btn btn-danger">Delete</button>
-            </div>
+            <form method="POST">
+               <div class="card-body">
+
+               </div>
+               <!-- /.card-body -->
+               <div class="card-footer">
+                  <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                  <button type="submit" id="submit" class="btn btn-save">Save</button>
+               </div>
+            </form>
          </div>
       </div>
    </div>
-</div> -->
+</div>
 <div id="event_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
@@ -196,6 +201,11 @@ include 'header/admin.php'; ?>
       $('#add').on('click', function() {
          $('#event_form')[0].reset();
          $('#btn_action').val("add_event");
+      });
+
+
+      $(document).on('click', '.participant', function() {
+         $('#participant_modal').modal('show');
       });
 
 

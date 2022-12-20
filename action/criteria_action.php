@@ -3,7 +3,7 @@ include '../pdo-connection.php';
 if (isset($_POST['btn_action'])) {
     if ($_POST['btn_action'] == 'add_criteria') {
         $event = $_POST['event'];
-        $query = "SELECT sum(criteria_percent) as total FROM table_criteria where event_id = $event";
+        $query = "SELECT sum(criasteria_percent)  total FROM table_criteria where event_id = $event";
         $statement = $connect->prepare($query);
         $statement->execute();
         $result = $statement->fetch();
@@ -52,35 +52,41 @@ if ($_POST['btn_action'] == 'fetch_single') {
 }
 
 if ($_POST['btn_action'] == 'edit') {
-    // $event = $_POST['event'];
-    // $query = "SELECT sum(criteria_percent) as total FROM table_criteria where event_id = $event";
-    // $statement = $connect->prepare($query);
-    // $statement->execute();
-    // $result = $statement->fetch();
-    // $total = $result['total'];
-    // $total += $_POST["percent"];
-    // if ($total > 100) {
-    //     echo '<div class="alert alert-danger"> Warning percentage exceeded <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-    // } else {
-    $query = "
+    $criteria = $_POST['criteria_id'];
+    $event = $_POST['event'];
+    $query = "SELECT criteria_percent FROM table_criteria WHERE criteria_id = '$criteria'";
+    $statement = $connect->prepare($query);
+    $statement->execute();
+    $result = $statement->fetch();
+    $percent_prev = $result['criteria_percent'];
+    $querytotal = "SELECT sum(criteria_percent) as total FROM table_criteria where event_id = $event";
+    $stmttotal = $connect->prepare($querytotal);
+    $stmttotal->execute();
+    $restotal = $stmttotal->fetch();
+    $total = $restotal['total'];
+    $percent = $_POST["percent"];
+    if ((($total - $percent_prev) + $percent) > 100) {
+        echo '<div class="alert alert-danger"> Warning percentage exceeded <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+    } else {
+        $query = "
         UPDATE table_criteria set event_id = :event_id, criteria_name = :criteria_name, criteria_percent = :percentage
         WHERE criteria_id = :criteria_id
         ";
-    $statement = $connect->prepare($query);
-    $statement->execute(
-        array(
-            ':event_id'    =>    $_POST["event"],
-            ':criteria_name'    =>    $_POST["criteria"],
-            ':percentage'    =>    $_POST["percent"],
-            ':criteria_id'        =>    $_POST["criteria_id"]
-        )
-    );
+        $statement = $connect->prepare($query);
+        $statement->execute(
+            array(
+                ':event_id'    =>    $_POST["event"],
+                ':criteria_name'    =>    $_POST["criteria"],
+                ':percentage'    =>    $_POST["percent"],
+                ':criteria_id'        =>    $_POST["criteria_id"]
+            )
+        );
 
-    $result = $statement->fetchAll();
-    if (isset($result)) {
-        echo '<div class="alert alert-success">Criteria Edited Successfully <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+        $result = $statement->fetchAll();
+        if (isset($result)) {
+            echo '<div class="alert alert-success">Criteria Edited Successfully <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+        }
     }
-    // }
 }
 
 

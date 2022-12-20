@@ -159,7 +159,7 @@
                      </ul>
                   </li>
                   <li class="nav-item">
-                     <a href="admin_scores.php" class="nav-link">
+                     <a href="score.php" class="nav-link">
                         <img src="asset/img/score.png" width="30">
                         <p>
                            Scores

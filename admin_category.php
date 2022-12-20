@@ -130,6 +130,25 @@ include 'header/admin.php';
       </div>
    </div>
 </div>
+<!-- edit para malupit -->
+<div id="participant_modal" class="modal animated rubberBand delete-modal" role="dialog">
+   <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content">
+         <div class="modal-body text-center">
+            <form method="POST" >
+               <div class="card-body">
+            
+               </div>
+               <!-- /.card-body -->
+               <div class="card-footer">
+                  <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                  <button type="submit" id="submit" class="btn btn-save">Save</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
 <div id="category_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
@@ -155,9 +174,9 @@ include 'header/admin.php';
                               </div>
                            </div>
                            <div class="form-group">
-                              <label class="float-left mt-2"><b>Enter Events </b> (Click the "+" button to add Event)</label>
+                              <label class="col-md-12"><b>Add New Event Name </b> (Click the "+" button to add Event)</label>
                               <hr>
-                              <span id="span_product_details"></span>
+                              <span id="span_product_details" class=""></span>
                               <hr>
                            </div>
                         </div>
@@ -196,6 +215,33 @@ include 'header/admin.php';
          add_product_row();
       });
 
+      // $('.participant').on('click', function() {
+      //    // $('#category_form')[0].reset();
+      //    // $('#btn_action').val("add_category");
+ 
+      // });
+
+
+      $(document).on('click', '.participant', function() {
+         $('#category_modal').modal('show');
+         // var category_id = $(this).attr("id");
+         // var btn_action = 'delete';
+         // $.ajax({
+         //    url: "action/category_action.php",
+         //    method: "POST",
+         //    data: {
+         //       category_id: category_id,
+         //       btn_action: btn_action
+         //    },
+         //    success: function(data) {
+         //       $('#alert_action').fadeIn().html('<div class="alert alert-danger">' + data + '</div>');
+         //       categorydataTable.ajax.reload();
+         //    }
+         // })
+      });
+
+
+   
       function add_product_row(count = '', ) {
          var html = '';
          rowCount++;
