@@ -1,27 +1,8 @@
 <?php
 include '../pdo-connection.php';
 if (isset($_POST['btn_action'])) {
-    if ($_POST['btn_action'] == 'add_contestant') {
-        $query = "
-		INSERT INTO table_contestant (first_name, middle_name, last_name, gender,course_id) 
-		VALUES (:first_name, :middle_name, :last_name, :gender, :course)
-		";
-        $statement = $connect->prepare($query);
-        $statement->execute(
-            array(
-                ':first_name'    =>    $_POST["fname"],
-                ':middle_name'    =>    $_POST["mname"],
-                ':last_name'    =>    $_POST["lname"],
-                ':gender'    =>    $_POST["gender"],
-                ':course'    =>    $_POST["course"],
-            )
-        );
-        $result = $statement->fetchAll();
-        if (isset($result)) {
-            echo 'Contestant Added <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-        }
-    }
-    if ($_POST['btn_action'] == 'add_event') {
+    
+    if ($_POST['btn_action'] == 'add_participant') {
         $query = "
         UPDATE table_contestant set event_id = :event_id, status = :status
     	WHERE contestant_id = :contestant_id
@@ -30,13 +11,13 @@ if (isset($_POST['btn_action'])) {
         $statement->execute(
             array(
                 ':contestant_id'    =>    $_POST["contestant_id"],
-                ':event_id' => $_POST["event"],
-                ':status' => $_POST["status"]
+                ':event_id' => $_POST["event_id"],
+                ':status' => "1",
             )
         );
         $result = $statement->fetchAll();
         if (isset($result)) {
-            echo 'Event has been set <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+            echo 'Participant has been set <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
         }
     }
     if ($_POST['btn_action'] == 'add') {
@@ -99,7 +80,7 @@ if (isset($_POST['btn_action'])) {
     if ($_POST['btn_action'] == 'edit') {
         $query = "
     	UPDATE table_contestant set first_name = :first_name, middle_name = :middle_name, 
-        last_name = :last_name, gender = :gender, birthday = :birthdate, age = :age, course_id = :course, event_id = :event
+        last_name = :last_name, gender = :gender, course_id = :course
     	WHERE contestant_id = :contestant_id
     	";
         $statement = $connect->prepare($query);
@@ -109,10 +90,7 @@ if (isset($_POST['btn_action'])) {
                 ':middle_name'    =>    $_POST["mname"],
                 ':last_name'    =>    $_POST["lname"],
                 ':gender'    =>    $_POST["gender"],
-                ':birthdate'    =>    $_POST["birthdate"],
-                ':age'    =>    $_POST["age"],
                 ':course'    =>    $_POST["course"],
-                ':event'    =>    $_POST["event"],
                 ':contestant_id'    =>    $_POST["contestant_id"],
             )
         );
@@ -141,19 +119,20 @@ if (isset($_POST['btn_action'])) {
 
     if ($_POST['btn_action'] == 'delete_status') {
         $query = "
-        UPDATE table_contestant set status = :status
+        UPDATE table_contestant set status = :status, event_id = :event_id
     	WHERE contestant_id = :contestant_id
 		";
         $statement = $connect->prepare($query);
         $statement->execute(
             array(
                 ':contestant_id'    =>    $_POST["contestant_id"],
-                ':status' => '1'
+                ':status' => '0',
+                ':event_id' => '0'
             )
         );
         $result = $statement->fetchAll();
         if (isset($result)) {
-            echo 'Deleted Successfully<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+            echo 'Removed Successfully<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
         }
     }
 }
