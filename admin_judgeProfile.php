@@ -150,11 +150,9 @@ include 'header/admin.php';
                         <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Full Name</label>
-                                 <input type="text" name="" id="" class="form-control" placeholder="Full Name">
+                                 <input type="text" name="name" id="name" class="form-control" placeholder="Full Name">
                               </div>
                            </div>
-                          
-                          
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label class="float-left">Username</label>
@@ -240,10 +238,7 @@ include 'header/admin.php';
             success: function(data) {
                $('#btn_action').val("edit");
                $('#user_modal').modal('show');
-               $('#fname').val(data.first_name);
-               $('#mname').val(data.middle_name);
-               $('#lname').val(data.last_name);
-               $('#achievement').val(data.achievement);
+               $('#name').val(data.name);
                $('#uname').val(data.user_name);
                $('#password').val('');
                // $('#course_description').val(data.course_description);
@@ -254,20 +249,20 @@ include 'header/admin.php';
       });
 
 
-      // var userdataTable = $('#user_table').DataTable({
-      //    "processing": true,
-      //    "serverSide": true,
-      //    "order": [],
-      //    "ajax": {
-      //       url: "fetch/judge_fetch.php",
-      //       type: "POST"
-      //    },
-      //    "columnDefs": [{
-      //       "targets": [0, 1, 2],
-      //       "orderable": false,
-      //    }, ],
-      //    "pageLength": 9999999
-      // });
+      var userdataTable = $('#user_table').DataTable({
+         "processing": true,
+         "serverSide": true,
+         "order": [],
+         "ajax": {
+            url: "fetch/judge_fetch.php",
+            type: "POST"
+         },
+         "columnDefs": [{
+            "targets": [0, 1, 2],
+            "orderable": false,
+         }, ],
+         "pageLength": 9999999
+      });
 
 
 

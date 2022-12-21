@@ -32,7 +32,7 @@ include 'header/admin.php'; ?>
                      <tr>
                         <th>Judge Name</th>
                         <th>Event Name</th>
-                        
+
                         <th class="text-center">Action</th>
                      </tr>
                   </thead>
@@ -126,24 +126,50 @@ include 'header/admin.php'; ?>
                         <div class="card-header">
                            <h5><img src="asset/img/event.png" width="40"> Event Information</h5>
                         </div>
-                        <div class="row">
+                        <div class="row" id="refresh">
+                           <!-- <div id="refresh"> -->
                            <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Judge Name</label>
-                                 <select class="form-control" id="judge" name="judge" style="cursor: pointer;" required>
+                                 <select class="form-control" id="judge_id" name="judge_id" style="cursor: pointer;" required>
                                     <option value="">--- Select Judge---</option>
                                     <?php
-                                    $query = "SELECT * FROM table_user";
+                                    $query = "SELECT * FROM table_user WHERE event_id ='0'";
                                     $statement = $connect->prepare($query);
                                     $statement->execute();
                                     $result = $statement->fetchAll();
                                     foreach ($result as $row) {
-                                       echo '<option value="' . $row["user_id"] . '">' . $row["first_name"] . ' ' . $row["middle_name"] . ' ' . $row["last_name"] . '</option>';
+                                       echo '<option value="' . $row["user_id"] . '">' . $row["name"] . '</option>';
                                     }
                                     ?>
                                  </select>
                               </div>
                            </div>
+                           <!-- </div> -->
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <label class="float-left">Event Category</label>
+                                 <select class="form-control" id="type" name="type" style="cursor: pointer;" required>
+                                    <option value="">--- Select Category ---</option>
+                                    <?php
+                                    $query = "SELECT * FROM table_category";
+                                    $statement = $connect->prepare($query);
+                                    $statement->execute();
+                                    $result = $statement->fetchAll();
+                                    foreach ($result as $row) {
+                                       echo '<option value="' . $row["category_id"] . '">' . $row["category_name"] . '</option>';
+                                    }
+                                    ?>
+                                 </select>
+                                 <!-- <select class="form-control" id="type">
+                                    <option>Choose Event Type</option>
+                                    <option>Cultural</option>
+                                    <option>Arts</option>
+                                    <option>Academic</option>
+                                 </select> -->
+                              </div>
+                           </div>
+
                            <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Event Name</label>
@@ -161,7 +187,8 @@ include 'header/admin.php'; ?>
                                  </select>
                               </div>
                            </div>
-                           <!-- <div class="col-md-12">
+                        </div>
+                        <!-- <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Status</label>
                                  <select class="form-control" name="status" id="status" required>
@@ -170,7 +197,7 @@ include 'header/admin.php'; ?>
                                  </select>
                               </div>
                            </div> -->
-                        </div>
+
                      </div>
                   </div>
                </div>
@@ -214,9 +241,45 @@ include 'header/admin.php'; ?>
                $('#user_modal').modal('hide');
                $('#alert_action').fadeIn().html('<div class="alert alert-success">' + data + '</div>');
                userdataTable.ajax.reload();
+               location.reload();
             }
          })
       });
+
+
+      $(document).on('click', '.delete', function() {
+         var judge_id = $(this).attr("id");
+         var btn_action = 'delete_status';
+         $.ajax({
+            url: "action/user_action.php",
+            method: "POST",
+            data: {
+               judge_id: judge_id,
+               btn_action: btn_action
+            },
+            success: function(data) {
+               $('#alert_action').fadeIn().html('<div class="alert alert-danger">' + data + '</div>');
+               userdataTable.ajax.reload();
+               location.reload();
+            }
+         })
+      });
+
+      $("#type").on('change', function() {
+         var category_id = $(this).val();
+         $.ajax({
+            method: "POST",
+            url: "fetch/fetch_event_name.php",
+            data: {
+               category_id: category_id
+            },
+            dataType: "html",
+            success: function(data) {
+               $("#event_id").html(data);
+            }
+
+         });
+      })
 
       var userdataTable = $('#user_table').DataTable({
          "processing": true,

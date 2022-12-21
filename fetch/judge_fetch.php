@@ -10,15 +10,13 @@ $query = '';
 
 $output = array();
 
-$query .= "SELECT * FROM table_user
+$query .= "SELECT * FROM table_user WHERE user_type = '1'
 ";
-
 if (isset($_POST["search"]["value"])) {
 
-    $query .= 'WHERE first_name LIKE "%' . $_POST["search"]["value"] . '%" ';
-    $query .= 'OR middle_name LIKE "%' . $_POST["search"]["value"] . '%" ';
-    $query .= 'OR last_name LIKE "%' . $_POST["search"]["value"] . '%" ';
-    $query .= 'OR achievement LIKE "%' . $_POST["search"]["value"] . '%" ';
+
+    $query .= 'AND name LIKE "%' . $_POST["search"]["value"] . '%" ';
+    // $query .= 'AND username LIKE "%' . $_POST["search"]["value"] . '%" ';
 }
 
 if (isset($_POST['order'])) {
@@ -43,12 +41,9 @@ $filtered_rows = $statement->rowCount();
 
 foreach ($result as $row) {
     $sub_array = array();
-    $sub_array[] = $row['first_name'];
-    $sub_array[] = $row['middle_name'];
-    $sub_array[] = $row['last_name'];
-    $sub_array[] = $row['achievement'];
+    $sub_array[] = $row['name'];
     $sub_array[] = $row['username'];
-    $sub_array[] = '<center><button type="button" name="update" id="'.$row["user_id"].'" class="btn btn-primary btn-xs update" data-toggle="tooltip" data-placement="bottom" title="Edit Category"><i class="fa fa-edit"></i></button> <button type="button" name="delete" id="' . $row["user_id"] . '" class="btn btn-danger btn-xs delete" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button>';
+    $sub_array[] = '<center><button type="button" name="update" id="' . $row["user_id"] . '" class="btn btn-primary btn-xs update" data-toggle="tooltip" data-placement="bottom" title="Edit Category"><i class="fa fa-edit"></i></button> <button type="button" name="delete" id="' . $row["user_id"] . '" class="btn btn-danger btn-xs delete" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button>';
     $data[] = $sub_array;
 }
 
@@ -61,7 +56,7 @@ $output = array(
 
 function get_total_all_records($connect)
 {
-    $statement = $connect->prepare("SELECT * FROM table_user");
+    $statement = $connect->prepare("SELECT * FROM table_user Where user_type = '1'");
     $statement->execute();
     return $statement->rowCount();
 }
