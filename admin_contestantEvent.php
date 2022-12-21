@@ -22,45 +22,67 @@ include 'header/admin.php'; ?>
          </div>
       </div>
    </div>
+
+   <span id="alert_action"></span>
+   <div id="refresh">
+      <?php
+      $query = "SELECT * FROM table_schedule
+    INNER JOIN table_event on table_schedule.event_id = table_event.event_id
+    INNER JOIN table_category on table_schedule.category_id = table_category.category_id";
+      $statement = $connect->prepare($query);
+      $statement->execute();
+      $result = $statement->fetchAll();
+      foreach ($result as $row) {
+         $event = $row['event_id'];
+         echo '
+   
    <section class="content">
-      <span id="alert_action"></span>
+
       <div class="container-fluid">
          <div class="card card-info elevation-2">
             <br>
             <div class="col-md-12">
 
-              
-                    <h5>Event Category <span></span></h5>
-                    <h5>Event Name <span></span></h5>
-                    <h5>Venue <span></span></h5>
-                    <h5>Date <span></span></h5>
+
+               <h5>Event Category: <span>' . $row['category_name'] . '</span></h5>
+               <h5>Event Name: <span>' . $row['event_name'] . '</span></h5>
+               <h5>Venue: <span>' . $row['event_venue'] . '</span></h5>
+               <h5>Date: <span>' . date("h:i: A", strtotime($row['event_time'])) . '</span></h5>
 
 
-                    <table id="" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Contestant Name  <button class="btn btn btn-primary btn-xs float-right">Add Contestant</button></th> 
-                                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                            </tr>
+               <table  class="table table-striped table-bordered" style="width:100%">
+                  <thead>
+                     <tr>
+                        <th>Contestant Name</th>
+                        <th class="text-center"><button id="' . $row['event_id'] . '" class="btn btn btn-primary btn-xs participant">Add Contestant</button>
 
-                            <tr>
-                                <td>Tigang</td>
-                            </tr>
+                     </tr>
+                  </thead>
+                  <tbody>';
+         $query = "SELECT * FROM table_contestant WHERE event_id = '$event'";
+         $statement = $connect->prepare($query);
+         $statement->execute();
+         $result = $statement->fetchAll();
+         foreach ($result as $row) {
+            echo '
+                     <tr>
+                        <td>' . $row["first_name"] . ' ' . $row["middle_name"] . ' ' . $row["last_name"] .  ' </td>
+                        <td><center> <button type="button" name="delete" id="' . $row["contestant_id"] . '" class="btn btn-danger btn-xs delete" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button> </center></td>
+                     </tr>';
+         };
+         echo '
+                  </tbody>
+                  <tfoot>
 
-                        </tbody>
-                        <tfoot>
-
-                        </tfoot>
-                    </table>
+                  </tfoot>
+               </table>
             </div>
          </div>
       </div>
-   </section>
+   </section>';
+      };
+      ?>
+   </div>
 </div>
 </div>
 
@@ -75,42 +97,26 @@ include 'header/admin.php'; ?>
                         <div class="card-header">
                            <h5><img src="asset/img/event.png" width="40"> Event Information</h5>
                         </div>
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Event Joined</label>
-                                 <select class="form-control" id="event" name="event" style="cursor: pointer;" required>
-                                    <option value="">--- Select Event---</option>
-                                    <?php
-                                    $query = "SELECT * FROM table_event";
-                                    $statement = $connect->prepare($query);
-                                    $statement->execute();
-                                    $result = $statement->fetchAll();
-                                    foreach ($result as $row) {
-                                       echo '<option value="' . $row["event_id"] . '">' . $row["event_name"] . '</option>';
-                                    }
-                                    ?>
-                                 </select>
+                        <div id="fetch">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <div class="form-group">
+                                    <label class="float-left">Contestant Name</label>
+                                    <select class="form-control" id="contestant_id" name="contestant_id" style="cursor: pointer;" required>
+                                       <option value="">--- Select Contestant---</option>
+                                       <?php
+                                       $query = "SELECT * FROM table_contestant WHERE status = '0'";
+                                       $statement = $connect->prepare($query);
+                                       $statement->execute();
+                                       $result = $statement->fetchAll();
+                                       foreach ($result as $row) {
+                                          echo '<option value="' . $row["contestant_id"] . '">' . $row["first_name"] . ' ' . $row["middle_name"] . ' ' . $row["last_name"] . '</option>';
+                                       }
+                                       ?>
+                                    </select>
+                                 </div>
                               </div>
-                           </div>
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Contestant Name</label>
-                                 <select class="form-control" id="contestant" name="contestant" style="cursor: pointer;" required>
-                                    <option value="">--- Select Contestant---</option>
-                                    <?php
-                                    $query = "SELECT * FROM table_contestant";
-                                    $statement = $connect->prepare($query);
-                                    $statement->execute();
-                                    $result = $statement->fetchAll();
-                                    foreach ($result as $row) {
-                                       echo '<option value="' . $row["contestant_id"] . '">' . $row["first_name"] . ' ' . $row["middle_name"] . ' ' . $row["last_name"] . '</option>';
-                                    }
-                                    ?>
-                                 </select>
-                              </div>
-                           </div>
-                           <div class="col-md-12">
+                              <!-- <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Status</label>
                                  <select class="form-control" id="status" name="status" required>
@@ -119,6 +125,7 @@ include 'header/admin.php'; ?>
                                     <option value="0">Close</option>
                                  </select>
                               </div>
+                           </div> -->
                            </div>
                         </div>
                      </div>
@@ -127,7 +134,7 @@ include 'header/admin.php'; ?>
                <!-- /.card-body -->
                <div class="card-footer">
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-                  <input type="hidden" name="contestant_id" id="contestant_id" />
+                  <input type="hidden" name="event_id" id="event_id" />
                   <input type="hidden" name="btn_action" id="btn_action" />
                   <button type="submit" class="btn btn-save">Save</button>
                </div>
@@ -147,10 +154,25 @@ include 'header/admin.php'; ?>
 <script src="asset/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 <script>
    $(document).ready(function() {
-      $('#add').on('click', function() {
-         $('#contestant_form')[0].reset();
-         $('#btn_action').val("add");
-      });
+      init();
+
+      function init() {
+         $(document).on('click', '.participant', function(e) {
+            var event_id = $(this).attr("id");
+            $('#contestant_form')[0].reset();
+            $('#contestant_modal').modal('show');
+            $('#event_id').val(event_id);
+            $('#btn_action').val("add_participant");
+         });
+         $("#refresh").load(location.href + " #refresh");
+
+         // add every button who needs to be reloaded.
+      };
+
+
+      // $('.participant').on('click', function() {
+
+      // });
 
       $(document).on('submit', '#contestant_form', function(event) {
          event.preventDefault();
@@ -163,7 +185,8 @@ include 'header/admin.php'; ?>
                $('#contestant_form')[0].reset();
                $('#contestant_modal').modal('hide');
                $('#alert_action').fadeIn().html('<div class="alert alert-success">' + data + '</div>');
-               contestantdataTable.ajax.reload();
+               $("#fetch").load(location.href + " #fetch");
+               init();
             }
          })
       });
@@ -180,52 +203,14 @@ include 'header/admin.php'; ?>
             },
             success: function(data) {
                $('#alert_action').fadeIn().html('<div class="alert alert-danger">' + data + '</div>');
-               contestantdataTable.ajax.reload();
+               $("#fetch").load(location.href + " #fetch");
+               init();
             }
          })
       });
 
 
-      var contestantdataTable = $('#contestant_table').DataTable({
-         "processing": true,
-         "serverSide": true,
-         "order": [],
-         "ajax": {
-            url: "fetch/setup_contestant_fetch.php",
-            type: "POST"
-         },
-         "columnDefs": [{
-            "targets": [0, 1, 2],
-            "orderable": false,
-         }, ],
-         "pageLength": 9999999
-      });
-
-      $(document).on('click', '.update', function() {
-         var contestant_id = $(this).attr("id");
-         var btn_action = "fetch_event";
-         // alert("hi")
-         $.ajax({
-            url: "action/contestant_action.php",
-            method: "POST",
-            data: {
-               contestant_id: contestant_id,
-               btn_action: btn_action
-            },
-            dataType: "json",
-            success: function(data) {
-               $('#btn_action').val("add_event");
-               $('#contestant_modal').modal('show');
-               $('#contestant').val(data.contestant);
-               $('#event').val(data.event);
-               $('#status').val(data.status);
-               $('#contestant_id').val(contestant_id);
-
-            }
-         })
-      });
-
-
+  
 
 
 

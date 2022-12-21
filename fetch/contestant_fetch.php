@@ -12,7 +12,6 @@ $output = array();
 
 $query .= "SELECT * FROM table_contestant 
 INNER JOIN table_course ON table_contestant.course_id = table_course.course_id
-INNER JOIN table_event ON table_contestant.event_id = table_event.event_id
 ";
 
 if (isset($_POST["search"]["value"])) {
@@ -20,7 +19,6 @@ if (isset($_POST["search"]["value"])) {
     $query .= 'WHERE first_name LIKE "%' . $_POST["search"]["value"] . '%" ';
     $query .= 'OR middle_name LIKE "%' . $_POST["search"]["value"] . '%" ';
     $query .= 'OR last_name LIKE "%' . $_POST["search"]["value"] . '%" ';
-    $query .= 'OR event_name LIKE "%' . $_POST["search"]["value"] . '%" ';
     $query .= 'OR course_name LIKE "%' . $_POST["search"]["value"] . '%" ';
 }
 
