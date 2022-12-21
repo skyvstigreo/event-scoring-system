@@ -34,7 +34,6 @@ include 'header/admin.php';
                   <thead class="btn-cancel">
                      <tr>
                         <th>Category Name</th>
-                        <th>Description</th>
                         <th class="text-center">Action</th>
                      </tr>
                   </thead>
@@ -78,7 +77,7 @@ include 'header/admin.php';
    </section>
 </div>
 </div>
-<!-- <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
+<div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
          <div class="modal-body text-center">
@@ -91,8 +90,8 @@ include 'header/admin.php';
          </div>
       </div>
    </div>
-</div> -->
-<!-- <div id="editCategory" class="modal animated rubberBand delete-modal" role="dialog">
+</div>
+<div id="view" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
          <div class="modal-body text-center">
@@ -103,35 +102,28 @@ include 'header/admin.php';
                         <div class="card-header">
                            <h5><img src="asset/img/event.png" width="40"> Category Information</h5>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                            <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Category Name</label>
                                  <input type="text" class="form-control" placeholder="Category Name">
                               </div>
                            </div>
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Description</label>
-                                 <textarea class="form-control" placeholder="Descriptions"></textarea>
-                              </div>
-                           </div>
-                        </div>
+                        </div> -->
                      </div>
                   </div>
                </div>
-               
-               <div class="card-footer">
+               <!-- /.card-body -->
+               <!-- <div class="card-footer">
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
                   <button type="submit" class="btn btn-save">Save Changes</button>
-               </div>
+               </div>  -->
             </form>
          </div>
       </div>
    </div>
-</div> -->
-
-<!-- Edit Category -->
+</div>
+<!-- edit para malupit -->
 <div id="participant_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
@@ -168,16 +160,16 @@ include 'header/admin.php';
                                  <input type="text" name="category_name" id="category_name" class="form-control" placeholder="Category Name" required>
                               </div>
                            </div>
-                           <!-- <div class="col-md-12">
+                           <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Description</label>
                                  <textarea name="category_description" id="category_description" class="form-control" placeholder="Descriptions" required></textarea>
                               </div>
-                           </div> -->
+                           </div>
                            <div class="form-group">
                               <label class="col-md-12"><b>Add New Event Name </b> (Click the "+" button to add Event)</label>
                               <hr>
-                              <span id="span_product_details"></span>
+                              <span id="span_product_details" class=""></span>
                               <hr>
                            </div>
                         </div>
@@ -216,33 +208,7 @@ include 'header/admin.php';
          add_product_row();
       });
 
-      // $('.participant').on('click', function() {
-      //    // $('#category_form')[0].reset();
-      //    // $('#btn_action').val("add_category");
- 
-      // });
-
-
-      $(document).on('click', '.participant', function() {
-         $('#category_modal').modal('show');
-         // var category_id = $(this).attr("id");
-         // var btn_action = 'delete';
-         // $.ajax({
-         //    url: "action/category_action.php",
-         //    method: "POST",
-         //    data: {
-         //       category_id: category_id,
-         //       btn_action: btn_action
-         //    },
-         //    success: function(data) {
-         //       $('#alert_action').fadeIn().html('<div class="alert alert-danger">' + data + '</div>');
-         //       categorydataTable.ajax.reload();
-         //    }
-         // })
-      });
-
-
-   
+     
       function add_product_row(count = '', ) {
          var html = '';
          rowCount++;
@@ -272,20 +238,6 @@ include 'header/admin.php';
          $('#row' + row_no).remove();
       });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       var categorydataTable = $('#category_table').DataTable({
          "processing": true,
          "serverSide": true,
@@ -295,7 +247,7 @@ include 'header/admin.php';
             type: "POST"
          },
          "columnDefs": [{
-            "targets": [0, 1, 2],
+            "targets": [0, 1],
             "orderable": false,
          }, ],
          "pageLength": 9999999
@@ -315,6 +267,24 @@ include 'header/admin.php';
                categorydataTable.ajax.reload();
             }
          })
+      });
+
+      $(document).on('click', '.view', function() {
+         var category_id = $(this).attr("id");
+         var btn_action = 'delete';
+         $('#view').modal('show');
+         // $.ajax({
+         //    url: "action/category_action.php",
+         //    method: "POST",
+         //    data: {
+         //       category_id: category_id,
+         //       btn_action: btn_action
+         //    },
+         //    success: function(data) {
+         //       $('#alert_action').fadeIn().html('<div class="alert alert-danger">' + data + '</div>');
+         //       categorydataTable.ajax.reload();
+         //    }
+         // })
       });
 
       $(document).on('click', '.delete', function() {
@@ -352,15 +322,12 @@ include 'header/admin.php';
                $('#btn_action').val("edit");
                $('#category_modal').modal('show');
                $('#category_name').val(data.category_name);
-               // $('#category_description').val(data.category_description);
+               $('#category_description').val(data.category_description);
                $('#category_id').val(category_id);
 
             }
          })
       });
-
-
-
 
    });
 </script>
