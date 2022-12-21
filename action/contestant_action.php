@@ -3,8 +3,8 @@ include '../pdo-connection.php';
 if (isset($_POST['btn_action'])) {
     if ($_POST['btn_action'] == 'add_contestant') {
         $query = "
-		INSERT INTO table_contestant (first_name, middle_name, last_name, gender, birthday, age, course_id, event_id) 
-		VALUES (:first_name, :middle_name, :last_name, :gender, :birthdate, :age, :course, :event)
+		INSERT INTO table_contestant (first_name, middle_name, last_name, gender,course_id) 
+		VALUES (:first_name, :middle_name, :last_name, :gender, :course)
 		";
         $statement = $connect->prepare($query);
         $statement->execute(
@@ -13,10 +13,7 @@ if (isset($_POST['btn_action'])) {
                 ':middle_name'    =>    $_POST["mname"],
                 ':last_name'    =>    $_POST["lname"],
                 ':gender'    =>    $_POST["gender"],
-                ':birthdate'    =>    $_POST["birthdate"],
-                ':age'    =>    $_POST["age"],
                 ':course'    =>    $_POST["course"],
-                ':event'    =>    $_POST["event"],
             )
         );
         $result = $statement->fetchAll();

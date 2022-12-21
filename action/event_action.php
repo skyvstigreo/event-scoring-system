@@ -99,12 +99,12 @@ if (isset($_POST['btn_action'])) {
 
     if ($_POST['btn_action'] == 'delete') {
         $query = "
-		DELETE FROM table_event WHERE event_id = :event_id
+		DELETE FROM table_schedule WHERE sched_id = :sched_id
 		";
         $statement = $connect->prepare($query);
         $statement->execute(
             array(
-                ':event_id'    =>    $_POST["event_id"],
+                ':sched_id'    =>    $_POST["sched_id"],
             )
         );
         $result = $statement->fetchAll();
