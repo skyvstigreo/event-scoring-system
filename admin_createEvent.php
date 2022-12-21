@@ -204,15 +204,7 @@ include 'header/admin.php'; ?>
                                  <label class="float-left">Event Name</label>
                                  <select class="form-control" id="event" name="event" style="cursor: pointer;" required>
                                     <option value="">--- Select Event ---</option>
-                                    <?php
-                                    $query = "SELECT * FROM table_event";
-                                    $statement = $connect->prepare($query);
-                                    $statement->execute();
-                                    $result = $statement->fetchAll();
-                                    foreach ($result as $row) {
-                                       echo '<option value="' . $row["event_id"] . '">' . $row["event_name"] . '</option>';
-                                    }
-                                    ?>
+                                  
                                  </select>
                               </div>
                            </div>
@@ -413,13 +405,9 @@ include 'header/admin.php'; ?>
                $('#event_name').val(data.event_name);
                // $('#category_description').val(data.category_description);
                // $('#category_id').val(category_id);
-
             }
          })
       });
-
-
-
    });
 
    function myFunction() {

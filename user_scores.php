@@ -28,6 +28,10 @@
                                  <div class="info-box-content">
                                     <span class="info-box-text">
                                        <h5>Event Name: <span> Beauty Contest</span></h5>
+                                       <h5>Date of Contest <span> Date</span></h5>
+                                       <h5>Start Time <span> Date</span></h5>
+                                       <h5>Event Time <span> Date</span></h5>
+                                       <h5>Venue: <span> Location</span></h5>
                                     </span>
                                  </div>
                               </div>
@@ -37,43 +41,43 @@
                                  <table class="table"><thead class="btn-cancel"style="background-color: rgb(240,158,65)">
                               <tr>
                                  
-                                 <th>Contestant</th>
-                                 <th>Scores</th>
-                                 <th>Total</th>
-                                 <th>Edit</th>
+                                 <th>Contestant Name</th>
+                                 <th>Action</th>
+                                 <th></th>
                               </tr>
                            </thead>
                                     <tbody>
-                                       <tr>                                          <td><img src="asset/img/avatar.png" width="60"></td>
+                                       <tr>                                          <td>Jane Smith</td>
                                           <td>
                                     <table class="table">
                                        <tr style="border-collapse: collapse;">
-                                          <td>50.00</td>
-                                          <td>50.00</td>
+                                       <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
+                                       class="fa fa-edit"></i>View</a>
+                                         
                                        </tr>
                                     </table>
                                  </td>
 
-                                          <td>Jane Smith</td>
-                                          <td class="text-center">
-                                 <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                       class="fa fa-edit"></i> edit</a>
+                          
+                                 
                               </td>
                                        </tr>
-                                       <tr>                                          <td><img src="asset/img/avatar.png" width="60"></td>
+                                       <tr>                                          <td>Jane Doe</td>
                                           <td>
                                     <table class="table">
                                        <tr style="border-collapse: collapse;">
-                                          <td>50.00</td>
-                                          <td>50.00</td>
+                                       <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
+                                       class="fa fa-edit"></i>View</a>
+                                         
                                        </tr>
                                     </table>
                                  </td>
 
-                                          <td>Jane Doe</td>
-                                          <td class="text-center">
-                                 <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                       class="fa fa-edit"></i> edit</a>
+
+                                 
+
+
+                               
                               </td>
                                        </tr>
 
@@ -84,6 +88,7 @@
                            <div class="col-lg-6">
                                  <div class="info-box content-header">
                                     <h5>Jane Smith</h5>
+                                    
                                  </div>
                               <div class="info-box">
                                  <div class="content-header bg-warning">
@@ -125,7 +130,7 @@
                               <div class="form-group">
                                  
                      <button type="submit" class="btn btn-info">Submit Score</button>
-                     <button type="submit" class="btn">Update Score</button>
+                     <button type="submit" class="btn">Edit Score</button>
                               </div>
                            </div>
                            </div>
