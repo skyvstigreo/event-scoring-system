@@ -57,14 +57,14 @@
                         </p>
                      </a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                      <a href="user_profile.php" class="nav-link">
                         <img src="asset/img/contestant.png" width="30">
                         <p>
                            Contestants
                         </p>
                      </a>
-                  </li>
+                  </li> -->
                   <li class="nav-item">
                      <a href="user_scores.php" class="nav-link">
                         <img src="asset/img/score.png" width="30">
