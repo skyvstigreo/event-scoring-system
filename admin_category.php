@@ -78,7 +78,7 @@ include 'header/admin.php';
    </section>
 </div>
 </div>
-<div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
+<!-- <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
          <div class="modal-body text-center">
@@ -91,7 +91,7 @@ include 'header/admin.php';
          </div>
       </div>
    </div>
-</div>
+</div> -->
 <!-- <div id="editCategory" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
@@ -177,7 +177,7 @@ include 'header/admin.php';
                            <div class="form-group">
                               <label class="col-md-12"><b>Add New Event Name </b> (Click the "+" button to add Event)</label>
                               <hr>
-                              <span id="span_product_details" class=""></span>
+                              <span id="span_product_details"></span>
                               <hr>
                            </div>
                         </div>
@@ -352,7 +352,7 @@ include 'header/admin.php';
                $('#btn_action').val("edit");
                $('#category_modal').modal('show');
                $('#category_name').val(data.category_name);
-               $('#category_description').val(data.category_description);
+               // $('#category_description').val(data.category_description);
                $('#category_id').val(category_id);
 
             }
