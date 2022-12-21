@@ -71,8 +71,6 @@ if (isset($_POST['btn_action'])) {
             $output['middle_name'] = $row['middle_name'];
             $output['last_name'] = $row['last_name'];
             $output['gender'] = $row['gender'];
-            $output['birthday'] = $row['birthday'];
-            $output['age'] = $row['age'];
             $output['course'] = $row['course_id'];
             $output['event'] = $row['event_id'];
         }

@@ -319,10 +319,7 @@ include 'header/admin.php'; ?>
                     $('#mname').val(data.middle_name);
                     $('#lname').val(data.last_name);
                     $('#gender').val(data.gender);
-                    $('#birthdate').val(data.birthday);
-                    $('#age').val(data.age);
                     $('#course').val(data.course);
-                    $('#event').val(data.event);
                     $('#contestant_id').val(contestant_id);
 
                 }
