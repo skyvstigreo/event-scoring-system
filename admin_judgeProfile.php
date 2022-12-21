@@ -70,7 +70,7 @@ include 'header/admin.php';
          </div>
       </div>
    </div> -->
-<div id="edit" class="modal animated rubberBand delete-modal" role="dialog">
+<!-- <div id="edit" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
          <div class="modal-body text-center">
@@ -122,7 +122,7 @@ include 'header/admin.php';
                      </div>
                   </div>
                </div>
-               <!-- /.card-body -->
+               
                <div class="card-footer">
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
                   <button type="submit" class="btn btn-save">Save Changes</button>
@@ -131,7 +131,8 @@ include 'header/admin.php';
          </div>
       </div>
    </div>
-</div>
+</div> -->
+
 <div id="user_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
@@ -145,6 +146,13 @@ include 'header/admin.php';
                            <h5><img src="asset/img/judges.png" width="40"> Judges Information</h5>
                         </div>
                         <div class="row">
+
+                        <div class="col-md-12">
+                              <div class="form-group">
+                                 <label class="float-left">Full Name</label>
+                                 <input type="text" name="" id="" class="form-control" placeholder="Full Name">
+                              </div>
+                           </div>
                           
                           
                            <div class="col-md-6">

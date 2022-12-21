@@ -11,6 +11,7 @@
    <link rel="stylesheet" href="asset/css/style.css">
    <link rel="stylesheet" href="asset/tables/datatables-bs4/css/dataTables.bootstrap4.min.css">
    <link rel="icon" href="asset/img/Logo.ico" type="image/x-icon" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
@@ -34,11 +35,7 @@
             </li>
          </ul>
          <ul class="navbar-nav ml-auto">
-            <!-- <li class="nav-item">
-               <a class="nav-link" href="#" role="button">
-                  <img src="asset/img/avatar.png" class="img-circle" alt="User Image" width="40" style="margin-top: -8px;">
-               </a>
-            </li> -->
+        
             <li class="nav-item">
                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                   <i class="fas fa-expand-arrows-alt"></i>
@@ -62,7 +59,7 @@
                   data-accordion="false">
                   <li class="nav-item">
                      <a href="admin_dashboard.php" class="nav-link">
-                        <img src="asset/img/dashboard.png" width="30">
+                     <i class="fa-sharp fa-solid fa-box-archive"></i>
                         <p>
                            Dashboard
                         </p>
@@ -73,7 +70,7 @@
 
                   <li class="nav-item">
                      <a href="admin_criteriaArchive.php" class="nav-link">
-                        <img src="asset/img/dashboard.png" width="30">
+                     <i class="fa-sharp fa-solid fa-box-archive"></i>
                         <p>
                            Archive
                         </p>
