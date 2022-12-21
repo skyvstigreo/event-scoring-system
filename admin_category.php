@@ -128,13 +128,49 @@ include 'header/admin.php';
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
          <div class="modal-body text-center">
-            <form method="POST" >
+            <form method="POST">
                <div class="card-body">
-            
+
                </div>
                <!-- /.card-body -->
                <div class="card-footer">
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                  <button type="submit" id="submit" class="btn btn-save">Save</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- edit -->
+<div id="edit_modal" class="modal animated rubberBand delete-modal" role="dialog">
+   <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content">
+         <div class="modal-body text-center">
+            <form method="POST" id="edit_form">
+               <div class="card-body">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="card-header">
+                           <h5><img src="asset/img/event.png" width="40"> Category Information</h5>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <label class="float-left">Category Name</label>
+                                 <input type="text" name="edit_name" id="edit_name" class="form-control" placeholder="Category Name" required>
+                              </div>
+                           </div>
+                         
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- /.card-body -->
+               <div class="card-footer">
+                  <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                  <input type="hidden" name="update_id" id="update_id" />
+                  <input type="hidden" name="action" id="action" />
                   <button type="submit" id="submit" class="btn btn-save">Save</button>
                </div>
             </form>
@@ -202,7 +238,7 @@ include 'header/admin.php';
          add_product_row();
       });
 
-     
+
       function add_product_row(count = '', ) {
          var html = '';
          rowCount++;
@@ -312,12 +348,10 @@ include 'header/admin.php';
             dataType: "json",
             success: function(data) {
 
-               $('#submit').text("Save Changes");
-               $('#btn_action').val("edit");
-               $('#category_modal').modal('show');
-               $('#category_name').val(data.category_name);
-               $('#category_description').val(data.category_description);
-               $('#category_id').val(category_id);
+               $('action').val("edit");
+               $('#edit_modal').modal('show');
+               $('#edit_name').val(data.category_name);
+               $('#update_id').val(category_id);
 
             }
          })
