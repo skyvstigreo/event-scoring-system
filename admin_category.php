@@ -91,7 +91,7 @@ include 'header/admin.php';
       </div>
    </div>
 </div>
-<div id="editCategory" class="modal animated rubberBand delete-modal" role="dialog">
+<div id="view" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
          <div class="modal-body text-center">
@@ -114,10 +114,10 @@ include 'header/admin.php';
                   </div>
                </div>
                <!-- /.card-body -->
-               <div class="card-footer">
+               <!-- <div class="card-footer">
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
                   <button type="submit" class="btn btn-save">Save Changes</button>
-               </div> -->
+               </div>  -->
             </form>
          </div>
       </div>
