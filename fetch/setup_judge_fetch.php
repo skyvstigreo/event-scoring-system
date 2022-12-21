@@ -41,16 +41,9 @@ $data = array();
 $filtered_rows = $statement->rowCount();
 
 foreach ($result as $row) {
-    if (($row['status']) == 0) {
-        $status = '<td><span class="badge bg-danger">close</span></td>';
-    } else {
-        $status = '<td><span class="badge bg-success">Open</span></td>';
-    }
-
     $sub_array = array();
     $sub_array[] = $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'];
     $sub_array[] = $row['event_name'];
-    $sub_array[] = $status;
     $sub_array[] = '<center><button type="button" name="update" id="' . $row["user_id"] . '" class="btn btn-primary btn-xs update" data-toggle="tooltip" data-placement="bottom" title="Edit Category"><i class="fa fa-edit"></i></button> <button type="button" name="delete" id="' . $row["user_id"] . '" class="btn btn-danger btn-xs delete" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button>';
     $data[] = $sub_array;
 }

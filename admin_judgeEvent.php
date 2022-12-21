@@ -32,7 +32,7 @@ include 'header/admin.php'; ?>
                      <tr>
                         <th>Judge Name</th>
                         <th>Event Name</th>
-                        <th>Status</th>
+                        
                         <th class="text-center">Action</th>
                      </tr>
                   </thead>
@@ -54,7 +54,7 @@ include 'header/admin.php'; ?>
    </section>
 </div>
 </div>
-<div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
+<!-- <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
          <div class="modal-body text-center">
@@ -67,8 +67,8 @@ include 'header/admin.php'; ?>
          </div>
       </div>
    </div>
-</div>
-<div id="edit" class="modal animated rubberBand delete-modal" role="dialog">
+</div> -->
+<!-- <div id="edit" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
          <div class="modal-body text-center">
@@ -105,7 +105,7 @@ include 'header/admin.php'; ?>
                      </div>
                   </div>
                </div>
-               <!-- /.card-body -->
+               
                <div class="card-footer">
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
                   <button type="submit" class="btn btn-save">Save Changes</button>
@@ -114,7 +114,7 @@ include 'header/admin.php'; ?>
          </div>
       </div>
    </div>
-</div>
+</div> -->
 <div id="user_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
@@ -150,18 +150,18 @@ include 'header/admin.php'; ?>
                                  <select class="form-control" id="event_id" name="event_id" style="cursor: pointer;" required>
                                     <option value="">--- Select Event---</option>
                                     <?php
-                                    $query = "SELECT * FROM table_event";
-                                    $statement = $connect->prepare($query);
-                                    $statement->execute();
-                                    $result = $statement->fetchAll();
-                                    foreach ($result as $row) {
-                                       echo '<option value="' . $row["event_id"] . '">' . $row["event_name"] . '</option>';
-                                    }
+                                    // $query = "SELECT * FROM table_event";
+                                    // $statement = $connect->prepare($query);
+                                    // $statement->execute();
+                                    // $result = $statement->fetchAll();
+                                    // foreach ($result as $row) {
+                                    //    echo '<option value="' . $row["event_id"] . '">' . $row["event_name"] . '</option>';
+                                    // }
                                     ?>
                                  </select>
                               </div>
                            </div>
-                           <div class="col-md-12">
+                           <!-- <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Status</label>
                                  <select class="form-control" name="status" id="status" required>
@@ -169,7 +169,7 @@ include 'header/admin.php'; ?>
                                     <option value="0">Close</option>
                                  </select>
                               </div>
-                           </div>
+                           </div> -->
                         </div>
                      </div>
                   </div>
