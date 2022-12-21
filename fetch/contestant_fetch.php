@@ -49,10 +49,7 @@ foreach ($result as $row) {
     $sub_array = array();
     $sub_array[] = $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'];
     $sub_array[] = $row['gender'];
-    $sub_array[] = date("M d Y", strtotime($row['birthday']));
-    $sub_array[] = $row['age'];
     $sub_array[] = $row['course_name'];
-    $sub_array[] = $row['event_name'];
     $sub_array[] = '<center><button type="button" name="update" id="' . $row["contestant_id"] . '" class="btn btn-primary btn-xs update" data-toggle="tooltip" data-placement="bottom" title="Edit Category"><i class="fa fa-edit"></i></button> <button type="button" name="delete" id="' . $row["contestant_id"] . '" class="btn btn-danger btn-xs delete" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button>';
     $data[] = $sub_array;
 }
