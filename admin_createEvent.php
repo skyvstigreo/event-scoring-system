@@ -104,15 +104,13 @@ include 'header/admin.php'; ?>
 
          <div class="modal-body text-center">
 
-            <form method="POST">
-
+            <form method="POST" id="participant_form">
                <div class="card">
                   <div class="card-header">Add Contestant
-
                   </div>
                   <div class="card-body">
                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search this blog">
+                        <input type="text" id="search" class="form-control" placeholder="Search this blog">
                         <div class="input-group-append">
                            <button class="btn btn-secondary" type="button">
                               <i class="fa fa-search"></i>
@@ -121,12 +119,26 @@ include 'header/admin.php'; ?>
                      </div>
                      <br>
                      <ul id="myUL">
-                        <!-- <li><a href="#">Adele <input type="checkbox" aria-label="Checkbox for following text input"></a> </li> -->
-
-                        <div class="input-group">
-                           <input type="text" class="form-control">
+                        <div id="refresh">
+                           <!-- <li><a href="#">Adele <input type="checkbox" aria-label="Checkbox for following text input"></a> </li> -->
+                           <?php
+                           $query = "SELECT * FROM table_contestant WHERE status = '0'";
+                           $statement = $connect->prepare($query);
+                           $statement->execute();
+                           $result = $statement->fetchAll();
+                           foreach ($result as $row) {
+                              echo '<div class="input-group">
+                           <input type="text" class="form-control" value = "' . $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'] . '" readonly>
                            <div class="input-group-append">
-                              <span class="input-group-text"> <input type="checkbox" ></span>
+                              <span class="input-group-text"> <input type="checkbox" name="contestant[]" value="' . $row['contestant_id'] . '" ></span>
+                           </div>
+                        </div>';
+                           };
+                           ?>
+                           <!-- <div class="input-group">
+                           <input type="text" value = "hello" class="form-control">
+                           <div class="input-group-append">
+                              <span class="input-group-text"> <input type="checkbox" value="hello" ></span>
                            </div>
                         </div>
                         <div class="input-group">
@@ -146,12 +158,14 @@ include 'header/admin.php'; ?>
                            <div class="input-group-append">
                               <span class="input-group-text"> <input type="checkbox" ></span>
                            </div>
+                        </div> -->
                         </div>
-
                      </ul>
                   </div>
                   <div class="card-footer">
                      <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                     <input type="hidden" name="action" id="action" />
+                     <input type="hidden" name="event_id" id="event_id" />
                      <button type="submit" id="submit" class="btn btn-save">Add Contestant</button>
                   </div>
                </div>
@@ -248,14 +262,14 @@ include 'header/admin.php'; ?>
                               </div>
                            </div>
 
-                           <div class="col-md-12">
+                           <!-- <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Judge</label>
-                                 <select class="form-control" id="event" name="event" style="cursor: pointer;" required>
+                                 <select class="form-control" id="event" name="event" style="cursor: pointer;">
                                     <option value="">--- Select Judge ---</option>
                                  </select>
                               </div>
-                           </div>
+                           </div> -->
                         </div>
                      </div>
                   </div>
@@ -293,11 +307,34 @@ include 'header/admin.php'; ?>
 
 
       $(document).on('click', '.participant', function() {
+         var event_id = $(this).attr("id");
          $('#participant_modal').modal('show');
+         $('#participant_form')[0].reset();
+         $("#refresh").load(location.href + " #refresh");
+         $('#action').val("add_participant");
+         $('#event_id').val(event_id);
       });
 
 
       $(document).on('submit', '#event_form', function(event) {
+         event.preventDefault();
+         var form_data = $(this).serialize();
+         $.ajax({
+            url: "action/event_action.php",
+            method: "POST",
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: function(data) {
+               $('#event_form')[0].reset();
+               $('#event_modal').modal('hide');
+               $('#alert_action').fadeIn().html('<div class="alert alert-success">' + data + '</div>');
+               eventdataTable.ajax.reload();
+            }
+         })
+      });
+
+      $(document).on('submit', '#participant_form', function(event) {
          event.preventDefault();
          var form_data = $(this).serialize();
          $.ajax({
@@ -330,6 +367,23 @@ include 'header/admin.php'; ?>
 
          });
       })
+
+      $("#search").on('change', function() {
+         var search = $(this).val();
+         $.ajax({
+            method: "POST",
+            url: "action/filter_action.php",
+            data: {
+               search: search
+            },
+            success: function(data) {
+               $("#myUL").html(data);
+
+            }
+
+         });
+      })
+
 
 
       var eventdataTable = $('#event_table').DataTable({
