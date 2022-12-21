@@ -269,7 +269,7 @@ include 'header/admin.php'; ?>
                                     <option value="">--- Select Judge ---</option>
                                  </select>
                               </div>
-                           </div> -->
+                           </div>
                         </div>
                      </div>
                   </div>

@@ -17,8 +17,8 @@ include 'header/admin.php'; ?>
                   <li class="breadcrumb-item active">Setup Event</li>
                </ol>
             </div>
-            <a class="btn btn-sm elevation-4" href="#" id="add" data-toggle="modal" data-target="#contestant_modal" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-plus-square"></i>
-               Add Event</a>
+            <!-- <a class="btn btn-sm elevation-4" href="#" id="add" data-toggle="modal" data-target="#contestant_modal" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-plus-square"></i>
+               Add Event</a> -->
          </div>
       </div>
    </div>
@@ -28,47 +28,42 @@ include 'header/admin.php'; ?>
          <div class="card card-info elevation-2">
             <br>
             <div class="col-md-12">
-               <table id="contestant_table" class="table">
-                  <thead class="btn-cancel">
-                     <tr>
-                        <th>Event Name</th>
-                        <th>Contestant Name</th>
-                        <th>Status</th>
-                        <th class="text-center">Action</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <!-- <tr>
-                        <td>Cultural Event</td>
-                        <td>Jane Doe</td>
-                        <td><span class="badge bg-success">open</span></td>
-                        <td class="text-center">
-                           <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i class="fa fa-user-edit"></i> update</a>
-                           <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i class="fa fa-trash-alt"></i> delete</a>
-                        </td>
-                     </tr> -->
-                  </tbody>
-               </table>
+
+              
+                    <h5>Event Category <span></span></h5>
+                    <h5>Event Name <span></span></h5>
+                    <h5>Venue <span></span></h5>
+                    <h5>Date <span></span></h5>
+
+
+                    <table id="" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Contestant Name  <button class="btn btn btn-primary btn-xs float-right">Add Contestant</button></th> 
+                                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                            </tr>
+
+                            <tr>
+                                <td>Tigang</td>
+                            </tr>
+
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
             </div>
          </div>
       </div>
    </section>
 </div>
 </div>
-<div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
-   <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-         <div class="modal-body text-center">
-            <img src="asset/img/sent.png" alt="" width="50" height="46">
-            <h3>Are you sure want to delete this Course?</h3>
-            <div class="m-t-20">
-               <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-               <button type="submit" class="btn btn-danger">Delete</button>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
+
 <div id="contestant_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">

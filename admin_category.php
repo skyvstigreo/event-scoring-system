@@ -91,7 +91,7 @@ include 'header/admin.php';
       </div>
    </div>
 </div>
-<div id="view" class="modal animated rubberBand delete-modal" role="dialog">
+<div id="editCategory" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
          <div class="modal-body text-center">
@@ -114,7 +114,7 @@ include 'header/admin.php';
                   </div>
                </div>
                <!-- /.card-body -->
-               <!-- <div class="card-footer">
+               <div class="card-footer">
                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
                   <button type="submit" class="btn btn-save">Save Changes</button>
                </div> -->
@@ -123,7 +123,25 @@ include 'header/admin.php';
       </div>
    </div>
 </div>
-
+<!-- edit para malupit -->
+<div id="participant_modal" class="modal animated rubberBand delete-modal" role="dialog">
+   <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content">
+         <div class="modal-body text-center">
+            <form method="POST" >
+               <div class="card-body">
+            
+               </div>
+               <!-- /.card-body -->
+               <div class="card-footer">
+                  <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                  <button type="submit" id="submit" class="btn btn-save">Save</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
 <div id="category_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
@@ -140,6 +158,12 @@ include 'header/admin.php';
                               <div class="form-group">
                                  <label class="float-left">Category Name</label>
                                  <input type="text" name="category_name" id="category_name" class="form-control" placeholder="Category Name" required>
+                              </div>
+                           </div>
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <label class="float-left">Description</label>
+                                 <textarea name="category_description" id="category_description" class="form-control" placeholder="Descriptions" required></textarea>
                               </div>
                            </div>
                            <div class="form-group">
