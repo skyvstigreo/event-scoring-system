@@ -349,13 +349,13 @@ include 'header/admin.php'; ?>
 
 
       $(document).on('click', '.delete', function() {
-         var event_id = $(this).attr("id");
+         var sched_id = $(this).attr("id");
          var btn_action = 'delete';
          $.ajax({
             url: "action/event_action.php",
             method: "POST",
             data: {
-               event_id: event_id,
+               sched_id: sched_id,
                btn_action: btn_action
             },
             success: function(data) {
