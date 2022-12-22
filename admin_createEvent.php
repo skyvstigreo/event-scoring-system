@@ -63,7 +63,7 @@ include 'header/admin.php'; ?>
             <div class="col-md-12">
                <table id="event_table" class="table">
                   <thead class="btn-cancel">
-                     <tr>
+                     <tr class="text-center">
                         <th>Event Category</th>
                         <th>Event Name</th>
                         <th>Venue</th>
@@ -71,24 +71,11 @@ include 'header/admin.php'; ?>
                         <th>Start Time</th>
                         <th>End Time</th>
                         <th>Status</th>
-                        <th class="text-center">Action</th>
+                        <th>Action</th>
                      </tr>
                   </thead>
                   <tbody>
-                     <!-- <tr>
-                                 <td>Cultural</td>
-                                 <td>06-25-2021</td>
-                                 <td>03:00 PM</td>
-                                 <td><span class="badge bg-success">open</span></td>
-                                 <td class="text-center">
-                                    <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                       class="fa fa-eye"></i> view</a>
-                                    <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                       class="fa fa-edit"></i> update</a>
-                                    <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
-                                       class="fa fa-trash-alt"></i> delete</a>
-                                 </td>
-                              </tr> -->
+               
                   </tbody>
                </table>
             </div>
@@ -121,8 +108,7 @@ include 'header/admin.php'; ?>
                      </div>
                      <br>
                      <ul id="myUL">
-                        <!-- <li><a href="#">Adele <input type="checkbox" aria-label="Checkbox for following text input"></a> </li> -->
-
+ 
                         <div class="input-group">
                            <input type="text" class="form-control">
                            <div class="input-group-append">

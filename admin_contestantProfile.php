@@ -31,7 +31,7 @@ include 'header/admin.php'; ?>
                         <thead class="btn-cancel">
                             <tr>
                                 <th class="text-center">Full Name</th>
-                                <th class="text-center">Gender</th>
+                                <th class="text-center">Sex</th>
                                 <th class="text-center">Course</th>
                                 <!-- <th class="text-center">Event Joined</th> -->
                                 <th class="text-center">Action</th>

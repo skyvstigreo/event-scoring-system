@@ -59,7 +59,7 @@
                   data-accordion="false">
                   <li class="nav-item">
                      <a href="admin_dashboard.php" class="nav-link">
-                     <i class="fa-sharp fa-solid fa-box-archive"></i>
+                     <i class="fa-sharp fa-solid fa-gauge"></i>
                         <p>
                            Dashboard
                         </p>
@@ -75,11 +75,12 @@
                   </li>
                   <li class="nav-item">
                      <a href="#" class="nav-link">
-                        <img src="asset/img/event.png" width="30">
+                     <i class="fa-sharp fa-solid fa-calendar-days"></i>
                         <p>
                            Events
                         </p>
                         <i class="right fas fa-angle-left"></i>
+                   
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
@@ -108,7 +109,8 @@
                 
                   <li class="nav-item">
                      <a href="#" class="nav-link">
-                        <img src="asset/img/contestant.png" width="30">
+                     <i class="fa-sharp fa-solid fa-user-plus"></i>
+                   
                         <p>
                            Contestants
                         </p>
@@ -131,7 +133,7 @@
                   </li>
                   <li class="nav-item">
                      <a href="#" class="nav-link">
-                        <img src="asset/img/judges.png" width="30">
+                     <i class="fa-sharp fa-solid fa-users"></i>
                         <p>
                            Judges
                         </p>
@@ -154,7 +156,7 @@
                   </li>
                   <li class="nav-item">
                      <a href="score.php" class="nav-link">
-                        <img src="asset/img/score.png" width="30">
+                     <i class="fa-sharp fa-solid fa-arrow-up-1-9"></i>
                         <p>
                            Scores
                         </p>
