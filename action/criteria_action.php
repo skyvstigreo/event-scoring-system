@@ -3,7 +3,7 @@ include '../pdo-connection.php';
 if (isset($_POST['btn_action'])) {
     if ($_POST['btn_action'] == 'add_criteria') {
         $event = $_POST['event'];
-        $query = "SELECT sum(criasteria_percent)  total FROM table_criteria where event_id = $event";
+        $query = "SELECT sum(criteria_percent)  total FROM table_criteria where event_id = $event";
         $statement = $connect->prepare($query);
         $statement->execute();
         $result = $statement->fetch();
