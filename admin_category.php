@@ -52,46 +52,40 @@
     <div class="modal-dialog modal-dialog-centered modal-md">
        <div class="modal-content">
           <div class="modal-body text-center">
-             <form>
-                <div class="card-body">
-                   <div class="row">
-                      <div class="col-md-12">
-                         <div class="card-header">
-                            <h5><img src="asset/img/event.png" width="40"> Category Information</h5>
-                         </div>
-                         <span id="alert"></span>
-                         <div class="text-left">
-                            <table class="table table-hover" id="all_event">
-                               <thead>
-                                  <tr class="text-center">
-                                     <th>Event Name</th>
-                                     <th>Action</th>
-                                  </tr>
-                               </thead>
-                               <tbody id="table_view">
+             <div class="card-body">
+                <div class="row">
+                   <div class="col-md-12">
+                      <div class="card-header">
+                         <h5><img src="asset/img/event.png" width="40"> Category Information</h5>
+                      </div>
+                      <span id="alert"></span>
+                      <div class="text-left">
+                         <table class="table table-hover" id="all_event">
+                            <thead>
+                               <tr class="text-center">
+                                  <th>Event Name</th>
+                                  <th>Action</th>
+                               </tr>
+                            </thead>
+                            <tbody id="table_view">
 
-                               </tbody>
-                            </table>
+                            </tbody>
+                         </table>
 
-                         </div>
                       </div>
                    </div>
                 </div>
-             </form>
+                <div class="card-footer">
+                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                   <input type="hidden" name="cid" id="cid" />
+                </div>
+             </div>
           </div>
        </div>
     </div>
+
  </div>
 
- <div class="card-footer">
-    <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-    <button type="submit" id="submit" class="btn btn-save">Save</button>
- </div>
- </form>
- </div>
- </div>
- </div>
- </div>
 
  <!-- Edit Modal -->
  <div id="edit_modal" class="modal animated rubberBand delete-modal" role="dialog">
@@ -168,9 +162,9 @@
                 <!-- /.card-body -->
                 <div class="card-footer">
                    <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-                   <input type="text" name="fetch_category" id="fetch_category" />
-                   <input type="text" name="update_event" id="update_event" />
-                   <input type="text" name="action_event" id="action_event" />
+                   <input type="hidden" name="fetch_category" id="fetch_category" />
+                   <input type="hidden" name="update_event" id="update_event" />
+                   <input type="hidden" name="action_event" id="action_event" />
                    <button type="submit" id="submit" class="btn btn-save">Save</button>
                 </div>
              </form>
@@ -315,15 +309,32 @@
              success: function(data) {
                 $('#edit_form')[0].reset();
                 $('#update_modal').modal('hide');
-                get_table();
+                get_add();
                 $('#alert').fadeIn().html('<div class="alert alert-success">' + data + '</div>');
              }
           })
        });
 
 
-       function get_table() {
+       function get_add() {
           var category_id = $('#fetch_category').val();
+          $.ajax({
+             method: "POST",
+             url: "fetch/fetch_list.php",
+             data: {
+                category_id: category_id
+             },
+             dataType: "html",
+             success: function(data) {
+                $('#view').modal('show');
+                $("#all_event").html(data);
+             }
+          });
+       };
+
+
+       function get_del() {
+          var category_id = $('#cid').val();
           $.ajax({
              method: "POST",
              url: "fetch/fetch_list.php",
@@ -370,6 +381,7 @@
              success: function(data) {
                 $('#view').modal('show');
                 $("#all_event").html(data);
+                $("#cid").val(category_id);
 
              }
 
@@ -393,10 +405,27 @@
           })
        });
 
+       $(document).on('click', '.delete_event', function() {
+          //  var category = $(this).data("category");
+          var event_id = $(this).attr("id");
+          var btn_action = 'delete_event';
+          $.ajax({
+             url: "action/category_action.php",
+             method: "POST",
+             data: {
+                event_id: event_id,
+                btn_action: btn_action
+             },
+             success: function(data) {
+                $('#alert').fadeIn().html('<div class="alert alert-danger">' + data + '</div>');
+                get_del();
+             }
+          })
+       });
+
        $(document).on('click', '.update', function() {
           var category_id = $(this).attr("id");
           var btn_action = "fetch_single";
-          // alert("hi")
           $.ajax({
              url: "action/category_action.php",
              method: "POST",
