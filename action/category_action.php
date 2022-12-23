@@ -90,6 +90,22 @@ if (isset($_POST['btn_action'])) {
         }
     }
 
+    if ($_POST['btn_action'] == 'delete_event') {
+        $query = "
+		DELETE FROM table_event WHERE event_id = :event_id
+		";
+        $statement = $connect->prepare($query);
+        $statement->execute(
+            array(
+                ':event_id'    =>    $_POST["event_id"],
+            )
+        );
+        $result = $statement->fetchAll();
+        if (isset($result)) {
+            echo 'Deleted Successfully<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        }
+    };
+
     if ($_POST['btn_action'] == 'fetch_event') {
         $query = "SELECT * FROM table_event WHERE event_id = :event_id
         ";
