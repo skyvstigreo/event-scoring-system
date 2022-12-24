@@ -37,7 +37,7 @@ $filtered_rows = $statement->rowCount();
 
 foreach ($result as $row) {
     $sub_array = array();
-    $sub_array[] = $row['category_name'];
+    $sub_array[] = '<center>' . $row['category_name'] . '</center>';
     $sub_array[] = '<center><button type="button" name="view" id="'.$row["category_id"].'" class="btn btn-primary btn-xs view" data-toggle="tooltip" data-placement="bottom" title="view"><i class="fa fa-eye"></i></button> <button type="button" name="update" id="'.$row["category_id"].'" class="btn btn-primary btn-xs update" data-target="#editCategory" data-toggle="tooltip" data-placement="bottom" title="Edit Category"><i class="fa fa-edit"></i></button> <button type="button" name="delete" id="' . $row["category_id"] . '" class="btn btn-danger btn-xs delete" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button>';
     $data[] = $sub_array;
 }

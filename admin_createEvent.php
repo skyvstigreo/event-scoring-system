@@ -36,7 +36,6 @@ include 'header/admin.php'; ?>
    }
 </style>
 
-
 <div class="content-wrapper">
    <div class="content-header">
       <div class="container-fluid">
@@ -74,9 +73,6 @@ include 'header/admin.php'; ?>
                         <th>Action</th>
                      </tr>
                   </thead>
-                  <tbody>
-               
-                  </tbody>
                </table>
             </div>
          </div>
@@ -84,70 +80,10 @@ include 'header/admin.php'; ?>
    </section>
 </div>
 </div>
-<!-- edit para malupit -->
-<div id="participant_modal" class="modal animated rubberBand delete-modal" role="dialog">
-   <div class="modal-dialog modal-dialog-centered modal-md">
-      <div class="modal-content">
 
-         <div class="modal-body text-center">
 
-            <form method="POST">
+<!-- Add Event -->
 
-               <div class="card">
-                  <div class="card-header">Add Contestant
-
-                  </div>
-                  <div class="card-body">
-                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search this blog">
-                        <div class="input-group-append">
-                           <button class="btn btn-secondary" type="button">
-                              <i class="fa fa-search"></i>
-                           </button>
-                        </div>
-                     </div>
-                     <br>
-                     <ul id="myUL">
- 
-                        <div class="input-group">
-                           <input type="text" class="form-control">
-                           <div class="input-group-append">
-                              <span class="input-group-text"> <input type="checkbox" ></span>
-                           </div>
-                        </div>
-                        <div class="input-group">
-                           <input type="text" class="form-control">
-                           <div class="input-group-append">
-                              <span class="input-group-text"> <input type="checkbox" ></span>
-                           </div>
-                        </div>
-                        <div class="input-group">
-                           <input type="text" class="form-control">
-                           <div class="input-group-append">
-                              <span class="input-group-text"> <input type="checkbox"></span>
-                           </div>
-                        </div>
-                        <div class="input-group">
-                           <input type="text" class="form-control">
-                           <div class="input-group-append">
-                              <span class="input-group-text"> <input type="checkbox" ></span>
-                           </div>
-                        </div>
-
-                     </ul>
-                  </div>
-                  <div class="card-footer">
-                     <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-                     <button type="submit" id="submit" class="btn btn-save">Add Contestant</button>
-                  </div>
-               </div>
-
-            </form>
-         </div>
-
-      </div>
-   </div>
-</div>
 <div id="event_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
@@ -159,6 +95,7 @@ include 'header/admin.php'; ?>
                         <div class="card-header">
                            <h5><img src="asset/img/event.png" width="40"> Events Information</h5>
                         </div>
+
                         <div class="row">
 
                            <div class="col-md-6">
@@ -176,12 +113,6 @@ include 'header/admin.php'; ?>
                                     }
                                     ?>
                                  </select>
-                                 <!-- <select class="form-control" id="type">
-                                    <option>Choose Event Type</option>
-                                    <option>Cultural</option>
-                                    <option>Arts</option>
-                                    <option>Academic</option>
-                                 </select> -->
                               </div>
                            </div>
 
@@ -190,7 +121,6 @@ include 'header/admin.php'; ?>
                                  <label class="float-left">Event Name</label>
                                  <select class="form-control" id="event" name="event" style="cursor: pointer;" required>
                                     <option value="">--- Select Event ---</option>
-                                  
                                  </select>
                               </div>
                            </div>
@@ -225,31 +155,25 @@ include 'header/admin.php'; ?>
                                  <input type="time" id="end_time" name="end_time" class="form-control" placeholder="End Time" required>
                               </div>
                            </div>
-
-                           <!-- <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Judge</label>
-                                 <select class="form-control" id="event" name="event" style="cursor: pointer;">
-                                    <option value="">--- Select Judge ---</option>
-                                 </select>
-                              </div> -->
-                           </div>
                         </div>
                      </div>
                   </div>
                </div>
-               <!-- /.card-body -->
+
+               <!-- Card Footer -->
                <div class="card-footer">
                   <input type="hidden" name="sched_id" id="sched_id" />
                   <input type="hidden" name="btn_action" id="btn_action" />
-                  <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-                  <button type="submit" class="btn btn-save">Save</button>
+                  <a href="#" class="btn btn-light" data-dismiss="modal">Cancel</a>
+                  <button type="submit" class="btn btn-primary">Update</button>
                </div>
-            </form>
          </div>
+         </form>
       </div>
    </div>
 </div>
+</div>
+
 <!-- jQuery -->
 <script src="asset/jquery/jquery.min.js"></script>
 <script src="asset/js/bootstrap.bundle.min.js"></script>
@@ -259,6 +183,7 @@ include 'header/admin.php'; ?>
 <script src="asset/tables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="asset/tables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="asset/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+
 <script>
    date.min = new Date().toISOString().split("T")[0];
 

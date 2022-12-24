@@ -12,16 +12,16 @@ require_once 'login_controller.php';
    <!-- Google Font: Source Sans Pro -->
    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
    <!-- Font Awesome -->
-   <link rel="stylesheet" href="asset/fontawesome/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
    <!-- Theme style -->
    <link rel="stylesheet" href="asset/css/adminlte.min.css">
    <link rel="icon" href="asset/img/Logo.ico" type="image/x-icon" />
 </head>
 
 <body class="hold-transition login-page">
-   <div class="login-box">
+   <div class="login-box" >
       <!-- /.login-logo -->
-      <div class="card card-outline ">
+      <div class="card card-outline" >
          <div class="card-header text-center">
             <a href="index.html" class="brand-link">
                <img src="asset/img/Logo.ico" alt="DSMS Logo" width="200">
@@ -55,7 +55,7 @@ require_once 'login_controller.php';
                      <input type="password" name="password" class="form-control" placeholder="Password">
                      <div class="input-group-append">
                         <div class="input-group-text">
-                           <span class="fas fa-lock"></span>
+                        <i class="fa-sharp fa-solid fa-lock"></i>
                         </div>
                      </div>
                   </div>

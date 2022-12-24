@@ -9,12 +9,12 @@
        <div class="container-fluid">
           <div class="row mb-2">
              <div class="col-sm-6">
-                <h1 class="m-0"><img src="asset/img/event.png" width="40"> Events Category</h1>
+                <h1 class="m-0"><img src="asset/img/event.png" width="40">Events Category</h1>
              </div>
              <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                   <li class="breadcrumb-item active">Category</li>
+                   <li class="breadcrumb-item active">Events Category</li>
                 </ol>
              </div>
              <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" id="add" data-target="#category_modal" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-plus-square"></i>
@@ -56,9 +56,10 @@
                 <div class="row">
                    <div class="col-md-12">
                       <div class="card-header">
-                         <h5><img src="asset/img/event.png" width="40"> Category Information</h5>
+                         <h5><img src="asset/img/event.png" width="40"> List of Events</h5>
                       </div>
                       <span id="alert"></span>
+                     
                       <div class="text-left">
                          <table class="table table-hover" id="all_event">
                             <thead>
@@ -76,7 +77,7 @@
                    </div>
                 </div>
                 <div class="card-footer">
-                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                   <a href="#" class="btn btn-light" data-dismiss="modal">Cancel</a>
                    <input type="hidden" name="cid" id="cid" />
                 </div>
              </div>
@@ -88,6 +89,7 @@
 
 
  <!-- Edit Modal -->
+
  <div id="edit_modal" class="modal animated rubberBand delete-modal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-md">
        <div class="modal-content">
@@ -113,13 +115,15 @@
                          </div>
                       </div>
                    </div>
+               
+
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                   <a href="#" class="btn btn-light" data-dismiss="modal">Cancel</a>
                    <input type="hidden" name="update_id" id="update_id" />
                    <input type="hidden" name="action" id="action" />
-                   <button type="submit" id="submit" class="btn btn-save">Save</button>
+                   <button type="submit" id="submit" class="btn btn-primary">Update</button>
                 </div>
              </form>
           </div>
@@ -127,10 +131,9 @@
     </div>
  </div>
 
+ <!-- Update Modal -->
 
-
-
- <div id="update_modal" class="modal animated rubberBand delete-modal" role="dialog">
+ <!-- <div id="update_modal" class="modal animated rubberBand delete-modal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-md">
        <div class="modal-content">
           <div class="modal-body text-center">
@@ -159,7 +162,7 @@
                       </div>
                    </div>
                 </div>
-                <!-- /.card-body -->
+     
                 <div class="card-footer">
                    <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
                    <input type="hidden" name="fetch_category" id="fetch_category" />
@@ -171,9 +174,9 @@
           </div>
        </div>
     </div>
- </div>
+ </div> -->
 
- <!-- Category Modal -->
+ <!-- Add New Modal -->
 
  <div id="category_modal" class="modal animated rubberBand delete-modal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-md">
@@ -205,10 +208,10 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                   <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                   <a href="#" class="btn btn-light" data-dismiss="modal">Cancel</a>
                    <input type="hidden" name="category_id" id="category_id" />
                    <input type="hidden" name="btn_action" id="btn_action" />
-                   <button type="submit" id="submit" class="btn btn-save">Save</button>
+                   <button type="submit" id="submit" class="btn btn-primary">Save</button>
                 </div>
              </form>
           </div>

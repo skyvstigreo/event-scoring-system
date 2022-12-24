@@ -49,20 +49,19 @@ foreach ($result as $row) {
     $time_now = date("h:i:sa");
     if ($date_now >= $row['event_date']) {
         if ($time_now >= $row['event_time']) {
-            $status = '<span class="badge bg-success">Open</span>';
-        } else ($status = '<span class="badge bg-danger">close</span>');
-    } else ($status = '<span class="badge bg-danger">close</span>');
+            $status = '<span class="badge bg-success"> Open </span>';
+        } else ($status = '<span class="badge bg-danger"> Close </span>');
+    } else ($status = '<span class="badge bg-danger"> Close </span>');
 
 
     $sub_array = array();
-    $sub_array[] = $row['category_name'];
-    $sub_array[] = $row['event_name'];
-    $sub_array[] = $row['event_venue'];
-    $sub_array[] = date("M d Y", strtotime($row['event_date']));
-    $sub_array[] = date("h:i: A", strtotime($row['event_time']));
-    $sub_array[] = date("h:i: A", strtotime($row['end_time']));
-    $sub_array[] = $status;
-
+    $sub_array[] = '<center>' . $row['category_name'] .'<center>';
+    $sub_array[] = '<center>' . $row['event_name']. '<center>' ;
+    $sub_array[] = '<center>' . $row['event_venue']. '<center>' ;
+    $sub_array[] = '<center>' . date("M d Y", strtotime($row['event_date'])) . '<center>' ;
+    $sub_array[] = '<center>' . date("h:i: A", strtotime($row['event_time'])) .'<center>' ;
+    $sub_array[] = '<center>' . date("h:i: A", strtotime($row['end_time'])) . '<center>' ;
+    $sub_array[] = '<center>' . $status . '<center>' ;
 
     $sub_array[] = '<center><button type="button" name="update" id="'.$row["sched_id"].'" class="btn btn-primary btn-xs update" data-toggle="tooltip" data-placement="bottom" title="Edit Category"><i class="fa fa-edit"></i></button> <button type="button" name="delete" id="' . $row["sched_id"] . '" class="btn btn-danger btn-xs delete" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button>';
     $data[] = $sub_array;
