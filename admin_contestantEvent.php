@@ -9,16 +9,14 @@ include 'header/admin.php'; ?>
       <div class="container-fluid">
          <div class="row mb-2">
             <div class="col-sm-6">
-               <h1 class="m-0"><img src="../asset/img/contestant.png" width="40"> Setup Event Contestant </h1>
+               <h1 class="m-0"><i class="fa-sharp fa-solid fa-user-plus"></i> Setup Event Contestant </h1>
             </div>
             <div class="col-sm-6">
                <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">Setup Event</li>
+                  <li class="breadcrumb-item active">Setup Event Contestant</li>
                </ol>
             </div>
-            <!-- <a class="btn btn-sm elevation-4" href="#" id="add" data-toggle="modal" data-target="#contestant_modal" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-plus-square"></i>
-               Add Event</a> -->
          </div>
       </div>
    </div>
@@ -54,7 +52,7 @@ include 'header/admin.php'; ?>
                   <thead>
                      <tr>
                         <th>Contestant Name</th>
-                        <th class="text-center"><button id="' . $row['event_id'] . '" class="btn btn btn-primary btn-xs participant">Add Contestant</button>
+                        <th class="text-center"><button id="' . $row['event_id'] . '" class="btn btn btn-success btn-xs participant">Add Contestant</button>
 
                      </tr>
                   </thead>
@@ -86,6 +84,7 @@ include 'header/admin.php'; ?>
 </div>
 </div>
 
+<!-- Add Contestant Modal -->
 <div id="contestant_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
@@ -95,7 +94,7 @@ include 'header/admin.php'; ?>
                   <div class="row">
                      <div class="col-md-12">
                         <div class="card-header">
-                           <h5><img src="asset/img/event.png" width="40"> Event Information</h5>
+                           <h5><img src="asset/img/event.png" width="40"> Add Contestant</h5>
                         </div>
                         <div id="fetch">
                            <div class="row">
@@ -116,33 +115,24 @@ include 'header/admin.php'; ?>
                                     </select>
                                  </div>
                               </div>
-                              <!-- <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Status</label>
-                                 <select class="form-control" id="status" name="status" required>
-                                    <option value="">---select ---</option>
-                                    <option value="1">Open</option>
-                                    <option value="0">Close</option>
-                                 </select>
-                              </div>
-                           </div> -->
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
-               <!-- /.card-body -->
+               <!-- Card Footer-->
                <div class="card-footer">
-                  <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                  <a href="#" class="btn btn-light" data-dismiss="modal">Cancel</a>
                   <input type="hidden" name="event_id" id="event_id" />
                   <input type="hidden" name="btn_action" id="btn_action" />
-                  <button type="submit" class="btn btn-save">Save</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
                </div>
             </form>
          </div>
       </div>
    </div>
 </div>
+
 <!-- jQuery -->
 <script src="asset/jquery/jquery.min.js"></script>
 <script src="asset/js/bootstrap.bundle.min.js"></script>
@@ -152,6 +142,7 @@ include 'header/admin.php'; ?>
 <script src="asset/tables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="asset/tables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="asset/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+
 <script>
    $(document).ready(function() {
       init();
@@ -166,7 +157,7 @@ include 'header/admin.php'; ?>
          });
          $("#refresh").load(location.href + " #refresh");
 
-         // add every button who needs to be reloaded.
+         // Add every button who needs to be reloaded.
       };
 
 
@@ -208,11 +199,6 @@ include 'header/admin.php'; ?>
             }
          })
       });
-
-
-  
-
-
 
    });
 </script>

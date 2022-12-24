@@ -32,22 +32,14 @@ include 'header/admin.php';
                <table id="user_table" class="table">
                   <thead class="btn-cancel">
 
-                     <tr>
-
+                     <tr class= "text-center">
                         <th>Name</th>
                         <th>Username</th>
                         <th>Action</th>
-                        
-
-
                      </tr>
                   </thead>
                   <tbody>
-
                      </thead>
-
-
-
                   </tbody>
                </table>
             </div>

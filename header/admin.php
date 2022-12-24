@@ -6,12 +6,11 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title><?php echo $title; ?></title>
    <!-- Font Awesome -->
-   <link rel="stylesheet" href="asset/fontawesome/css/all.min.css">
    <link rel="stylesheet" href="asset/css/adminlte.min.css">
    <link rel="stylesheet" href="asset/css/style.css">
    <link rel="stylesheet" href="asset/tables/datatables-bs4/css/dataTables.bootstrap4.min.css">
    <link rel="icon" href="asset/img/Logo.ico" type="image/x-icon" />
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 
 
 
@@ -23,6 +22,7 @@
          font-size: 0.7rem;
       }
    </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -36,11 +36,11 @@
          </ul>
          <ul class="navbar-nav ml-auto">
         
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                   <i class="fas fa-expand-arrows-alt"></i>
                </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                <a class="nav-link" data-widget="fullscreen" href="index.php">
                   <i class="fas fa-sign-out-alt"></i>
@@ -49,6 +49,7 @@
          </ul>
       </nav>
       <aside class="main-sidebar sidebar-light-primary" style="background-color: #981D2D">   <!-- Change Color-->
+
             <!-- Brand Logo -->
             <a href="admin_dashboard.php" class="brand-link">
          <img src="asset/img/Brand.png" alt="DSMS Logo" width="200">
@@ -112,7 +113,7 @@
                      <i class="fa-sharp fa-solid fa-user-plus"></i>
                    
                         <p>
-                           Contestants
+                        Contestants
                         </p>
                         <i class="right fas fa-angle-left"></i>
                      </a>
@@ -155,7 +156,7 @@
                      </ul>
                   </li>
                   <li class="nav-item">
-                     <a href="score.php" class="nav-link">
+                     <a href="admin_scores.php" class="nav-link">
                      <i class="fa-sharp fa-solid fa-arrow-up-1-9"></i>
                         <p>
                            Scores

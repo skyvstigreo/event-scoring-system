@@ -21,6 +21,7 @@ include 'header/admin.php'; ?>
             </div>
         </div>
     </div>
+
     <section class="content">
         <span id="alert_action"></span>
         <div class="container-fluid">
@@ -29,17 +30,13 @@ include 'header/admin.php'; ?>
                 <div class="col-md-12">
                     <table id="contestant_table" class="table">
                         <thead class="btn-cancel">
-                            <tr>
-                                <th class="text-center">Full Name</th>
-                                <th class="text-center">Sex</th>
-                                <th class="text-center">Course</th>
-                                <!-- <th class="text-center">Event Joined</th> -->
-                                <th class="text-center">Action</th>
+                            <tr class="text-center">
+                                <th>Full Name</th>
+                                <th>Sex</th>
+                                <th>Course</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -47,91 +44,9 @@ include 'header/admin.php'; ?>
     </section>
 </div>
 </div>
-<!-- <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <img src="asset/img/sent.png" alt="" width="50" height="46">
-                <h3>Are you sure want to delete this Contestant?</h3>
-                <div class="m-t-20">
-                    <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- <div id="edit" class="modal animated rubberBand delete-modal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <form>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card-header">
-                                    <h5><img src="asset/img/contestant.png" width="40"> Contestants Information</h5>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="float-left">First Name</label>
-                                            <input type="text" class="form-control" placeholder="First Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="float-left">Middle Name</label>
-                                            <input type="text" class="form-control" placeholder="Middle Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="float-left">Last Name</label>
-                                            <input type="text" class="form-control" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="float-left">Age</label>
-                                            <input type="number" class="form-control" placeholder="Age">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="float-left">Gender</label>
-                                            <select class="form-control">
-                                                <option>Male</option>
-                                                <option>Female</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="float-left">Course</label>
-                                            <select class="form-control">
-                                                <option>Course 1</option>
-                                                <option>Course 2</option>
-                                                <option>Course 3</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                  
 
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-<!-- /.card-body -->
-<div class="card-footer">
-    <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-    <button type="submit" class="btn btn-save">Save Changes</button>
-</div>
-</form>
-</div>
-</div>
-</div>
-</div>
+<!-- Add Contestant -->
+
 <div id="contestant_modal" class="modal animated rubberBand delete-modal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -149,7 +64,7 @@ include 'header/admin.php'; ?>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="float-left">First Name</label>
-                                            <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name">
+                                            <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name" required>
                                         </div>
                                     </div>
 
@@ -164,25 +79,22 @@ include 'header/admin.php'; ?>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="float-left">Last Name</label>
-                                            <input type="text" name="lname" id="lname" class="form-control" placeholder="Last Name">
+                                            <input type="text" name="lname" id="lname" class="form-control" placeholder="Last Name" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="float-left">Gender</label>
-                                            <select class="form-control" id="gender" name="gender">
+                                            <select class="form-control" id="gender" name="gender" required>
                                                 <option value="">--- Select Gender ---</option>
                                                 <option>Male</option>
                                                 <option>Female </option>
                                             </select>
                                         </div>
                                     </div>
-
-
-
                                 </div>
-
+                                
                                 <div class="row">
 
                                     <div class="col-md-12">
@@ -202,30 +114,16 @@ include 'header/admin.php'; ?>
                                             </select>
                                         </div>
                                     </div>
-
-                                    <!-- <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="float-left">Event Joined</label>
-                                            <select class="form-control" id="event" name="event" style="cursor: pointer;" required>
-                                                <option value="">--- Select Event---</option>
-                                              
-                                            </select>
-                                        </div>
-                                    </div> -->
-
-
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
-                    <!-- /.card-body -->
+                    <!-- Card Footer -->
                     <div class="card-footer">
-                        <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                        <a href="#" class="btn btn-light" data-dismiss="modal">Cancel</a>
                         <input type="hidden" name="contestant_id" id="contestant_id" />
                         <input type="hidden" name="btn_action" id="btn_action" />
-                        <button type="submit" class="btn btn-save">Save</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
