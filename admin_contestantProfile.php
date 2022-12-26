@@ -171,7 +171,7 @@ include 'header/admin.php'; ?>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="float-left">Gender</label>
-                                            <select class="form-control" id="gender" name="gender">
+                                            <select class="form-control" id="gender" name="gender" required>
                                                 <option value="">--- Select Gender ---</option>
                                                 <option>Male</option>
                                                 <option>Female </option>

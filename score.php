@@ -20,6 +20,17 @@ include 'header/admin.php'; ?>
             </div>
         </div>
     </div>
+    <?php
+    $query = "SELECT * FROM table_schedule
+    INNER JOIN table_event on table_schedule.event_id = table_event.event_id
+    INNER JOIN table_category on table_schedule.category_id = table_category.category_id";
+    $statement = $connect->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $count = 0;
+    foreach ($result as $row) {
+        $count += 1;
+        echo '
     <section class="content">
 
         <div class="container-fluid">
@@ -89,7 +100,7 @@ include 'header/admin.php'; ?>
                         <span class="info-box-text">
                             <h5>Tally Sheets <span></span></h5>
 
-                            <table id="tally" class="table table-striped table-bordered " data-paging='false' style="width:100%">
+                            <table id="tally'.$count.'" class="table table-striped table-bordered " data-paging="false" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Judge</th>
@@ -162,7 +173,9 @@ include 'header/admin.php'; ?>
                 </div>
             </div>
         </div>
-    </section>
+    </section>';
+    }
+    ?>
 </div>
 </div>
 
@@ -178,7 +191,9 @@ include 'header/admin.php'; ?>
 <script src="asset/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 <script>
     $(function() {
-        $("#tally").DataTable();
+        for (let i = 0; i < 1000; i++) {
+            $("#tally" + i).DataTable();
+        }
     });
 </script>
 </body>
