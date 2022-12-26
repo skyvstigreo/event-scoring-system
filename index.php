@@ -19,9 +19,9 @@ require_once 'login_controller.php';
 </head>
 
 <body class="hold-transition login-page">
-   <div class="login-box" >
+   <div class="login-box">
       <!-- /.login-logo -->
-      <div class="card card-outline" >
+      <div class="card card-outline">
          <div class="card-header text-center">
             <a href="index.html" class="brand-link">
                <img src="asset/img/Logo.ico" alt="DSMS Logo" width="200">
@@ -29,6 +29,16 @@ require_once 'login_controller.php';
          </div>
          <div class="card-body">
             <form method="post" id="login">
+               <?php
+               if (isset($_SESSION['info'])) {
+               ?>
+                  <div class="alert alert-danger text-center">
+                     <?php echo $_SESSION['info']; ?>
+                  </div>
+               <?php
+               }
+               ?>
+
                <?php if (count($errors) > 0) {
                ?>
                   <div class="alert alert-danger text-center">
@@ -40,30 +50,30 @@ require_once 'login_controller.php';
                         ?>
                      </b>
                   </div>
-                  <?php
+               <?php
                }
-                  ?>
-                  <div class="input-group mb-3">
-                     <input type="text" name="email" class="form-control" placeholder="Username">
-                     <div class="input-group-append">
-                        <div class="input-group-text">
-                           <span class="fas fa-user"></span>
-                        </div>
+               ?>
+               <div class="input-group mb-3">
+                  <input type="text" name="email" class="form-control" placeholder="Username">
+                  <div class="input-group-append">
+                     <div class="input-group-text">
+                        <span class="fas fa-user"></span>
                      </div>
                   </div>
-                  <div class="input-group mb-3">
-                     <input type="password" name="password" class="form-control" placeholder="Password">
-                     <div class="input-group-append">
-                        <div class="input-group-text">
+               </div>
+               <div class="input-group mb-3">
+                  <input type="password" name="password" class="form-control" placeholder="Password">
+                  <div class="input-group-append">
+                     <div class="input-group-text">
                         <i class="fa-sharp fa-solid fa-lock"></i>
-                        </div>
                      </div>
                   </div>
-                  <div class="row">
-                     <div class="col-6 offset-3">
-                        <button type="submit" name="login" class="btn btn-block btn-bg" style="background-color: rgba(46,18,35);color: rgb(240,158,65)">Login</button>
-                     </div>
+               </div>
+               <div class="row">
+                  <div class="col-6 offset-3">
+                     <button type="submit" name="login" class="btn btn-block btn-bg" style="background-color: rgba(46,18,35);color: rgb(240,158,65)">Login</button>
                   </div>
+               </div>
             </form>
          </div>
          <!-- /.card-body -->
