@@ -9,217 +9,177 @@ include 'header/admin.php'; ?>
       <div class="container-fluid">
          <div class="row mb-2">
             <div class="col-sm-6">
-               <h1 class="m-0"><img src="asset/img/score.png" width="40"> Contest Result</h1>
+               <h1 class="m-0"><img src="asset/img/score.png" width="40"> Event Result</h1>
             </div>
             <div class="col-sm-6">
                <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">Scores</li>
+                  <li class="breadcrumb-item active">Event Result</li>
                </ol>
             </div>
          </div>
       </div>
    </div>
-   <section class="content">
-      
-      <?php
-      $query = "SELECT * FROM table_event Order by event_date ASC";
-      $statement = $connect->prepare($query);
-      $statement->execute();
-      $result = $statement->fetchAll();
-      foreach ($result as $row) {
-         $event = $row['event_id'];
-         echo '<div class="container-fluid">
-         
-         <div class="card card-info elevation-2">
-            <div>
-            <a class="btn btn-sm elevation-4"  onClick="window.print();" style="margin-left: 8px;background-color: rgb(240,158,65)"><img src="asset/img/print.png" width="30">
-               Print</a>
+   <?php
+   $query = "SELECT * FROM table_schedule
+    INNER JOIN table_event on table_schedule.event_id = table_event.event_id
+    INNER JOIN table_category on table_schedule.category_id = table_category.category_id";
+   $statement = $connect->prepare($query);
+   $statement->execute();
+   $result = $statement->fetchAll();
+   $count = 0;
+   foreach ($result as $row) {
+      $count += 1;
+      echo '
+    <section class="content">
+
+        <div class="container-fluid">
+
+            <div class="card card-info elevation-2">
+                <div>
+                    <br>
+                    <a class="btn btn-sm elevation-4" onClick="window.print();" style="margin-left: 8px;background-color: rgb(240,158,65)"><img src="asset/img/print.png" width="20">
+                        Print</a>
+                    <a class="btn btn-sm elevation-4"  style="margin-left: 8px;background-color: rgb(240,158,65)">
+                    Add to Archive</a>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="info-box">
+                                <div class="info-box-content">
+                                    <span class="info-box-text">
+                                        <h5>Contest Name: <span></span></h5>
+                                        <h6>Date of Contest: <span> </span></h6>
+                                        <h6>Venue: <span></span></h6>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5>Score Event Rank <span></span></h5>
+
+                    <table id="" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Contestant Name</th>
+                                <th>Event Name</th>
+                                <th>Total Scores</th>
+                                <th>Rank</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>Math Contest</td>
+                                <td>90</td>
+                                <td>1</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Tigang</td>
+                                <td>Math Contest</td>
+                                <td>80</td>
+                                <td>2</td>
+
+                            </tr>
+
+
+
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">
+                            <h5>Tally Sheets <span></span></h5>
+
+                            <table id="tally' . $count . '" class="table table-striped table-bordered " data-paging="false" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Judge</th>
+                                <th>Contestant Name</th>
+                                <th>Event Name</th>
+                                <th>Criteria 1</th>
+                                <th>Criteria 2</th>
+                                <th>Criteria 3</th>
+                                <th>Overall Score</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Judge 1</td>
+                                <td>Tiger Nixon</td>
+                                <td>Math Contest</td>
+                                <td>20</td>
+                                <td>50</td>
+                                <td>20</td>
+                                <td>90</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Judge 2</td>
+                                <td>Tiger Nixon</td>
+                                <td>Math Contest</td>
+                                <td>20</td>
+                                <td>50</td>
+                                <td>20</td>
+                                <td>90</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Judge 1</td>
+                                <td>Tigang</td>
+                                <td>Math Contest</td>
+                                <td>20</td>
+                                <td>50</td>
+                                <td>20</td>
+                                <td>90</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Judge 2</td>
+                                <td>Tigang</td>
+                                <td>Math Contest</td>
+                                <td>20</td>
+                                <td>50</td>
+                                <td>20</td>
+                                <td>90</td>
+
+                            </tr>
+
+
+
+
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
+
+                            
+                        </span>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-12">
-               <div class="row">
-                  <div class="col-lg-12">
-                     <div class="info-box">
-                        <div class="info-box-content">
-                           <span class="info-box-text">
-                              <h5>Contest Name: <span> ' . $row['event_name'] . '</span></h5>
-                              <h6>Date of Contest: <span> ' . date("M d Y", strtotime($row['event_date'])) . '</span></h6>
-                              <h6>Venue: <span>' . $row['event_venue'] . '</span></h6>
-                           </span>
-                        </div>
-                     </div>
-                  </div>
-               </div>';
-         echo  '<table class="table table-bordered">
-               <thead class="btn-cancel"style="background-color: rgb(240,158,65)">
-                  <tr>
-                     <th>Contestant Name</th>
-                     <th class="text-center"> Event Name </th>
-                     <th class="text-center"> Total Score </th>
-                     <th class="text-center"> Rank </th>
-                    
-                        <table class="table">
-                           <tr>
-                           
-                              
-                           </tr>';
-
-         $query = "SELECT category_name FROM table_event
-         INNER JOIN table_category on table_event.event_type = table_category.category_id
-         where event_id = $event";
-         $statement = $connect->prepare($query);
-         $statement->execute();
-         $result = $statement->fetchAll();
-         foreach ($result as $row) {
-            echo '<tr>
-                              <td>' . $row['category_name'] . '</td>
-                           </tr>';
-         };
-         echo ' </table>
-                     </th>
-                     <th>Total Score</th>
-                     <th class="text-center">Rank</th>
-                  </tr>
-               </thead>
-               <tbody>';
-         $query = "SELECT * FROM table_contestant
-         INNER JOIN table_event on table_event.event_id = table_contestant.event_id
-         WHERE table_event.event_id = $event
-        ";
-         $statement = $connect->prepare($query);
-         $statement->execute();
-         $result = $statement->fetchAll();
-         foreach ($result as $row) {
-            
-            echo '   
-         <tr>
-                     <td>' . $row['first_name'] . ' ' . $row['middle_name'] . ' ' .$row['last_name'].'</td>
-                     <td>
-                        <table class="table">
-                           <tr style="border-collapse: collapse;">
-                              <td>100.00</td>
-                           </tr>
-                        </table>
-                     </td>
-                     <td>100.00</td>
-                     <td class="bg-success">Rank 1</td>
-                  </tr>
-                  ';
-         };
-         echo '
-               </tbody>
-            </table>
-         </div>
-      </div>
-
-      
-              
-   
-      </div>';
-      }
-      $conquery = "SELECT * FROM table_event";
-      // $stmt = $connect->prepare($conquery);
-      // $stmt->execute();
-      // $contresult = $statement->fetchAll();
-      // foreach ($res as $resrow) {
-
-
-      // }
-      ?>
-
-   </section>
+        </div>
+    </section>';
+   }
+   ?>
 </div>
 </div>
-<div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
-   <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-         <div class="modal-body text-center">
-            <img src="asset/img/sent.png" alt="" width="50" height="46">
-            <h3>Are you sure want to delete this Course?</h3>
-            <div class="m-t-20">
-               <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-               <button type="submit" class="btn btn-danger">Delete</button>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
-<div id="edit" class="modal animated rubberBand delete-modal" role="dialog">
-   <div class="modal-dialog modal-dialog-centered modal-md">
-      <div class="modal-content">
-         <div class="modal-body text-center">
-            <form>
-               <div class="card-body">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="card-header">
-                           <h5><img src="asset/img/course.png" width="40"> Course Information</h5>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Course Name</label>
-                                 <input type="text" class="form-control" placeholder="Course Name">
-                              </div>
-                           </div>
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Description</label>
-                                 <textarea class="form-control" placeholder="Descriptions"></textarea>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- /.card-body -->
-               <div class="card-footer">
-                  <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-                  <button type="submit" class="btn btn-save">Save Changes</button>
-               </div>
-            </form>
-         </div>
-      </div>
-   </div>
-</div>
-<div id="add" class="modal animated rubberBand delete-modal" role="dialog">
-   <div class="modal-dialog modal-dialog-centered modal-md">
-      <div class="modal-content">
-         <div class="modal-body text-center">
-            <form>
-               <div class="card-body">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="card-header">
-                           <h5><img src="asset/img/course.png" width="40"> Course Information</h5>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Course Name</label>
-                                 <input type="text" class="form-control" placeholder="Course Name">
-                              </div>
-                           </div>
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Description</label>
-                                 <textarea class="form-control" placeholder="Descriptions"></textarea>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- /.card-body -->
-               <div class="card-footer">
-                  <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-                  <button type="submit" class="btn btn-save">Save</button>
-               </div>
-            </form>
-         </div>
-      </div>
-   </div>
-</div>
+
+
 <!-- jQuery -->
 <script src="asset/jquery/jquery.min.js"></script>
 <script src="asset/js/bootstrap.bundle.min.js"></script>
@@ -231,7 +191,9 @@ include 'header/admin.php'; ?>
 <script src="asset/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 <script>
    $(function() {
-      $("#example1").DataTable();
+      for (let i = 0; i < 1000; i++) {
+         $("#tally" + i).DataTable();
+      }
    });
 </script>
 </body>

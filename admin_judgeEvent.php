@@ -29,24 +29,13 @@ include 'header/admin.php'; ?>
             <div class="col-md-12">
                <table id="user_table" class="table">
                   <thead class="btn-cancel">
-                     <tr>
+                     <tr class="text-center">
                         <th>Judge Name</th>
                         <th>Event Name</th>
-
-                        <th class="text-center">Action</th>
+                        <th>Action</th>
                      </tr>
                   </thead>
-                  <tbody>
-                     <!-- <tr>
-                        <td>John Doe</td>
-                        <td>Beauty Contest</td>
-                        <td><span class="badge bg-success">open</span></td>
-                        <td class="text-center">
-                           <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i class="fa fa-user-edit"></i> update</a>
-                           <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i class="fa fa-trash-alt"></i> delete</a>
-                        </td>
-                     </tr> -->
-                  </tbody>
+      
                </table>
             </div>
          </div>
@@ -54,67 +43,8 @@ include 'header/admin.php'; ?>
    </section>
 </div>
 </div>
-<!-- <div id="delete" class="modal animated rubberBand delete-modal" role="dialog">
-   <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-         <div class="modal-body text-center">
-            <img src="asset/img/sent.png" alt="" width="50" height="46">
-            <h3>Are you sure want to delete this Event?</h3>
-            <div class="m-t-20">
-               <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-               <button type="submit" class="btn btn-danger">Delete</button>
-            </div>
-         </div>
-      </div>
-   </div>
-</div> -->
-<!-- <div id="edit" class="modal animated rubberBand delete-modal" role="dialog">
-   <div class="modal-dialog modal-dialog-centered modal-md">
-      <div class="modal-content">
-         <div class="modal-body text-center">
-            <form>
-               <div class="card-body">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="card-header">
-                           <h5><img src="asset/img/event.png" width="40"> Event Information</h5>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Judge Name</label>
-                                 <input type="text" class="form-control" placeholder="Judge Name">
-                              </div>
-                           </div>
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Event Name</label>
-                                 <input type="text" class="form-control" placeholder="Contestant Name">
-                              </div>
-                           </div>
-                           <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Status</label>
-                                 <select class="form-control">
-                                    <option>Open</option>
-                                    <option>Close</option>
-                                 </select>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               
-               <div class="card-footer">
-                  <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-                  <button type="submit" class="btn btn-save">Save Changes</button>
-               </div>
-            </form>
-         </div>
-      </div>
-   </div>
-</div> -->
+
+
 <div id="user_modal" class="modal animated rubberBand delete-modal" role="dialog">
    <div class="modal-dialog modal-dialog-centered modal-md">
       <div class="modal-content">
@@ -124,7 +54,7 @@ include 'header/admin.php'; ?>
                   <div class="row">
                      <div class="col-md-12">
                         <div class="card-header">
-                           <h5><img src="asset/img/event.png" width="40"> Event Information</h5>
+                           <h5><img src="asset/img/event.png" width="40"> Judge Information</h5>
                         </div>
                         <div class="row" id="refresh">
                            <!-- <div id="refresh"> -->
@@ -188,25 +118,16 @@ include 'header/admin.php'; ?>
                               </div>
                            </div>
                         </div>
-                        <!-- <div class="col-md-12">
-                              <div class="form-group">
-                                 <label class="float-left">Status</label>
-                                 <select class="form-control" name="status" id="status" required>
-                                    <option value="1">Open</option>
-                                    <option value="0">Close</option>
-                                 </select>
-                              </div>
-                           </div> -->
-
+            
                      </div>
                   </div>
                </div>
                <!-- /.card-body -->
                <div class="card-footer">
-                  <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+                  <a href="#" class="btn btn-light" data-dismiss="modal">Cancel</a>
                   <input type="hidden" name="user_id" id="user_id" />
                   <input type="hidden" name="btn_action" id="btn_action" />
-                  <button type="submit" class="btn btn-save">Save</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
                </div>
             </form>
          </div>
