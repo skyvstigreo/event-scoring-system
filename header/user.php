@@ -4,12 +4,13 @@
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Tabulation-System</title>
+   <title><?php echo $title; ?></title>
    <!-- Font Awesome -->
-   <link rel="stylesheet" href="asset/fontawesome/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
    <link rel="stylesheet" href="asset/css/adminlte.min.css">
    <link rel="stylesheet" href="asset/css/style.css">
    <link rel="stylesheet" href="asset/tables/datatables-bs4/css/dataTables.bootstrap4.min.css">
+   <link rel="icon" href="asset/img/Logo.ico" type="image/x-icon" />
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -27,13 +28,13 @@
                   <img src="asset/img/avatar.png" class="img-circle" alt="User Image" width="40" style="margin-top: -8px;">
                </a>
             </li> -->
-            <!-- <li class="nav-item">
+             <li class="nav-item">
                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                   <i class="fas fa-expand-arrows-alt"></i>
                </a>
-            </li> -->
+            </li> 
             <li class="nav-item">
-               <a class="nav-link" data-widget="fullscreen" href="index.php">
+               <a class="nav-link" data-widget="fullscreen" href="logout.php">
                   <i class="fas fa-sign-out-alt"></i>
                </a>
             </li>
@@ -51,23 +52,16 @@
                   data-accordion="false">
                    <li class="nav-item">
                      <a href="user_dashboard.php" class="nav-link">
-                        <img src="asset/img/dashboard.png" width="30">
+                     <i class="fa-sharp fa-solid fa-gauge"></i>
                         <p>
                            Dashboard
                         </p>
                      </a>
                   </li>
-                  <!-- <li class="nav-item">
-                     <a href="user_profile.php" class="nav-link">
-                        <img src="asset/img/contestant.png" width="30">
-                        <p>
-                           Contestants
-                        </p>
-                     </a>
-                  </li> -->
+                 
                   <li class="nav-item">
                      <a href="user_scores.php" class="nav-link">
-                        <img src="asset/img/score.png" width="30">
+                     <i class="fa-sharp fa-solid fa-arrow-up-1-9"></i>
                         <p>
                            Scores
                         </p>
