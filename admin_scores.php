@@ -5,21 +5,32 @@ include 'header/admin.php'; ?>
 
 
 <div class="content-wrapper">
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0"><img src="asset/img/score.png" width="40"> Event Result</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Event Result</li>
-                    </ol>
-                </div>
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h1 class="m-0"><img src="asset/img/score.png" width="40"> Event Result</h1>
             </div>
-        </div>
-    </div>
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active">Event Result</li>
+               </ol>
+            </div>
+         </div>
+      </div>
+   </div>
+   <?php
+   $query = "SELECT * FROM table_schedule
+    INNER JOIN table_event on table_schedule.event_id = table_event.event_id
+    INNER JOIN table_category on table_schedule.category_id = table_category.category_id";
+   $statement = $connect->prepare($query);
+   $statement->execute();
+   $result = $statement->fetchAll();
+   $count = 0;
+   foreach ($result as $row) {
+      $count += 1;
+      echo '
     <section class="content">
 
         <div class="container-fluid">
@@ -27,7 +38,7 @@ include 'header/admin.php'; ?>
             <div class="card card-info elevation-2">
                 <div>
                     <br>
-                    <a class="btn btn-sm elevation-4" onClick="window.print();" style="margin-left: 8px;background-color: rgb(240,158,65)"><i class="fa-sharp fa-solid fa-print"></i>
+                    <a class="btn btn-sm elevation-4" onClick="window.print();" style="margin-left: 8px;background-color: rgb(240,158,65)"><img src="asset/img/print.png" width="20">
                         Print</a>
                     <a class="btn btn-sm elevation-4"  style="margin-left: 8px;background-color: rgb(240,158,65)">
                     Add to Archive</a>
@@ -89,7 +100,7 @@ include 'header/admin.php'; ?>
                         <span class="info-box-text">
                             <h5>Tally Sheets <span></span></h5>
 
-                            <table id="tally" class="table table-striped table-bordered " data-paging='false' style="width:100%">
+                            <table id="tally' . $count . '" class="table table-striped table-bordered " data-paging="false" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Judge</th>
@@ -162,7 +173,9 @@ include 'header/admin.php'; ?>
                 </div>
             </div>
         </div>
-    </section>
+    </section>';
+   }
+   ?>
 </div>
 </div>
 
@@ -177,9 +190,11 @@ include 'header/admin.php'; ?>
 <script src="asset/tables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="asset/tables/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 <script>
-    $(function() {
-        $("#tally").DataTable();
-    });
+   $(function() {
+      for (let i = 0; i < 1000; i++) {
+         $("#tally" + i).DataTable();
+      }
+   });
 </script>
 </body>
 

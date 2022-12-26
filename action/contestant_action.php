@@ -1,7 +1,30 @@
 <?php
 include '../pdo-connection.php';
 if (isset($_POST['btn_action'])) {
-    
+
+    if ($_POST['btn_action'] == 'add_contestant') {
+        $query = "
+		INSERT INTO table_contestant(first_name, middle_name, last_name, gender, course_id, event_id, status) 
+		VALUES (:first_name, :middle_name, :last_name, :gender, :course, :event_id, :status)
+		";
+        $statement = $connect->prepare($query);
+        $statement->execute(
+            array(
+                ':first_name'    =>      $_POST["fname"],
+                ':middle_name'    =>     $_POST["mname"],
+                ':last_name'    =>    $_POST["lname"],
+                ':gender'    =>    $_POST["gender"],
+                ':course'    =>    $_POST["course"],
+                ':event_id'    =>    "0",
+                ':status'    =>    "0",
+            )
+        );
+        $result = $statement->fetchAll();
+        if (isset($result)) {
+            echo 'Participant Added <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        }
+    }
+
     if ($_POST['btn_action'] == 'add_participant') {
         $query = "
         UPDATE table_contestant set event_id = :event_id, status = :status
