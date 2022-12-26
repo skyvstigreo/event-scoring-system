@@ -4,9 +4,9 @@ include 'pdo-connection.php';
 include 'header/user.php';
 // $uids = $_SESSION['name'];
 
-// if (empty($_SESSION['username'])) {
-//    header("Location: index.php");
-// } else ($uid = $_SESSION['user_id']);
+if (empty($_SESSION['user_id'])) {
+   header("Location: index.php");
+} else ($uid = $_SESSION['user_id']);
 
 
 ?>
@@ -17,7 +17,9 @@ include 'header/user.php';
       <div class="container-fluid">
          <div class="row mb-2">
             <div class="col-sm-6">
+
                <h1 class="m-0"><i class="fa-sharp fa-solid fa-users"></i> Judge Dashboard</small></h1>
+
             </div>
             <div class="col-sm-6">
                <ol class="breadcrumb float-sm-right">
