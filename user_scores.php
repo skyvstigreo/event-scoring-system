@@ -1,4 +1,5 @@
 <?php
+$title = "DESS - Score";
 include 'pdo-connection.php';
 include 'header/user.php';
 // if (empty($_SESSION['username'])) {
