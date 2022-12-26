@@ -5,7 +5,7 @@
  $con = mysqli_connect("localhost", "root", "","tabulation");
 
  $con -> set_charset("utf8");
- session_start(); 
+//  session_start(); 
 
  
 

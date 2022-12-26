@@ -30,6 +30,7 @@ include 'header/admin.php'; ?>
    $count = 0;
    foreach ($result as $row) {
       $count += 1;
+      $event = $row['event_id'];
       echo '
     <section class="content">
 
@@ -71,25 +72,26 @@ include 'header/admin.php'; ?>
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody>';
+      $query = "SELECT * FROM table_contestant 
+      LEFT JOIN table_score on table_contestant.contestant_id = table_score.contestant_id
+      WHERE table_contestant.event_id = '$event'";
+      $statement = $connect->prepare($query);
+      $statement->execute();
+      $result = $statement->fetchAll();
+      foreach ($result as $row) {
+
+         echo '
                             <tr>
-                                <td>Tiger Nixon</td>
+                                <td>' . $row["first_name"] . ' ' . $row["middle_name"] . ' ' . $row["last_name"] . '</td>
                                 <td>Math Contest</td>
                                 <td>90</td>
                                 <td>1</td>
 
-                            </tr>
+                            </tr>';
+      };
 
-                            <tr>
-                                <td>Tigang</td>
-                                <td>Math Contest</td>
-                                <td>80</td>
-                                <td>2</td>
-
-                            </tr>
-
-
-
+      echo '
                         </tbody>
                         <tfoot>
 

@@ -64,7 +64,7 @@ include 'header/admin.php'; ?>
                                  <select class="form-control" id="judge_id" name="judge_id" style="cursor: pointer;" required>
                                     <option value="">--- Select Judge---</option>
                                     <?php
-                                    $query = "SELECT * FROM table_user WHERE event_id ='0'";
+                                    $query = "SELECT * FROM table_user WHERE event_id ='0' and user_type ='1'";
                                     $statement = $connect->prepare($query);
                                     $statement->execute();
                                     $result = $statement->fetchAll();
