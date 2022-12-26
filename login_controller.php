@@ -14,15 +14,19 @@ if (isset($_POST['login'])) {
         $result = $statement->fetch();
         $fetch_pass = $result['password'];
         $fetch_access = $result['user_type'];
+        // $username = $result['username'];
+        // $uid = $result['user_id'];
         if (password_verify($password, $fetch_pass)) {
-            $_SESSION['email'] = $email;
-            $_SESSION['password'] = $password;
             $_SESSION['type'] = $fetch_access;
-            if($fetch_access == "0"){
-                header('location: admin_dashboard.php');
-            }else{
+            if ($fetch_access == "1") {
+                // $_SESSION['username'] = 1;
+                $_SESSION['name'] = "ad";
                 header('location: user_dashboard.php');
             }
+            // } else {
+
+            //     header('location: user_dashboard.php');
+            // }
         } else {
             $errors['email'] = "Incorrect email or password!";
         }
