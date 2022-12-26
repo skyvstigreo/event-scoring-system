@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 require "pdo-connection.php";
 $errors = array();
 
@@ -15,18 +15,16 @@ if (isset($_POST['login'])) {
         $fetch_pass = $result['password'];
         $fetch_access = $result['user_type'];
         // $username = $result['username'];
-        // $uid = $result['user_id'];
+        $uid = $result['user_id'];
         if (password_verify($password, $fetch_pass)) {
             $_SESSION['type'] = $fetch_access;
-            if ($fetch_access == "1") {
-                // $_SESSION['username'] = 1;
-                $_SESSION['name'] = "ad";
+            if ($fetch_access == "0") {
+                $_SESSION['user_id'] = $uid;
+                header('location: admin_dashboard.php');
+            } else {
+                $_SESSION['user_id'] = $uid;
                 header('location: user_dashboard.php');
             }
-            // } else {
-
-            //     header('location: user_dashboard.php');
-            // }
         } else {
             $errors['email'] = "Incorrect email or password!";
         }
