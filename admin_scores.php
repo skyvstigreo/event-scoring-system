@@ -20,6 +20,7 @@ include 'header/admin.php'; ?>
             </div>
         </div>
     </div>
+
     <?php
     $query = "SELECT * FROM table_schedule
     INNER JOIN table_event on table_schedule.event_id = table_event.event_id
@@ -73,10 +74,11 @@ include 'header/admin.php'; ?>
                             </tr>
                         </thead>
                         <tbody>';
-        $query = "SELECT * FROM table_contestant 
+        $query = "SELECT *, SUM(total_score)/Count(total_score) as total FROM table_contestant 
         LEFT JOIN table_event on table_contestant.event_id = table_event.event_id
         LEFT JOIN table_score on table_contestant.contestant_id = table_score.contestant_id
-        WHERE table_contestant.event_id = '$event'
+        WHERE table_contestant.event_id = '$event' and total_score != ''
+        GROUP BY table_score.contestant_id
         ORDER BY total_score DESC";
         $statement = $connect->prepare($query);
         $statement->execute();
@@ -88,7 +90,7 @@ include 'header/admin.php'; ?>
                             <tr>
                                 <td>' . $row["first_name"] . ' ' . $row["middle_name"] . ' ' . $row["last_name"] . '</td>
                                 <td>' . $row["event_name"] . '</td>
-                                <td>' . $row['total_score'] . '</td>
+                                <td>' . (number_format($row['total'], 2)),'%' . '</td>
                                 <td>' . $order . '</td>
 
                             </tr>';
@@ -110,64 +112,35 @@ include 'header/admin.php'; ?>
                             <tr>
                                 <th>Judge</th>
                                 <th>Contestant Name</th>
-                                <th>Event Name</th>';
-                                
-        echo '
-                                <th>Criteria 1</th>
-                                <th>Criteria 2</th>
-                                <th>Criteria 3</th>
+                                <th>Event Name</th>
+                                <th>View Criteria Score</th>
                                 <th>Overall Score</th>
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody>';
+        $query = "SELECT * FROM table_score
+        INNER JOIN table_user on table_score.judge_id = table_user.user_id
+        INNER JOIN table_contestant on table_score.contestant_id = table_contestant.contestant_id
+        INNER JOIN table_event on table_contestant.event_id = table_event.event_id
+        WHERE table_score.event_id = '$event'";
+        $statement = $connect->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $order = 0;
+        foreach ($result as $row) {
+
+
+            echo '
                             <tr>
-                                <td>Judge 1</td>
-                                <td>Tiger Nixon</td>
-                                <td>Math Contest</td>
-                                <td>20</td>
-                                <td>50</td>
-                                <td>20</td>
-                                <td>90</td>
-
-                            </tr>
-
-                            <tr>
-                                <td>Judge 2</td>
-                                <td>Tiger Nixon</td>
-                                <td>Math Contest</td>
-                                <td>20</td>
-                                <td>50</td>
-                                <td>20</td>
-                                <td>90</td>
-
-                            </tr>
-
-                            <tr>
-                                <td>Judge 1</td>
-                                <td>Tigang</td>
-                                <td>Math Contest</td>
-                                <td>20</td>
-                                <td>50</td>
-                                <td>20</td>
-                                <td>90</td>
-
-                            </tr>
-
-                            <tr>
-                                <td>Judge 2</td>
-                                <td>Tigang</td>
-                                <td>Math Contest</td>
-                                <td>20</td>
-                                <td>50</td>
-                                <td>20</td>
-                                <td>90</td>
-
-                            </tr>
-
-
-
-
+                                <td>' . $row['name'] . '</td>
+                                <td>' . $row['first_name'] . " " . $row['middle_name'] . " " . $row['last_name'] . '</td>
+                                <td>' . $row['event_name'] . '</td>
+                                <td><center><button type="button" name="view_score" id="' . $row["score_id"] . '" data-contestant="' . $row['contestant_id'] . '" data-judge="' . $row['judge_id'] . '" data-event="' . $row['event_id'] . '" class="btn btn-primary btn-xs view_score" data-toggle="tooltip" data-placement="bottom" title="Edit Category"><i class="fa fa-list"></i></button></center></td>
+                                <td>' . $row['total_score'] . '</td>
+                            </tr>';
+        };
+        echo '
                         </tbody>
                         <tfoot>
 
@@ -184,6 +157,42 @@ include 'header/admin.php'; ?>
     }
     ?>
 </div>
+<div id="view" class="modal animated rubberBand delete-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-header">
+                                <h5><img src="asset/img/event.png" width="40"> List of Criteria Scores</h5>
+                            </div>
+                            <span id="alert"></span>
+
+                            <div class="text-left">
+                                <table class="table table-hover" id="all_event">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Criteria</th>
+                                            <th>Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table_view">
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-light" data-dismiss="modal">Cancel</a>
+                        <!-- <input type="hidden" name="cid" id="cid" /> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -201,6 +210,37 @@ include 'header/admin.php'; ?>
         for (let i = 0; i < 1000; i++) {
             $("#tally" + i).DataTable();
         }
+
+        $(document).on('click', '.view_score', function() {
+            var score_id = $(this).attr("id");
+            var contestant_id = $(this).data("contestant");
+            var judge_id = $(this).data("judge");
+            var event_id = $(this).data("event");
+            $('#view').modal('show');
+            $.ajax({
+                url: "fetch/fetch_criteria_score.php",
+                method: "POST",
+                data: {
+                    contestant_id: contestant_id,
+                    judge_id: judge_id,
+                    event_id: event_id,
+                },
+                dataType: "html",
+                success: function(data) {
+
+                    $("#table_view").html(data);
+                    // $("#cid").val(category_id);
+
+
+
+                }
+            })
+        });
+
+
+
+
+
     });
 </script>
 </body>

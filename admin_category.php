@@ -133,7 +133,7 @@
 
  <!-- Update Modal -->
 
- <!-- <div id="update_modal" class="modal animated rubberBand delete-modal" role="dialog">
+ <div id="update_modal" class="modal animated rubberBand delete-modal" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-md">
        <div class="modal-content">
           <div class="modal-body text-center">
@@ -174,7 +174,7 @@
           </div>
        </div>
     </div>
- </div> -->
+ </div>
 
  <!-- Add New Modal -->
 

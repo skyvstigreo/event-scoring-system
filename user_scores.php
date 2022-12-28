@@ -50,9 +50,9 @@ if (empty($_SESSION['user_id'])) {
                         <div class="info-box-content">
                            <span class="info-box-text">
                               <h5>Event Name: <span>' . $row['event_name'] . '</span></h5>
-                              <h5>Date of Contest <span>' . $row['event_date'] . '</span></h5>
-                              <h5>Start Time <span>' . $row['event_time'] . '</span></h5>
-                              <h5>Event Time <span> Date</span></h5>
+                              <h5>Date of Contest <span>' . date("M d Y", strtotime($row['event_date'])) . '</span></h5>
+                              <h5>Start Time <span>' .  date("h:i: A", strtotime($row['event_time'])) . '</span></h5>
+                              <h5>End Time <span> ' .  date("h:i: A", strtotime($row['end_time'])) . '</span></h5>
                               <h5>Venue: <span>' . $row['event_venue'] . '</span></h5>
                            </span>
                         </div>
@@ -88,7 +88,7 @@ if (empty($_SESSION['user_id'])) {
                                        </tr>
                                     </table>
                                  </td>';
-         $query = "SELECT * FROM table_score WHERE event_id = '$event' and contestant_id = '$cid'";
+         $query = "SELECT * FROM table_score WHERE event_id = '$event' and contestant_id = '$cid' and judge_id ='$uid'";
          $statement = $connect->prepare($query);
          $statement->execute();
          $result = $statement->fetchAll();

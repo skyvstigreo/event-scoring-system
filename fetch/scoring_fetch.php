@@ -56,7 +56,7 @@ foreach ($result as $row) {
         foreach ($result as $row) {
             echo '
                   <td>
-                     <p>' . $row['criteria_name'] . '(' . $row['criteria_percent'] . ')</p>
+                     <p>' . $row['criteria_name'] . '(' . $row['criteria_percent'] . '%)</p>
                   </td>
                   <td>
                      <div class="col-md-12">
@@ -85,7 +85,7 @@ foreach ($result as $row) {
         foreach ($result as $row) {
             echo '
                           <td>
-                             <p>' . $row['criteria_name'] . '(' . $row['criteria_percent'] . ')</p>
+                             <p>' . $row['criteria_name'] . '(' . $row['criteria_percent'] . '%)</p>
                           </td>
                           <td>
                              <div class="col-md-12">
