@@ -1,0 +1,4 @@
+*Add All the Criteria All at once
+*There's no removal of Candidates and Judges after scoring
+*Deleting and "Adding an event to archive" can only be done after the event
+*u- admin/ password - admin123 

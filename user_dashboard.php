@@ -5,6 +5,8 @@ include 'header/user.php';
 // $uids = $_SESSION['name'];
 
 if (empty($_SESSION['user_id'])) {
+   $info = "You are not Logged in Yet";
+   $_SESSION['info'] = $info;
    header("Location: index.php");
 } else ($uid = $_SESSION['user_id']);
 

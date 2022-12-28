@@ -35,7 +35,7 @@ include 'header/admin.php'; ?>
                         <th>Action</th>
                      </tr>
                   </thead>
-      
+
                </table>
             </div>
          </div>
@@ -78,47 +78,24 @@ include 'header/admin.php'; ?>
                            <!-- </div> -->
                            <div class="col-md-12">
                               <div class="form-group">
-                                 <label class="float-left">Event Category</label>
-                                 <select class="form-control" id="type" name="type" style="cursor: pointer;" required>
-                                    <option value="">--- Select Category ---</option>
-                                    <?php
-                                    $query = "SELECT * FROM table_category";
-                                    $statement = $connect->prepare($query);
-                                    $statement->execute();
-                                    $result = $statement->fetchAll();
-                                    foreach ($result as $row) {
-                                       echo '<option value="' . $row["category_id"] . '">' . $row["category_name"] . '</option>';
-                                    }
-                                    ?>
-                                 </select>
-                                 <!-- <select class="form-control" id="type">
-                                    <option>Choose Event Type</option>
-                                    <option>Cultural</option>
-                                    <option>Arts</option>
-                                    <option>Academic</option>
-                                 </select> -->
-                              </div>
-                           </div>
-
-                           <div class="col-md-12">
-                              <div class="form-group">
                                  <label class="float-left">Event Name</label>
                                  <select class="form-control" id="event_id" name="event_id" style="cursor: pointer;" required>
                                     <option value="">--- Select Event---</option>
                                     <?php
-                                    // $query = "SELECT * FROM table_event";
-                                    // $statement = $connect->prepare($query);
-                                    // $statement->execute();
-                                    // $result = $statement->fetchAll();
-                                    // foreach ($result as $row) {
-                                    //    echo '<option value="' . $row["event_id"] . '">' . $row["event_name"] . '</option>';
-                                    // }
+                                    $query = "SELECT * FROM table_schedule
+                                    INNER JOIN table_event on table_schedule.event_id = table_event.event_id";
+                                    $statement = $connect->prepare($query);
+                                    $statement->execute();
+                                    $result = $statement->fetchAll();
+                                    foreach ($result as $row) {
+                                       echo '<option value="' . $row["event_id"] . '">' . $row["event_name"] . '</option>';
+                                    }
                                     ?>
                                  </select>
                               </div>
                            </div>
                         </div>
-            
+
                      </div>
                   </div>
                </div>
@@ -162,7 +139,8 @@ include 'header/admin.php'; ?>
                $('#user_modal').modal('hide');
                $('#alert_action').fadeIn().html('<div class="alert alert-success">' + data + '</div>');
                userdataTable.ajax.reload();
-               location.reload();
+               // location.reload();
+               $("#refresh").load(location.href + " #refresh");
             }
          })
       });
@@ -181,7 +159,8 @@ include 'header/admin.php'; ?>
             success: function(data) {
                $('#alert_action').fadeIn().html('<div class="alert alert-danger">' + data + '</div>');
                userdataTable.ajax.reload();
-               location.reload();
+               // location.reload();
+               $("#refresh").load(location.href + " #refresh");
             }
          })
       });
