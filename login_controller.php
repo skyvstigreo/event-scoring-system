@@ -6,6 +6,7 @@ $errors = array();
 if (isset($_POST['login'])) {
     $email =  $_POST['email'];
     $password =  $_POST['password'];
+    unset($_SESSION["info"]);
     $query = "SELECT * FROM table_user WHERE username = '$email'";
     $statement = $connect->prepare($query);
     $statement->execute();
