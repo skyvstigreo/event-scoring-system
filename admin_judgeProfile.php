@@ -17,7 +17,7 @@ include 'header/admin.php';
                   <li class="breadcrumb-item active">Judges</li>
                </ol>
             </div>
-            <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" id="add" data-target="#user_modal" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-user-plus"></i>
+            <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" id="add" data-target="#user_modal" style="margin-top: 20px;margin-left: 10px;background-color: #981D2D; color:white"><i class="fa fa-user-plus"></i>
                Add New</a>
          </div>
       </div>

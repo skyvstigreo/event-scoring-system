@@ -17,7 +17,7 @@
                    <li class="breadcrumb-item active">Events Category</li>
                 </ol>
              </div>
-             <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" id="add" data-target="#category_modal" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-plus-square"></i>
+             <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" id="add" data-target="#category_modal" style="margin-top: 20px;margin-left: 10px;background-color: #981D2D; color:white" ><i class="fa fa-plus-square"></i>
                 Add New</a>
           </div>
        </div>
