@@ -40,9 +40,9 @@ include 'header/admin.php'; ?>
             <div class="card card-info elevation-2">
                 <div>
                     <br>
-                    <a class="btn btn-sm elevation-4" onClick="window.print();" style="margin-left: 8px;background-color: rgb(240,158,65)"><img src="asset/img/print.png" width="20">
+                    <a class="btn btn-sm elevation-4" onClick="window.print();" style="margin-left: 8px;background-color: #981D2D; color:white"><i class="fa fa-print" aria-hidden="true"></i>
                         Print</a>
-                    <a class="btn btn-sm elevation-4"  style="margin-left: 8px;background-color: rgb(240,158,65)">
+                    <a class="btn btn-sm elevation-4"  style="margin-left: 8px;background-color: #981D2D; color:white"><i class="fa-sharp fa-solid fa-box-archive"></i>
                     Add to Archive</a>
                 </div>
                 <br>

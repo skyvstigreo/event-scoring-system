@@ -16,7 +16,7 @@ include 'header/admin.php'; ?>
                         <li class="breadcrumb-item active">Contestants Profile</li>
                     </ol>
                 </div>
-                <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" data-target="#contestant_modal" id="add" style="margin-top: 20px;margin-left: 10px;background-color: rgb(240,158,65)"><i class="fa fa-user-plus"></i>
+                <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" data-target="#contestant_modal" id="add" style="margin-top: 20px;margin-left: 10px;background-color: #981D2D; color:white"><i class="fa fa-user-plus"></i>
                     Add New</a>
             </div>
         </div>
