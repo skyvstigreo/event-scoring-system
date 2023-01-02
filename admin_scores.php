@@ -24,7 +24,8 @@ include 'header/admin.php'; ?>
     <?php
     $query = "SELECT * FROM table_schedule
     INNER JOIN table_event on table_schedule.event_id = table_event.event_id
-    INNER JOIN table_category on table_schedule.category_id = table_category.category_id";
+    INNER JOIN table_category on table_schedule.category_id = table_category.category_id
+    WHERE table_event.archive != '1'";
     $statement = $connect->prepare($query);
     $statement->execute();
     $result = $statement->fetchAll();
@@ -42,7 +43,7 @@ include 'header/admin.php'; ?>
                     <br>
                     <a class="btn btn-sm elevation-4" onClick="window.print();" style="margin-left: 8px;background-color: #981D2D; color:white"><i class="fa fa-print" aria-hidden="true"></i>
                         Print</a>
-                    <a class="btn btn-sm elevation-4"  style="margin-left: 8px;background-color: #981D2D; color:white"><i class="fa-sharp fa-solid fa-box-archive"></i>
+                    <a class="btn btn-sm elevation-4 archive" id="' . $event . '"  style="margin-left: 8px;background-color: #981D2D; color:white"><i class="fa-sharp fa-solid fa-box-archive"></i>
                     Add to Archive</a>
                 </div>
                 <br>
@@ -77,7 +78,7 @@ include 'header/admin.php'; ?>
         $query = "SELECT *, SUM(total_score)/Count(total_score) as total FROM table_contestant 
         LEFT JOIN table_event on table_contestant.event_id = table_event.event_id
         LEFT JOIN table_score on table_contestant.contestant_id = table_score.contestant_id
-        WHERE table_contestant.event_id = '$event' and total_score != ''
+        WHERE table_score.event_id = '$event' and total_score != ''
         GROUP BY table_score.contestant_id
         ORDER BY total_score DESC";
         $statement = $connect->prepare($query);
@@ -90,7 +91,7 @@ include 'header/admin.php'; ?>
                             <tr>
                                 <td>' . $row["first_name"] . ' ' . $row["middle_name"] . ' ' . $row["last_name"] . '</td>
                                 <td>' . $row["event_name"] . '</td>
-                                <td>' . (number_format($row['total'], 2)),'%' . '</td>
+                                <td>' . (number_format($row['total'], 2)), '%' . '</td>
                                 <td>' . $order . '</td>
 
                             </tr>';
@@ -235,6 +236,51 @@ include 'header/admin.php'; ?>
 
                 }
             })
+
+        });
+
+        $(document).on('click', '.archive', function() {
+            var event_id = $(this).attr("id");
+            var btn_action = 'archive';
+            Swal.fire({
+                title: 'Are you want to add to archive?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        url: "action/archive_action.php",
+                        method: "POST",
+                        data: {
+                            event_id: event_id,
+                            btn_action: btn_action
+                        },
+                        success: function(data) {
+                            swal.fire({
+                                icon: 'success',
+                                title: 'Success.',
+                                text: 'Your file has been set to Archive.',
+                                type: 'success'
+                            }).then(function() {
+                                location.reload();
+                            });
+                        }
+                    })
+                }
+            })
+
+
+
+
+
+
+
+
         });
 
 
@@ -246,3 +292,5 @@ include 'header/admin.php'; ?>
 </body>
 
 </html>
+<!-- sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

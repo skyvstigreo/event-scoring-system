@@ -31,7 +31,7 @@ if (empty($_SESSION['user_id'])) {
    INNER JOIN table_event on table_schedule.event_id = table_event.event_id
    INNER JOIN table_category on table_schedule.category_id = table_category.category_id
    INNER JOIN table_user on table_schedule.event_id = table_user.event_id
-   WHERE user_id = '$uid'";
+   WHERE user_id = '$uid' and table_event.archive != '1'";
    $statement = $connect->prepare($query);
    $statement->execute();
    $result = $statement->fetchAll();
