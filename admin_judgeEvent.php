@@ -23,6 +23,7 @@ include 'header/admin.php'; ?>
       </div>
    </div>
    <section class="content">
+      <span id="alert_action"></span>
       <div class="container-fluid">
          <div class="card card-info elevation-2">
             <br>
@@ -60,7 +61,7 @@ include 'header/admin.php'; ?>
                            <!-- <div id="refresh"> -->
                            <div class="col-md-12">
                               <div class="form-group">
-                                 <label class="float-left">Judge Name</label>
+                                 <label class="float-left lbl_judge">Judge Name</label>
                                  <select class="form-control" id="judge_id" name="judge_id" style="cursor: pointer;" required>
                                     <option value="">--- Select Judge---</option>
                                     <?php
@@ -83,7 +84,7 @@ include 'header/admin.php'; ?>
                                     <option value="">--- Select Event---</option>
                                     <?php
                                     $query = "SELECT * FROM table_schedule
-                                    INNER JOIN table_event on table_schedule.event_id = table_event.event_id";
+                                    INNER JOIN table_event on table_schedule.event_id = table_event.event_id and table_event.archive != '1'";
                                     $statement = $connect->prepare($query);
                                     $statement->execute();
                                     $result = $statement->fetchAll();
@@ -104,6 +105,55 @@ include 'header/admin.php'; ?>
                   <a href="#" class="btn btn-light" data-dismiss="modal">Cancel</a>
                   <input type="hidden" name="user_id" id="user_id" />
                   <input type="hidden" name="btn_action" id="btn_action" />
+                  <button type="submit" class="btn btn-primary">Save</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<div id="update_modal" class="modal animated rubberBand delete-modal" role="dialog">
+   <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content">
+         <div class="modal-body text-center">
+            <form method="POST" id="update_form">
+               <div class="card-body">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="card-header">
+                           <h5><img src="asset/img/event.png" width="40"> Judge Information</h5>
+                        </div>
+                        <div class="row" id="refresh">
+                           <div class="col-md-12">
+                              <div class="form-group">
+                                 <label class="float-left">Event Name</label>
+                                 <select class="form-control" id="eid" name="eid" style="cursor: pointer;" required>
+                                    <option value="">--- Select Event---</option>
+                                    <?php
+                                    $query = "SELECT * FROM table_schedule
+                                    INNER JOIN table_event on table_schedule.event_id = table_event.event_id and table_event.archive != '1'";
+                                    $statement = $connect->prepare($query);
+                                    $statement->execute();
+                                    $result = $statement->fetchAll();
+                                    foreach ($result as $row) {
+                                       echo '<option value="' . $row["event_id"] . '">' . $row["event_name"] . '</option>';
+                                    }
+                                    ?>
+                                 </select>
+                              </div>
+                           </div>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+               <!-- /.card-body -->
+               <div class="card-footer">
+                  <a href="#" class="btn btn-light" data-dismiss="modal">Cancel</a>
+                  <input type="hidden" name="jid" id="jid" />
+                  <input type="hidden" name="action" id="action" />
                   <button type="submit" class="btn btn-primary">Save</button>
                </div>
             </form>
@@ -141,6 +191,22 @@ include 'header/admin.php'; ?>
                userdataTable.ajax.reload();
                // location.reload();
                $("#refresh").load(location.href + " #refresh");
+            }
+         })
+      });
+
+      $(document).on('submit', '#update_form', function(event) {
+         event.preventDefault();
+         var form_data = $(this).serialize();
+         $.ajax({
+            url: "action/user_action.php",
+            method: "POST",
+            data: form_data,
+            success: function(data) {
+               $('#update_form')[0].reset();
+               $('#update_modal').modal('hide');
+               $('#alert_action').fadeIn().html('<div class="alert alert-success">' + data + '</div>');
+               userdataTable.ajax.reload();
             }
          })
       });
@@ -195,6 +261,37 @@ include 'header/admin.php'; ?>
          }, ],
          "pageLength": 9999999
       });
+
+
+      $(document).on('click', '.update', function() {
+         var user_id = $(this).attr("id");
+         var btn_action = "fetch_single";
+         $.ajax({
+            url: "action/user_action.php",
+            method: "POST",
+            data: {
+               user_id: user_id,
+               btn_action: btn_action
+            },
+            dataType: "json",
+            success: function(data) {
+
+               $('#action').val("edit");
+               $('#update_modal').modal('show');
+               $('#eid').val(data.event_id);
+               $('#jid').val(user_id);
+
+            }
+         })
+      });
+
+
+
+
+
+
+
+
 
    });
 </script>

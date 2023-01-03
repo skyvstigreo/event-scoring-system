@@ -39,7 +39,9 @@ if (isset($_POST['btn_action'])) {
         }
     }
     if ($_POST['btn_action'] == 'fetch_single') {
-        $query = "SELECT * FROM table_user WHERE user_id = :user_id";
+        $query = "SELECT * FROM table_user 
+        LEFT JOIN table_event on table_user.event_id = table_event.event_id
+        WHERE user_id = :user_id";
         $statement = $connect->prepare($query);
         $statement->execute(
             array(
@@ -50,6 +52,8 @@ if (isset($_POST['btn_action'])) {
         foreach ($result as $row) {
             $output['name'] = $row['name'];
             $output['user_name'] = $row['username'];
+            $output['user_id'] = $row['user_id'];
+            $output['event_id'] = $row['event_id'];
             $output['password'] = password_verify('admin123', $row['password']);
         }
         echo json_encode($output);
@@ -125,6 +129,26 @@ if (isset($_POST['btn_action'])) {
         $result = $statement->fetchAll();
         if (isset($result)) {
             echo 'Removed Successfully<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        }
+    }
+}
+if (isset($_POST['action'])) {
+    if ($_POST['action'] == 'edit') {
+        $query = "
+            UPDATE table_user set event_id = :event_id
+            WHERE user_id = :user_id
+            ";
+        $statement = $connect->prepare($query);
+        $statement->execute(
+            array(
+                ':event_id'    =>    $_POST["eid"],
+                ':user_id' =>  $_POST["jid"],
+            )
+        );
+
+        $result = $statement->fetchAll();
+        if (isset($result)) {
+            echo 'Event Edited Successfully <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
         }
     }
 }

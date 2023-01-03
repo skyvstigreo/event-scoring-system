@@ -18,7 +18,7 @@ INNER JOIN table_category on table_schedule.category_id = table_category.categor
 if (isset($_POST["search"]["value"])) {
 
     $query .= 'WHERE event_name LIKE "%' . $_POST["search"]["value"] . '%" ';
-    $query .= 'OR event_date LIKE "%' . $_POST["search"]["value"] . '%" ';
+    $query .= 'AND table_event.archive != "1"';
 }
 
 if (isset($_POST['order'])) {
@@ -55,15 +55,15 @@ foreach ($result as $row) {
 
 
     $sub_array = array();
-    $sub_array[] = '<center>' . $row['category_name'] .'<center>';
-    $sub_array[] = '<center>' . $row['event_name']. '<center>' ;
-    $sub_array[] = '<center>' . $row['event_venue']. '<center>' ;
-    $sub_array[] = '<center>' . date("M d Y", strtotime($row['event_date'])) . '<center>' ;
-    $sub_array[] = '<center>' . date("h:i: A", strtotime($row['event_time'])) .'<center>' ;
-    $sub_array[] = '<center>' . date("h:i: A", strtotime($row['end_time'])) . '<center>' ;
-    $sub_array[] = '<center>' . $status . '<center>' ;
+    $sub_array[] = '<center>' . $row['category_name'] . '<center>';
+    $sub_array[] = '<center>' . $row['event_name'] . '<center>';
+    $sub_array[] = '<center>' . $row['event_venue'] . '<center>';
+    $sub_array[] = '<center>' . date("M d Y", strtotime($row['event_date'])) . '<center>';
+    $sub_array[] = '<center>' . date("h:i: A", strtotime($row['event_time'])) . '<center>';
+    $sub_array[] = '<center>' . date("h:i: A", strtotime($row['end_time'])) . '<center>';
+    $sub_array[] = '<center>' . $status . '<center>';
 
-    $sub_array[] = '<center><button type="button" name="update" id="'.$row["sched_id"].'" class="btn btn-primary btn-xs update" data-toggle="tooltip" data-placement="bottom" title="Edit Category"><i class="fa fa-edit"></i></button> <button type="button" name="delete" id="' . $row["sched_id"] . '" class="btn btn-danger btn-xs delete" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button>';
+    $sub_array[] = '<center><button type="button" name="update" id="' . $row["sched_id"] . '" class="btn btn-primary btn-xs update" data-toggle="tooltip" data-placement="bottom" title="Edit Category"><i class="fa fa-edit"></i></button> <button type="button" name="delete" id="' . $row["sched_id"] . '" class="btn btn-danger btn-xs delete" data-toggle="tooltip" data-placement="bottom" title="Remove User"><i class="fa fa-trash"></i></button>';
     $data[] = $sub_array;
 }
 
@@ -78,7 +78,8 @@ function get_total_all_records($connect)
 {
     $statement = $connect->prepare("SELECT * FROM table_schedule
     INNER JOIN table_event on table_schedule.event_id = table_event.event_id
-    INNER JOIN table_category on table_schedule.category_id = table_category.category_id");
+    INNER JOIN table_category on table_schedule.category_id = table_category.category_id
+    WHERE table_event.archive != '1'");
     $statement->execute();
     return $statement->rowCount();
 }
