@@ -44,7 +44,19 @@ if (empty($_SESSION['user_id'])) {
                         <h5>Events</h5>
                      </span>
                      <span class="info-box-number">
-                        <h2>4</h2>
+                        <?php
+                        function events($connect)
+                        {
+                           $query = "SELECT count(event_id) as event FROM table_event;
+                                       ";
+                           $statement = $connect->prepare($query);
+                           $statement->execute();
+                           $result = $statement->fetch();
+                           $event = $result['event'];
+                           return $event;
+                        }
+                        ?>
+                        <h2><?php echo events($connect); ?></h2>
                      </span>
                   </div>
                </div>
@@ -58,7 +70,18 @@ if (empty($_SESSION['user_id'])) {
                         <h5>Contestants</h5>
                      </span>
                      <span class="info-box-number">
-                        <h2>10</h2>
+                        <?php
+                        function judges($connect)
+                        {
+                           $query = "SELECT count(user_id) as judge FROM table_user WHERE user_type = '1'";
+                           $statement = $connect->prepare($query);
+                           $statement->execute();
+                           $result = $statement->fetch();
+                           $judge = $result['judge'];
+                           return $judge;
+                        }
+                        ?>
+                        <h2><?php echo judges($connect); ?></h2>
                      </span>
                   </div>
                </div>

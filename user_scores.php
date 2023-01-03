@@ -108,70 +108,47 @@ if (empty($_SESSION['user_id'])) {
                         </table>
                      </div>
                   </div>
-                  ';
+                  <div class="col-lg-6" id="scoring">
+                  <div class="info-box content-header">
+                     <h5>Select Contestant</h5>
+                  </div>
+                  <div class="info-box">
+                     <div class="content-header bg-warning">
+                     </div>
+                     <table class="table">
+                        <thead class="btn-cancel">
+                           <tr>
+                              <th>Criteria</th>
+                              <th>Score</th>
+                           </tr>
+                        </thead>
+                        
+                        <tr style="border-collapse: collapse;">
+                           <td>
+                              <p>Total Score</p>
+                           </td>
+                           <td>
+                              <div class="col-md-12">
+                                 <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="100" readonly="">
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+                  <div class="col-md-12">
+                     <div class="form-group">
+            
+                        <!-- <button type="submit" class="btn btn-info">Submit Score</button>
+                        <button type="submit" class="btn">Edit Score</button> -->
+                     </div>
+                  </div>
+               </div>';
    }
 
    ?>
-   <div class="col-lg-6" id="scoring">
-      <div class="info-box content-header">
-         <h5>Select Contestant</h5>
-      </div>
-      <div class="info-box">
-         <div class="content-header bg-warning">
-         </div>
-         <table class="table">
-            <thead class="btn-cancel">
-               <tr>
-                  <th>Criteria</th>
-                  <th>Score</th>
-               </tr>
-            </thead>
-            <tr style="border-collapse: collapse;">
-               <td>
-                  <p>Q and A (50%)</p>
-               </td>
-               <td>
-                  <div class="col-md-12">
-                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Score">
-                     </div>
-                  </div>
-               </td>
-            </tr>
-            <tr style="border-collapse: collapse;">
-               <td>
-                  <p>Swimsuit (50%)</p>
-               </td>
-               <td>
-                  <div class="col-md-12">
-                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Score">
-                     </div>
-                  </div>
-               </td>
-            </tr>
-            <tr style="border-collapse: collapse;">
-               <td>
-                  <p>Total Score</p>
-               </td>
-               <td>
-                  <div class="col-md-12">
-                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="100" readonly="">
-                     </div>
-                  </div>
-               </td>
-            </tr>
-         </table>
-      </div>
-      <div class="col-md-12">
-         <div class="form-group">
 
-            <!-- <button type="submit" class="btn btn-info">Submit Score</button>
-            <button type="submit" class="btn">Edit Score</button> -->
-         </div>
-      </div>
-   </div>
 </div>
 </div>
 </div>
@@ -230,24 +207,40 @@ if (empty($_SESSION['user_id'])) {
       $(document).on('submit', '#score_form', function(event) {
          event.preventDefault();
          var form_data = $(this).serialize();
-         $.ajax({
-            url: "action/score_action.php",
-            method: "POST",
-            data: form_data,
-            success: function(data) {
-               // $('#user_form')[0].reset();
-               // $('#user_modal').modal('hide');
-               $('#alert_action').fadeIn().html('<div class="alert alert-success">' + data + '</div>');
-               // userdataTable.ajax.reload();
-               location.reload();
-               // $("#refresh").load(location.href + " #refresh");
+         Swal.fire({
+            title: 'Do you want to submit Score?',
+            text: "You won't be able to edit this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Submit Score!'
+         }).then((result) => {
+            if (result.isConfirmed) {
+               $.ajax({
+                  url: "action/score_action.php",
+                  method: "POST",
+                  data: form_data,
+                  success: function(data) {
+                     swal.fire({
+                        icon: 'success',
+                        title: 'Success.',
+                        text: 'Score Submitted.',
+                        type: 'success'
+                     }).then(function() {
+                        location.reload();
+                     });
+
+                  }
+               })
             }
          })
       });
-
-
    });
 </script>
+
 </body>
 
 </html>
+<!-- sweetalert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
