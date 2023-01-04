@@ -10,7 +10,7 @@ li a{
     font-weight: 100;
 }
 span.info-box-icon:hover{
-	box-shadow:0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23)!important;
+	box-shadow:0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(194, 31, 31, 0.23)!important;
 }
 a.btn-sm:hover{
 	box-shadow:0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23)!important;

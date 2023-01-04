@@ -125,7 +125,7 @@ include 'header/admin.php'; ?>
                         <div class="card-header">
                            <h5><img src="asset/img/event.png" width="40"> Judge Information</h5>
                         </div>
-                        <div class="row" id="refresh">
+                        <div class="row">
                            <div class="col-md-12">
                               <div class="form-group">
                                  <label class="float-left">Event Name</label>
