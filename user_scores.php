@@ -61,7 +61,7 @@ if (empty($_SESSION['user_id'])) {
                   <div class="col-lg-6">
                      <div class="info-box">
                         <table class="table">
-                           <thead class="btn-cancel" style="background-color: rgb(240,158,65)">
+                           <thead class="btn-cancel" style="background-color: #981D2D; color : white;">
                               <tr>
                                  <th>Contestant Name</th>
                                  <th>Action</th>
@@ -112,11 +112,11 @@ if (empty($_SESSION['user_id'])) {
                   <div class="info-box content-header">
                      <h5>Select Contestant</h5>
                   </div>
-                  <div class="info-box">
-                     <div class="content-header bg-warning">
+                  <div class="info-box" >
+                     <div class=" bg-warning" >
                      </div>
-                     <table class="table">
-                        <thead class="btn-cancel">
+                     <table class="table" >
+                        <thead class="btn-cancel" style = "background-color: #981D2D; color:white">
                            <tr>
                               <th>Criteria</th>
                               <th>Score</th>
@@ -125,7 +125,7 @@ if (empty($_SESSION['user_id'])) {
                         
                         <tr style="border-collapse: collapse;">
                            <td>
-                              <p>Total Score</p>
+                              <h4>Total Score</h4>
                            </td>
                            <td>
                               <div class="col-md-12">
