@@ -112,10 +112,10 @@ include 'header/admin.php'; ?>
                         <div class="col-lg-12">
 
                             <div class="info-box">
-                                <div class="content-header bg-warning">
+                                <div class=" bg-warning" >
                                 </div>
                                 <table class="table">
-                                    <thead class="btn-cancel">
+                                    <thead class="btn-cancel" style = "background-color: #981D2D; color:white">
                                         <tr>
                                             <th>Criteria</th>
                                             <th>Action</th>
@@ -130,7 +130,7 @@ include 'header/admin.php'; ?>
                 echo '
                                     <tr style="border-collapse: collapse;">
                                         <td style>
-                                            <p>' . $row['criteria_name'] . '(' . $row['criteria_percent'] . '%)</p>
+                                            <p>' . $row['criteria_name'] . ' (' . $row['criteria_percent'] . '%)</p>
                                         </td>
                                         <td>
                                             <div class="col-md-12">
