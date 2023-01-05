@@ -18,10 +18,10 @@ foreach ($result as $row) {
  </div>
  <form method="POST" id="score_form">
  <div class="info-box">
-    <div class="content-header bg-warning">
+    <div class=" bg-warning">
     </div>
     <table class="table">
-       <thead class="btn-cancel">
+       <thead class="btn-cancel" style = "background-color: #981D2D; color:white">
           <tr>
              <th>Criteria</th>
              <th>Score</th>
@@ -85,7 +85,7 @@ foreach ($result as $row) {
         foreach ($result as $row) {
             echo '
                           <td>
-                             <p>' . $row['criteria_name'] . '(' . $row['criteria_percent'] . '%)</p>
+                             <p>' . $row['criteria_name'] . ' (' . $row['criteria_percent'] . '%)</p>
                           </td>
                           <td>
                              <div class="col-md-12">
@@ -107,8 +107,7 @@ foreach ($result as $row) {
        <input type="hidden" id="eid" name="event_id" class="form-control" value="' . $event_id . '">
        <input type="hidden" id="cid" name="contestant_id" class="form-control" value="' . $contestant_id . '">
        <input type="hidden" id="jid" name="judge_id" class="form-control" value="' . $judge_id . '"> 
-       <button type="submit" class="btn btn-info">Submit Score</button>
-       <button type="submit" class="btn">Edit Score</button>
+       <center><button type="submit" class="btn btn-info">Submit Score</button> </center>
     </div>
  </div>
  </form>';

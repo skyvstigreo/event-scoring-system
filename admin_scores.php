@@ -80,7 +80,7 @@ include 'header/admin.php'; ?>
         LEFT JOIN table_score on table_contestant.contestant_id = table_score.contestant_id
         WHERE table_score.event_id = '$event' and total_score != ''
         GROUP BY table_score.contestant_id
-        ORDER BY total_score DESC";
+        ORDER BY total DESC";
         $statement = $connect->prepare($query);
         $statement->execute();
         $result = $statement->fetchAll();
