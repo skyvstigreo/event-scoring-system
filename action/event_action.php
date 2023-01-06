@@ -48,7 +48,8 @@ if (isset($_POST['btn_action'])) {
     if ($_POST['btn_action'] == 'fetch_single') {
         $query = "SELECT * FROM table_schedule
         INNER JOIN table_event on table_schedule.event_id = table_event.event_id
-        INNER JOIN table_category on table_schedule.category_id = table_category.category_id";
+        INNER JOIN table_category on table_schedule.category_id = table_category.category_id
+        WHERE sched_id = :sched_id";
         $statement = $connect->prepare($query);
         $statement->execute(
             array(
@@ -78,7 +79,7 @@ if (isset($_POST['btn_action'])) {
         $statement = $connect->prepare($query);
         $statement->execute(
             array(
-               
+
                 ':category_id'    =>    $_POST["type"],
                 ':event_id'    =>    $_POST["event"],
                 ':event_venue'    =>    $_POST["venue"],
