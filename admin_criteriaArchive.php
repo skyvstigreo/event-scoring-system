@@ -43,7 +43,7 @@ include 'header/admin.php'; ?>
             <div class="card card-info elevation-2">
                 <div>
                     <br>
-                    <a class="btn btn-sm elevation-4" onClick="window.print();" style="margin-left: 8px;background-color: #981D2D; color:white"><i class="fa fa-print" aria-hidden="true"></i>
+                    <a href="print/generate_score.php?id=' . $row["event_id"] . '" class="btn btn-sm elevation-4" onClick="window.print();" style="margin-left: 8px;background-color: #981D2D; color:white"><i class="fa fa-print" aria-hidden="true"></i>
                         Print</a>
                 </div>
                 <br>
@@ -80,7 +80,7 @@ include 'header/admin.php'; ?>
       LEFT JOIN table_event on table_score.event_id = table_event.event_id
       WHERE table_score.event_id = '$event' and total_score != ''
       GROUP BY table_score.contestant_id
-      ORDER BY total_score DESC";
+      ORDER BY total DESC";
       $statement = $connect->prepare($query);
       $statement->execute();
       $result = $statement->fetchAll();
