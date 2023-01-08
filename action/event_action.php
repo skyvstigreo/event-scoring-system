@@ -20,31 +20,6 @@ if (isset($_POST['btn_action'])) {
         echo json_encode($output);
     }
 
-    if ($_POST['btn_action'] == 'add_event') {
-
-        $query = "
-		INSERT INTO table_schedule(event_id, category_id, event_venue, event_date, event_time, end_time) 
-		VALUES (:event_id, :category_id, :event_venue,  :event_date, :event_time, :end_time)
-		";
-
-        $statement = $connect->prepare($query);
-        $statement->execute(
-            array(
-                ':event_id'    =>    $_POST["event"],
-                ':category_id'    =>    $_POST["type"],
-                ':event_venue'    =>    $_POST["venue"],
-                ':event_date'    =>    $_POST["date"],
-                ':event_time'    =>    $_POST["time"],
-                ':end_time'     => $_POST["end_time"]
-            )
-        );
-
-        $result = $statement->fetchAll();
-        if (isset($result)) {
-            echo 'An event is added Successfully!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-        }
-    }
-
     if ($_POST['btn_action'] == 'fetch_single') {
         $query = "SELECT * FROM table_schedule
         INNER JOIN table_event on table_schedule.event_id = table_event.event_id
@@ -59,7 +34,7 @@ if (isset($_POST['btn_action'])) {
         $result = $statement->fetchAll();
         foreach ($result as $row) {
             $output['event_type'] = $row['category_id'];
-            $output['event_name'] = $row['event_id'];
+            $output['event_name'] = '<option value="' . $row["event_id"] . '">' . $row["event_name"] . '</option>';
             $output['event_venue'] = $row['event_venue'];
             $output['event_date'] = $row['event_date'];
             $output['event_time'] = $row['event_time'];
@@ -114,3 +89,31 @@ if (isset($_POST['btn_action'])) {
         }
     }
 }
+if (isset($_POST['action'])) {
+
+    if ($_POST['action'] == 'add_event') {
+
+        $query = "
+		INSERT INTO table_schedule(event_id, category_id, event_venue, event_date, event_time, end_time) 
+		VALUES (:event_id, :category_id, :event_venue,  :event_date, :event_time, :end_time)
+		";
+
+        $statement = $connect->prepare($query);
+        $statement->execute(
+            array(
+                ':event_id'    =>    $_POST["event_id"],
+                ':category_id'    =>    $_POST["category"],
+                ':event_venue'    =>    $_POST["venue"],
+                ':event_date'    =>    $_POST["date"],
+                ':event_time'    =>    $_POST["time"],
+                ':end_time'     => $_POST["end_time"]
+            )
+        );
+
+        $result = $statement->fetchAll();
+        if (isset($result)) {
+            echo 'An event is added Successfully!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        }
+    }
+}
+

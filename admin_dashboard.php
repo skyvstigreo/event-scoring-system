@@ -34,7 +34,9 @@ include 'header/admin.php'; ?>
                         <?php
                         function events($connect)
                         {
-                           $query = "SELECT count(event_id) as event FROM table_event;
+                           $query = "SELECT count(table_event.event_id) as event FROM table_schedule
+                           INNER JOIN table_event on table_schedule.event_id = table_event.event_id
+                           WHERE table_event.archive != '1'
                                        ";
                            $statement = $connect->prepare($query);
                            $statement->execute();
