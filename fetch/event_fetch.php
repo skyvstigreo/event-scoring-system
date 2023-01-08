@@ -47,8 +47,8 @@ foreach ($result as $row) {
     // }
     $date_now = date("Y-m-d");
     $time_now = date("h:i:sa");
-    if ($date_now >= $row['event_date']) {
-        if ($time_now >= $row['event_time']) {
+    if ($date_now == $row['event_date']) {
+        if ($time_now >= $row['event_time'] && $time_now <= $row['end_time']) {
             $status = '<span class="badge bg-success"> Open </span>';
         } else ($status = '<span class="badge bg-danger"> Close </span>');
     } else ($status = '<span class="badge bg-danger"> Close </span>');

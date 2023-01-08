@@ -49,7 +49,7 @@ include 'header/admin.php'; ?>
                   <li class="breadcrumb-item active">Events Name</li>
                </ol>
             </div>
-            <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" id="add" data-target="#event_modal" style="margin-top: 20px;margin-left: 10px;background-color: #981D2D; color:white"><i class="fa fa-plus-square"></i>
+            <a class="btn btn-sm elevation-4" href="#" data-toggle="modal" id="add" data-target="#add_modal" style="margin-top: 20px;margin-left: 10px;background-color: #981D2D; color:white"><i class="fa fa-plus-square"></i>
                Add New</a>
          </div>
       </div>
@@ -172,6 +172,90 @@ include 'header/admin.php'; ?>
       </div>
    </div>
 </div>
+
+<div id="add_modal" class="modal animated rubberBand delete-modal" role="dialog">
+   <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+         <div class="modal-body text-center">
+            <form method="POST" id="add_form">
+               <div class="card-body">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="card-header">
+                           <h5><img src="asset/img/event.png" width="40"> Events Information</h5>
+                        </div>
+
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="float-left">Event Category</label>
+                                 <select class="form-control" id="category" name="category" style="cursor: pointer;" required>
+                                    <option value="">--- Select Category ---</option>
+                                    <?php
+                                    $query = "SELECT * FROM table_category";
+                                    $statement = $connect->prepare($query);
+                                    $statement->execute();
+                                    $result = $statement->fetchAll();
+                                    foreach ($result as $row) {
+                                       echo '<option value="' . $row["category_id"] . '">' . $row["category_name"] . '</option>';
+                                    }
+                                    ?>
+                                 </select>
+                              </div>
+                           </div>
+
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="float-left">Event Name</label>
+                                 <select class="form-control" id="event_id" name="event_id" style="cursor: pointer;" required>
+                                    <option value="">--- Select Event ---</option>
+                                 </select>
+                              </div>
+                           </div>
+
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="float-left">Venue</label>
+                                 <input type="text" id="venue" name="venue" class="form-control" placeholder="Venue" required>
+                              </div>
+                           </div>
+
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="float-left">Date</label>
+                                 <input type="date" id="event_date" name="date" class="form-control" placeholder="Event Name" required>
+                              </div>
+                           </div>
+
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="float-left">Start Time</label>
+                                 <input type="time" id="time" name="time" class="form-control" placeholder="Start Time" required>
+                              </div>
+                           </div>
+
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label class="float-left">End Time</label>
+                                 <input type="time" id="end_time" name="end_time" class="form-control" placeholder="End Time" required>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Card Footer -->
+               <div class="card-footer">
+                  <input type="hidden" name="action" id="action" />
+                  <a href="#" class="btn btn-light" data-dismiss="modal">Cancel</a>
+                  <button type="submit" class="btn btn-primary">Update</button>
+               </div>
+         </div>
+         </form>
+      </div>
+   </div>
+</div>
 </div>
 
 <!-- jQuery -->
@@ -186,12 +270,14 @@ include 'header/admin.php'; ?>
 
 <script>
    date.min = new Date().toISOString().split("T")[0];
-
+   event_date.min = new Date().toISOString().split("T")[0];
    $(document).ready(function() {
 
       $('#add').on('click', function() {
-         $('#event_form')[0].reset();
-         $('#btn_action').val("add_event");
+         $('#action').val("add_event");
+         $('#add_form')[0].reset();
+         $('#event_id').find('option').remove().end()
+            .append('<option value="">--- Select Event ---</option>').val('');
       });
 
 
@@ -218,6 +304,26 @@ include 'header/admin.php'; ?>
          })
       });
 
+
+
+      $(document).on('submit', '#add_form', function(event) {
+         event.preventDefault();
+         var form_data = $(this).serialize();
+         $.ajax({
+            url: "action/event_action.php",
+            method: "POST",
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: function(data) {
+               $('#add_form')[0].reset();
+               $('#add_modal').modal('hide');
+               $('#alert_action').fadeIn().html('<div class="alert alert-success">' + data + '</div>');
+               eventdataTable.ajax.reload();
+            }
+         })
+      });
+
       $("#type").on('change', function() {
          var category_id = $(this).val();
          $.ajax({
@@ -233,6 +339,23 @@ include 'header/admin.php'; ?>
 
          });
       })
+
+      $("#category").on('change', function() {
+         var category_id = $(this).val();
+         $.ajax({
+            method: "POST",
+            url: "fetch/fetch_event_name.php",
+            data: {
+               category_id: category_id
+            },
+            dataType: "html",
+            success: function(data) {
+               $("#event_id").html(data);
+            }
+
+         });
+      })
+
 
 
       var eventdataTable = $('#event_table').DataTable({
@@ -285,7 +408,7 @@ include 'header/admin.php'; ?>
                // $('#submit').text("Save Changes");
                $('#btn_action').val("edit");
                $('#event_modal').modal('show');
-               $('#event').val(data.event_name);
+               $('#event').html(data.event_name);
                $('#type').val(data.event_type);
                $('#venue').val(data.event_venue);
                $('#date').val(data.event_date);
