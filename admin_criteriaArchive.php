@@ -43,7 +43,7 @@ include 'header/admin.php'; ?>
             <div class="card card-info elevation-2">
                 <div>
                     <br>
-                    <a href="print/generate_score.php?id=' . $row["event_id"] . '" class="btn btn-sm elevation-4" onClick="window.print();" style="margin-left: 8px;background-color: #981D2D; color:white"><i class="fa fa-print" aria-hidden="true"></i>
+                    <a href="print/generate_score.php?id=' . $row["event_id"] . '" class="btn btn-sm elevation-4" style="margin-left: 8px;background-color: #981D2D; color:white"><i class="fa fa-print" aria-hidden="true"></i>
                         Print</a>
                 </div>
                 <br>
