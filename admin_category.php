@@ -1,5 +1,6 @@
  <?php
    $title = "DESS - Contestant Event";
+   include 'pdo-connection.php';
    include 'function.php';
    include 'header/admin.php';
    ?>
