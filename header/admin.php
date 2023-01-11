@@ -1,3 +1,15 @@
+<?php
+// include "pdo-connection.php";
+if (isset($_SESSION['type'])) {
+   if ($_SESSION['type'] == '1') {
+      header('location: index.php');
+      die();
+   }
+} else {
+   header('location: index.php');
+   die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +30,8 @@
       table tr td {
          padding: 0.3rem !important;
       }
-      td a.btn{
+
+      td a.btn {
          font-size: 0.7rem;
       }
    </style>
@@ -35,32 +48,31 @@
             </li>
          </ul>
          <ul class="navbar-nav ml-auto">
-        
+
             <!-- <li class="nav-item">
                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                   <i class="fas fa-expand-arrows-alt"></i>
                </a>
             </li> -->
             <li class="nav-item">
-               <a class="nav-link" data-widget="fullscreen" href="index.php">
+               <a class="nav-link" data-widget="fullscreen" href="logout.php">
                   <i class="fas fa-sign-out-alt"></i>
                </a>
             </li>
          </ul>
       </nav>
-      <aside class="main-sidebar sidebar-light-primary" style="background-color: #981D2D">   <!-- Change Color-->
+      <aside class="main-sidebar sidebar-light-primary" style="background-color: #981D2D"> <!-- Change Color-->
 
-            <!-- Brand Logo -->
-            <a href="admin_dashboard.php" class="brand-link">
-         <img src="asset/img/Brand.png" alt="DSMS Logo" width="200">
+         <!-- Brand Logo -->
+         <a href="admin_dashboard.php" class="brand-link">
+            <img src="asset/img/Brand.png" alt="DSMS Logo" width="200">
          </a>
          <div class="sidebar">
             <nav class="mt-2">
-               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                  data-accordion="false">
+               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                   <li class="nav-item">
                      <a href="admin_dashboard.php" class="nav-link">
-                     <i class="fa-sharp fa-solid fa-gauge"></i>
+                        <i class="fa-sharp fa-solid fa-gauge"></i>
                         <p>
                            Dashboard
                         </p>
@@ -68,7 +80,7 @@
                   </li>
                   <li class="nav-item">
                      <a href="admin_criteriaArchive.php" class="nav-link">
-                     <i class="fa-sharp fa-solid fa-box-archive"></i>
+                        <i class="fa-sharp fa-solid fa-box-archive"></i>
                         <p>
                            Archive
                         </p>
@@ -76,12 +88,12 @@
                   </li>
                   <li class="nav-item">
                      <a href="#" class="nav-link">
-                     <i class="fa-sharp fa-solid fa-calendar-days"></i>
+                        <i class="fa-sharp fa-solid fa-calendar-days"></i>
                         <p>
                            Events
                         </p>
                         <i class="right fas fa-angle-left"></i>
-                   
+
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
@@ -103,17 +115,17 @@
                               <p>Event Criteria</p>
                            </a>
                         </li>
-                     
+
                      </ul>
                   </li>
-                  
-                
+
+
                   <li class="nav-item">
                      <a href="#" class="nav-link">
-                     <i class="fa-sharp fa-solid fa-user-plus"></i>
-                   
+                        <i class="fa-sharp fa-solid fa-user-plus"></i>
+
                         <p>
-                        Contestants
+                           Contestants
                         </p>
                         <i class="right fas fa-angle-left"></i>
                      </a>
@@ -134,7 +146,7 @@
                   </li>
                   <li class="nav-item">
                      <a href="#" class="nav-link">
-                     <i class="fa-sharp fa-solid fa-users"></i>
+                        <i class="fa-sharp fa-solid fa-users"></i>
                         <p>
                            Judges
                         </p>
@@ -157,7 +169,7 @@
                   </li>
                   <li class="nav-item">
                      <a href="admin_scores.php" class="nav-link">
-                     <i class="fa-sharp fa-solid fa-arrow-up-1-9"></i>
+                        <i class="fa-sharp fa-solid fa-arrow-up-1-9"></i>
                         <p>
                            Scores
                         </p>
