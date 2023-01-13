@@ -54,7 +54,7 @@ include 'header/admin.php'; ?>
                                 <div class="info-box-content">
                                     <span class="info-box-text">
                                         <h5>Contest Name: ' . $row['event_name'] . '<span></span></h5>
-                                        <h6>Date of Contest: ' . $row['event_date'] . ' <span> </span></h6>
+                                        <h6>Date of Contest: ' . date("M d Y", strtotime($row['event_date'])) . ' <span> </span></h6>
                                         <h6>Venue: <span>' . $row['event_venue'] . '</span></h6>
                                     </span>
                                 </div>
