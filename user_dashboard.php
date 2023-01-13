@@ -73,17 +73,18 @@ if (empty($_SESSION['user_id'])) {
                      </span>
                      <span class="info-box-number">
                         <?php
-                        function judges($connect)
+                        function contestants($connect)
                         {
-                           $query = "SELECT count(user_id) as judge FROM table_user WHERE user_type = '1'";
+                           $query = "SELECT count(contestant_id) as contestant FROM table_contestant;
+                                       ";
                            $statement = $connect->prepare($query);
                            $statement->execute();
                            $result = $statement->fetch();
-                           $judge = $result['judge'];
-                           return $judge;
+                           $contestant = $result['contestant'];
+                           return $contestant;
                         }
                         ?>
-                        <h2><?php echo judges($connect); ?></h2>
+                        <h2><?php echo contestants($connect); ?></h2>
                      </span>
                   </div>
                </div>
