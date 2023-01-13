@@ -27,13 +27,7 @@ CREATE TABLE IF NOT EXISTS `table_category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table tabulation.table_category: ~1 rows (approximately)
-INSERT INTO `table_category` (`id`, `category_id`, `category_name`) VALUES
-	(1, 'category-8r1gy', 'English Month'),
-	(2, 'category-tjlua', 'Math Month'),
-	(3, 'category-hzjiu', 'Science Month'),
-	(4, 'category-et3fz', 'Foundation Day'),
-	(5, 'category-ofdv1', 'Intramurals');
+-- Dumping data for table tabulation.table_category: ~0 rows (approximately)
 
 -- Dumping structure for table tabulation.table_contestant
 CREATE TABLE IF NOT EXISTS `table_contestant` (
@@ -46,11 +40,9 @@ CREATE TABLE IF NOT EXISTS `table_contestant` (
   `event_id` int(11) NOT NULL,
   `status` enum('0','1') NOT NULL,
   PRIMARY KEY (`contestant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table tabulation.table_contestant: ~1 rows (approximately)
-INSERT INTO `table_contestant` (`contestant_id`, `first_name`, `middle_name`, `last_name`, `gender`, `course_id`, `event_id`, `status`) VALUES
-	(1, 'John', 'P', 'Doe', 'Male', 14, 0, '0');
+-- Dumping data for table tabulation.table_contestant: ~0 rows (approximately)
 
 -- Dumping structure for table tabulation.table_course
 CREATE TABLE IF NOT EXISTS `table_course` (
@@ -92,45 +84,33 @@ CREATE TABLE IF NOT EXISTS `table_criteria` (
   `criteria_name` varchar(255) NOT NULL,
   `criteria_percent` int(11) NOT NULL,
   PRIMARY KEY (`criteria_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table tabulation.table_criteria: ~0 rows (approximately)
+
+-- Dumping structure for table tabulation.table_criteria_score
+CREATE TABLE IF NOT EXISTS `table_criteria_score` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `criteria_id` int(11) NOT NULL,
+  `event_id` int(11) DEFAULT NULL,
+  `judge_id` int(11) DEFAULT NULL,
+  `contestant_id` int(11) DEFAULT NULL,
+  `score` double DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table tabulation.table_criteria_score: ~0 rows (approximately)
 
 -- Dumping structure for table tabulation.table_event
 CREATE TABLE IF NOT EXISTS `table_event` (
   `event_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` varchar(50) NOT NULL,
   `event_name` varchar(255) NOT NULL,
+  `archive` enum('0','1') NOT NULL,
   PRIMARY KEY (`event_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table tabulation.table_event: ~7 rows (approximately)
-INSERT INTO `table_event` (`event_id`, `category_id`, `event_name`) VALUES
-	(1, 'category-8r1gy', 'Speech Choir'),
-	(2, 'category-8r1gy', 'Film Making'),
-	(3, 'category-8r1gy', 'Essay Writing'),
-	(4, 'category-8r1gy', 'Spelling Bee'),
-	(5, 'category-8r1gy', 'Story Telling'),
-	(6, 'category-8r1gy', 'Oration'),
-	(7, 'category-8r1gy', 'Radio Drama'),
-	(8, 'category-tjlua', 'Quiz Bee'),
-	(9, 'category-tjlua', 'Rubics Cube Contest'),
-	(10, 'category-hzjiu', 'Science Quiz Bee'),
-	(11, 'category-hzjiu', 'Experiment Show'),
-	(12, 'category-hzjiu', 'Speech Choir'),
-	(13, 'category-et3fz', 'Speech Choir'),
-	(14, 'category-et3fz', 'Singing Contest'),
-	(15, 'category-et3fz', 'Dance Contest'),
-	(16, 'category-et3fz', 'Cheer Dance'),
-	(17, 'category-ofdv1', 'Basketball'),
-	(18, 'category-ofdv1', 'Badminton'),
-	(19, 'category-ofdv1', 'Swimming'),
-	(20, 'category-ofdv1', 'Chess'),
-	(21, 'category-ofdv1', 'Volleyball'),
-	(22, 'category-ofdv1', 'Cheer Dance'),
-	(23, 'category-ofdv1', 'Poster Making'),
-	(24, 'category-ofdv1', 'Dance Competition'),
-	(25, 'category-ofdv1', 'Singing Competition');
+-- Dumping data for table tabulation.table_event: ~0 rows (approximately)
 
 -- Dumping structure for table tabulation.table_schedule
 CREATE TABLE IF NOT EXISTS `table_schedule` (
@@ -141,13 +121,23 @@ CREATE TABLE IF NOT EXISTS `table_schedule` (
   `event_date` date DEFAULT NULL,
   `event_time` time DEFAULT NULL,
   `end_time` time NOT NULL DEFAULT '00:00:00',
+  `archive` enum('0','1') NOT NULL,
   PRIMARY KEY (`sched_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table tabulation.table_schedule: ~0 rows (approximately)
-INSERT INTO `table_schedule` (`sched_id`, `event_id`, `category_id`, `event_venue`, `event_date`, `event_time`, `end_time`) VALUES
-	(15, 18, 'category-ofdv1', 'Gym', '2022-12-24', '19:33:00', '22:35:00'),
-	(16, 16, 'category-et3fz', 'Gym', '2022-12-24', '19:59:00', '22:03:00');
+
+-- Dumping structure for table tabulation.table_score
+CREATE TABLE IF NOT EXISTS `table_score` (
+  `score_id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_id` int(11) NOT NULL,
+  `contestant_id` int(11) NOT NULL,
+  `judge_id` int(11) NOT NULL,
+  `total_score` double NOT NULL,
+  PRIMARY KEY (`score_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table tabulation.table_score: ~0 rows (approximately)
 
 -- Dumping structure for table tabulation.table_user
 CREATE TABLE IF NOT EXISTS `table_user` (
@@ -158,12 +148,15 @@ CREATE TABLE IF NOT EXISTS `table_user` (
   `username` varchar(50) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table tabulation.table_user: ~2 rows (approximately)
+-- Dumping data for table tabulation.table_user: ~5 rows (approximately)
 INSERT INTO `table_user` (`user_id`, `user_type`, `event_id`, `name`, `username`, `password`) VALUES
 	(6, '0', 0, 'admin', 'admin', '$2y$10$MlQ4pakEHLQbC8N70.7NVOY0iHJN2S4VLhQAly1Ey27AhIJ9QSNEi'),
-	(10, '1', 8, 'John Doe', 'donjohn', '$2y$10$dMc8hLA3QHuGk.4sdde/8exj1w7doNZ0QkPLyv2HnRRoQPy60p9v2');
+	(10, '1', 0, 'Judge 1', 'judge1', '$2y$10$tlRvFNfmT.U20qA5WKHnnOvuQStMustHkKOthvEOgBGDYwkROnATG'),
+	(11, '1', 0, 'Judge 2', 'judge2', '$2y$10$DrxPvKNA07RVLOqMwxh9ZucGA7ENS4rkIDGbWuTIC0pNz4llNEnv2'),
+	(12, '1', 0, 'Judge 3', 'judge3', '$2y$10$xk7.Fd5nw.ipCt5r8cny5.Ik3bNv2s8WOFlacspruO0HfF1Y.PMya'),
+	(13, '1', 0, 'Judge 4', 'judge4', '$2y$10$ZdIkZXwIEHwcI8hrBQAwWOnuHW20ljEN2Jh9lzL2JpJzJcS2Ak9h.');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
