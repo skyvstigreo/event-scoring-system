@@ -46,7 +46,7 @@ include 'header/admin.php'; ?>
                <h5>Event Category: <span>' . $row['category_name'] . '</span></h5>
                <h5>Event Name: <span>' . $row['event_name'] . '</span></h5>
                <h5>Venue: <span>' . $row['event_venue'] . '</span></h5>
-               <h5>Date: <span>' . date("h:i: A", strtotime($row['event_time'])) . '</span></h5>
+               <h5>Date: <span>' . date("M d Y", strtotime($row['event_date'])) . '</span></h5>
 
 
                <table  class="table table-striped table-bordered" style="width:100%">

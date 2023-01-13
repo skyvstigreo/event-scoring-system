@@ -100,7 +100,7 @@ include 'header/admin.php'; ?>
 
                                     <span class="info-box-text">
                                         <h5>Event Name: <span>' . $row['event_name'] . '</span></h5>
-                                        <h5>Date of Contest: <span> Date</span></h5>
+                                        <h5>Date of Contest: <span>' . date("M d Y", strtotime($row['event_date'])) . '</span></h5>
                                         <h5>Start Time: <span> ' . date("h:i: A", strtotime($row['event_time'])) . '</span></h5>
                                         <h5>Event Time: <span> ' . date("h:i: A", strtotime($row['end_time'])) . '</span></h5>
                                         <h5>Venue: <span>' . $row['event_venue'] . '</span></h5>
