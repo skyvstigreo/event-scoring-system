@@ -79,6 +79,39 @@ foreach ($result as $row) {
                     </tr>';
 };
 $html .= "
+</table>
+<table>
+<tr>
+<th>Judge</th>
+<th>Contestant Name</th>
+<th>Event Name</th>
+<th>Overall Score</th>
+</tr>
+";
+$queryjudge = "SELECT * FROM table_score
+INNER JOIN table_user on table_score.judge_id = table_user.user_id
+INNER JOIN table_contestant on table_score.contestant_id = table_contestant.contestant_id
+INNER JOIN table_event on table_score.event_id = table_event.event_id
+WHERE table_score.event_id = '$event'";
+$stmt = $connect->prepare($queryjudge);
+$stmt->execute();
+$result2 = $stmt->fetchAll();
+
+
+
+//loop the data
+foreach ($result2 as $row2) {
+
+    $html .= '
+                    <tr>
+                    <td>' . $row2['name'] . '</td>
+                    <td>' . $row2['first_name'] . " " . $row2['middle_name'] . " " . $row2['last_name'] . '</td>
+                    <td>' . $row2['event_name'] . '</td>
+                    <td>' . $row2['total_score'] . '</td>
+                    </tr>';
+};
+
+$html .= "
 	</table>
 	<style>
 	table {
@@ -97,7 +130,54 @@ $html .= "
 	}
 	</style>
 ";
+
+// $queryjudge = "SELECT * FROM table_score
+// INNER JOIN table_user on table_score.judge_id = table_user.user_id
+// INNER JOIN table_contestant on table_score.contestant_id = table_contestant.contestant_id
+// INNER JOIN table_event on table_score.event_id = table_event.event_id
+// WHERE table_score.event_id = '$event'";
+// $stmt = $connect->prepare($queryjudge);
+// $stmt->execute();
+// $result2 = $stmt->fetchAll();
+
+
+// $html2 = "
+// 	<table>
+
+// 		";
+// //loop the data
+// foreach ($result2 as $row2) {
+
+//     $html2 .= '
+//                     <tr>
+//                     <td>' . $row2['name'] . '</td>
+//                     <td>' . $row2['first_name'] . " " . $row2['middle_name'] . " " . $row2['last_name'] . '</td>
+//                     <td>' . $row2['event_name'] . '</td>
+//                     <td>' . $row2['total_score'] . '</td>
+//                     </tr>';
+// };
+// $html2 .= "
+// 	</table>
+
+// 	<style>
+// 	table {
+// 		border-collapse:collapse;
+// 	}
+// 	th,td {
+// 		border:1px solid #888;
+//         font-size: 10px;
+// 	}
+
+// 	table tr th {
+// 		background-color:#888;
+// 		color:#fff;
+// 		font-weight:bold;
+//         text-align: center;
+// 	}
+// 	</style>
+// ";
 //WriteHTMLCell
 $pdf->WriteHTMLCell(192, 0, 9, '', $html, 0);
-
+// $pdf->WriteHTMLCell(192, 0, 9, '', $html2, 0);
 $pdf->Output();
+// $pdf2->Output();
